@@ -1,0 +1,234 @@
+html,
+body {
+  height: 100%;
+}
+.login-container {
+  font-family: "Fredoka One", cursive;
+  background-color: rgba(27, 33, 44, 1);
+  background-image: url(../assets/img/background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100% !important;
+  height: 100% !important;
+  display: flex;
+  .form-login {
+    width: 40%;
+    margin: auto;
+    .img-frame {
+      width: 280px;
+      margin: auto;
+      text-align: center;
+      h2 {
+        color: white;
+        font-size: 1.8rem;
+        margin-top: -10px;
+      }
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      .input-item {
+        height: 3rem;
+        margin: auto;
+        margin-bottom: 1.5rem;
+        width: 100%;
+        i {
+          position: absolute;
+          margin-left: 255px;
+          margin-top: 12px;
+          font-size: 1.5rem;
+          color: rgba(0, 0, 0,0.7);
+        }
+        input {
+          padding-left: 50px;
+          width: 50%;
+          height: 100%;
+          display: block;
+          margin: auto;
+          font-size: 1.3rem;
+        }
+      }
+      button {
+        height: 3rem;
+        width: 55%;
+        margin: auto;
+        margin-top: 2rem;
+        background-color: rgba(251, 75, 41, 1);
+        color: white;
+        font-size: 1.2rem;
+      }
+      span {
+        text-align: end;
+        margin-top: 1rem;
+        width: 77%;
+        a {
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.product-container {
+  background-color: rgba(242, 242, 242, 1);
+  background-image: url(../assets/img/background.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100% !important;
+  height: 100% !important;
+  display: flex;
+  a {
+    text-decoration: none;
+    text-align: end;
+    color: black;
+  }
+  .menu {
+    font-family: "Fredoka One", cursive;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    text-align: justify;
+    margin-top: 70px;
+    height: 600px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 16%;
+    .side-navigation-panel-select-option-text{
+      margin-left: 0rem !important;
+      margin-top: 1rem !important;
+      font-size: 1.6rem !important;
+    }
+    .side-navigation-panel-select-inner-option-text{
+      margin-left: -2rem !important;
+      font-size: 1.3rem !important;
+    }
+    ul {
+      margin-left: 50px;
+      margin-top: 10px;
+      list-style: none;
+      a {
+        margin-left: -40px;
+      }
+      a:hover {
+        color: red;
+      }
+      .all-item {
+        margin-left: 30px !important;
+      }
+    }
+  }
+  .product-display{
+    width: 80%;
+    height: 100%;
+    margin-top: 40px;
+    padding-left: 20px;
+    .title-branch{
+        margin-bottom: 30px;
+        margin-top: 20px;
+        display: flex;
+        .title-branch-header{
+          width: 10%;
+          font-size: 1.8rem;
+        }
+        flex-direction: row;
+    }
+    .line{
+        height: 1px;
+        width: 70%;
+        border-top: 4px solid black;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+    .shoes-list{
+      display: flex;
+    }
+    .card-item {
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+        min-width: 320px;
+        height: 190px;
+        border: 1px solid black;
+        border-radius: 15px;
+        background-color: white;
+        margin-left: 10px;
+        padding: 0px;
+        margin-top: 10px;
+        .card-img {
+          border-top-left-radius: 15px;
+          border-bottom-left-radius: 15px;
+          background-color: rgb(98, 157, 131);
+          img {
+            width: 182px;
+            height: 170px;
+            margin-top: 12px;
+          }
+          width: 35%;
+        }
+        .card-content {
+          width: 65%;
+          padding: 4px;
+          padding-left: 10px;
+          margin-top: 0.8rem;
+          display: flex;
+          flex-direction: column;
+          button {
+            width: 50%;
+            height: 30px;
+            margin-top: 10px;
+            background-color: rgb(190, 54, 54);
+            color: white;
+            cursor: pointer;
+          }
+          .card-content-header {
+            font-weight: 700;
+          }
+          .card-content-price{
+            font-weight: 700;
+            span{
+              font-weight: 500;
+            }
+          }
+          .card-content-desc{
+            font-weight: 700;
+            span{
+              font-weight: 500;
+            }
+          }
+          /* component */
+    
+          .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 1.5em;
+            justify-content: space-around;
+            padding: 0 0.2em;
+            text-align: center;
+            width: 5em;
+          }
+    
+          .star-rating input {
+            display: none;
+          }
+    
+          .star-rating label {
+            color: #ccc;
+            cursor: pointer;
+          }
+    
+          .star-rating :checked ~ label {
+            color: #f90;
+          }
+    
+          .star-rating label:hover,
+          .star-rating label:hover ~ label {
+            color: #fc0;
+          }
+    
+          /* explanation */
+        }
+      }
+  }
+
+}
