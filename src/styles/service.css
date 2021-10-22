@@ -1,0 +1,119 @@
+.service{
+    background-color: #f2f2f2;
+    padding: 0;
+}
+
+  
+.boxes{
+    margin-top: 120px;
+    display: flex;
+}
+.box{
+    position: relative;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #fff;
+    min-width: 25%;
+    max-width: 25%;
+    height: 70%;
+    min-height: 550px;
+    margin-bottom: 120px;
+    border-radius: 20px;
+}
+.box:nth-child(1){
+    background-color: #fb4b29;
+}
+.inner{
+    margin-right: 15%;
+    margin-top: 30px;
+    margin-left: 15%;
+    overflow: hidden;
+    height: 400px;
+}
+.inner hr{
+    border: 0px;
+    border-top: 2px dashed #A9A9AA;
+}
+.inner span{
+    font-size: 30px;
+    font-weight: 700;
+}
+.cbtn{
+    margin-top: 30px;
+    align-items: center;
+    text-align: center;
+    height: 55px;
+    width: 100%;
+}
+.innerbtn{
+    border: 0px;
+    background-color: #fb4b29;
+    color: #fff;
+    font-size: 20px;
+    width: 80%;
+    height: 100%;
+    border-radius: 12px;
+}
+.innerbtn:hover{
+    cursor: pointer;
+    color: black;
+}
+.compare_image{
+    position: relative;
+}
+.inner_block_text{
+    position: absolute;
+    top: 45%;
+    left: 5%; 
+    z-index: 5;
+    color: #fff;
+    width: 400px;
+    height: 20%;
+    pointer-events: none;
+}
+.inner_block_btn{
+    position: absolute;
+    top: 80%;
+    left: 5%;
+    z-index: 5;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #A9A9AA;
+    background-color: #fff;
+    width: 200px;
+    height: 40px;
+    border: none;
+}
+.inner_block_btn:hover{
+    cursor: pointer;
+}
+.inner1{
+    color: #fff;
+    margin-right: 15%;
+    margin-top: 30px;
+    margin-left: 15%;
+    overflow: hidden;
+    height: 240px;
+}
+#s{
+    font-weight: 500;
+    margin-bottom: 0;
+}
+#u{
+    margin-top: 5px;
+}
+.inner1 #arrow{
+    filter: invert(100%) sepia(6%) saturate(22%) hue-rotate(255deg) brightness(105%) contrast(100%);
+    z-index: 15;
+    height: 30px;
+}
+#arrow:hover{
+    cursor: pointer;
+}
+#box1{
+    margin-left: 5%;
+    position: absolute;
+    max-height: 60%;
+    width: 90%;
+    bottom: 0;
+}

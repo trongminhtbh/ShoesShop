@@ -1,0 +1,142 @@
+.Scompo{
+    width: 100%;
+    min-height: 500px;
+    text-align: center;
+    display: flex;
+    background-color: #F2F2F2;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+.Info{
+    margin-left: 15%;
+    width: 35%;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    align-items: center;
+    text-align: center;
+    text-align: left;
+    font-weight: 800;
+}
+.Info h3{
+    text-align: center;
+    font-weight: 800;
+}
+.Info ul{
+    list-style-type: none;
+}
+.Info li{
+    display: block;
+    min-width: 100px;
+    max-width: 200px;
+    margin-top: 10px;
+}
+.Info li:hover{
+    cursor: pointer;
+}
+.renBox{
+    margin-left: 80px;
+    margin-right: 15%;
+    width: 65%;
+    background-color: #fff;
+    border-radius: 20px;
+    align-items: center;
+    text-align: left;
+    min-height: 400px;
+}
+table{
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 50px;
+    margin-right: 20px;
+}
+.boxname{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 40px;
+    font-weight: 800;
+    padding-left: 20px;
+    padding-top: 12px;
+    background-color: #C4C4C4;
+}
+.boxdetail label{
+    margin-left: 30px;
+    display: inline-block;
+    min-width: 80px;
+    margin-top: 20px;
+    font-weight: 700;
+}
+.input{
+    margin-left: 40px;
+    margin-top: 30px;
+    background-color: rgb(247, 82, 22);
+    border: none;
+    min-width: 150px;
+    min-height: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+.input:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.infoBoxName{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 40px;
+    font-weight: 800;
+    padding-left: 20px;
+    padding-top: 12px;
+    background-color: #C4C4C4;
+}
+.infoboxdetail label{
+    margin-left: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    min-width: fit-content;
+    margin-top: 20px;
+    font-weight: 700;
+}
+.renBox table{
+    margin-left: 30px;
+    margin-top: 50px;
+}
+.renBox table tr th{
+    display: inline-block;
+}
+.renBox table tr th:nth-child(1){
+    width: 70px;
+}
+.renBox table tr th:nth-child(2){
+    width: 120px;
+}
+.renBox table tr th:nth-child(3){
+    width: 150px;
+}
+.renBox table tr th:nth-child(4){
+    width: 100px;
+}
+.renBox table tr th:nth-child(5){
+    align-self: 100px;
+}
+#usericon{
+    width: 25px;
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
+#updateaccountf,#infoiconf,#paymenticonf{
+    margin-top: 5px;
+    filter: invert(44%) sepia(94%) saturate(4170%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    width: 28px;
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
+#updateaccount  ,#infoicon,#paymenticon{
+    margin-top: 5px;
+    filter: invert(0%) sepia(100%) saturate(7465%) hue-rotate(25deg) brightness(90%) contrast(107%);
+    width: 28px;
+    margin-right: 5px;
+    margin-bottom: -5px;
+}
