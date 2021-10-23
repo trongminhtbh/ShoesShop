@@ -147,8 +147,8 @@ body {
         display: flex;
         flex-direction: row;
         width: 30%;
-        min-width: 320px;
-        height: 190px;
+        min-width: 560px;
+        height: 220px;
         border: 1px solid black;
         border-radius: 15px;
         background-color: white;
@@ -158,7 +158,7 @@ body {
         .card-img {
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
-          background-color: rgb(98, 157, 131);
+          background-color: rgb(118, 5, 43);
           img {
             width: 182px;
             height: 170px;
@@ -192,8 +192,14 @@ body {
           }
           .card-content-desc{
             font-weight: 700;
-            span{
+            text-overflow: clip;
+            div{
+              height: 2rem;
               font-weight: 500;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              word-break: break-all;
             }
           }
           /* component */
