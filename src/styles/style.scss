@@ -142,6 +142,7 @@ body {
     }
     .shoes-list{
       display: flex;
+      flex-wrap: wrap;
     }
     .card-item {
         display: flex;
@@ -197,10 +198,11 @@ body {
               height: 2.5rem;
               font-weight: 500;
               overflow: hidden;
-              text-overflow: ellipsis;
               line-height: 1.2rem;
+              display: -webkit-box;
               -webkit-line-clamp:2;
               -webkit-box-orient: vertical;
+              text-overflow: ellipsis;
             }
           }
           /* component */

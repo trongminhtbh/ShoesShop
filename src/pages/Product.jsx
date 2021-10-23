@@ -8,7 +8,7 @@ const shoesList1 = [
         name: "AIR MAX PEGASUS",
         id: 1,
         price: 500000,
-        desc: "chay nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh"
+        desc: "chay nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh"
     },
     {
         name: "AIR MAX PEGASUS 2",
