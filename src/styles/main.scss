@@ -167,6 +167,12 @@
   .text {
     color: #555;
     font-size: 17px;
+    max-height: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp:6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
 
   .color-container {

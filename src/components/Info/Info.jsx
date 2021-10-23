@@ -16,7 +16,12 @@ const Info = () => {
       <h3 className="title">Product Info</h3>
       <p className="text">
         Ensure a comfortable running session by wearing this pair of cool
-        running shoes from Nike.
+        running shoes from Nike nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
+        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
+        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
+        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
+        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh
+        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh
       </p>
     </div>
   );

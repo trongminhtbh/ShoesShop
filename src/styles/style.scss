@@ -194,12 +194,13 @@ body {
             font-weight: 700;
             text-overflow: clip;
             div{
-              height: 2rem;
+              height: 2.5rem;
               font-weight: 500;
-              white-space: nowrap;
               overflow: hidden;
               text-overflow: ellipsis;
-              word-break: break-all;
+              line-height: 1.2rem;
+              -webkit-line-clamp:2;
+              -webkit-box-orient: vertical;
             }
           }
           /* component */
