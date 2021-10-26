@@ -24,18 +24,18 @@ const Home = () => {
     );
 
     // showing correct color
-    colors.forEach(color => color.classList.remove("active"));
+    colors.forEach((color) => color.classList.remove("active"));
     this.classList.add("active");
 
     // changing primary css variable
     document.documentElement.style.setProperty("--primary", primary);
 
     // showing correct img
-    shoes.forEach(s => s.classList.remove("show"));
+    shoes.forEach((s) => s.classList.remove("show"));
     shoe.classList.add("show");
 
     // dealing with gradient
-    gradients.forEach(g => g.classList.remove("display", "behind"));
+    gradients.forEach((g) => g.classList.remove("display", "behind"));
     prevGradient.classList.add("behind");
     gradient.classList.add("display");
 
@@ -50,7 +50,7 @@ const Home = () => {
   }
 
   function changeSize() {
-    sizes.forEach(size => size.classList.remove("active"));
+    sizes.forEach((size) => size.classList.remove("active"));
     this.classList.add("active");
   }
 
@@ -82,16 +82,16 @@ const Home = () => {
     gradients = document.querySelectorAll(".gradient");
     shoeBackground = document.querySelector(".shoeBackground");
 
-    colors.forEach(color => color.addEventListener("click", changeColor));
-    sizes.forEach(size => size.addEventListener("click", changeSize));
+    colors.forEach((color) => color.addEventListener("click", changeColor));
+    sizes.forEach((size) => size.addEventListener("click", changeSize));
     changeHeight();
   }, []);
   window.addEventListener("resize", changeHeight);
 
   return (
     <div className="Home">
-      <div className="container">
-        <div className="card">
+      <div className="container1">
+        <div className="card1">
           <div className="shoeBackground">
             <Gradients />
 

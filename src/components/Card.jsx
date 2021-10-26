@@ -9,7 +9,7 @@ const shoes1 = {
     price: 500000,
     desc: "chay nhanh"
 }
-function Card({listShoes}) {
+function Cards({listShoes}) {
     const [state1, setState1] = useState(1)
     
     const modal = () => {
@@ -51,4 +51,4 @@ function Card({listShoes}) {
     </div>
     )
 };
-export default Card;
+export default Cards;
