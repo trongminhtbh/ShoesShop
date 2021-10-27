@@ -3,12 +3,12 @@ import React from "react";
 // import LoginPage from "./pages/Login";
 // import SignUpPage from "./pages/Signup";
 // import ForgotPasswordPage from "./pages/Resetpassword";
-import Homepage from "./pages/Homepage.js";
 import "./App.scss";
+import Cart from "./pages/Cart.js";
 const App = () => {
   return (
     <div className="App">
-      <Homepage />      
+      <Cart />
     </div>
   );
 };

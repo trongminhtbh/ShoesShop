@@ -46,7 +46,7 @@ function Footer() {
                 </td>
                 <td>
                   <div>
-                    268 Ly Thuong Kiet, Ward 15, District 10, Ho Chi Minh City
+                    268 Ly Thuong Kiet, Ward 15, District 10 <br/>Ho Chi Minh City
                   </div>
                 </td>
               </tr>

@@ -33,7 +33,7 @@ function Header() {
               <Nav.Link href="#pricing">SERVICE</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link href="#pricing">ABOUT</Nav.Link>
+              <Nav.Link href="#pricing">ABOUT US</Nav.Link>
             </div>
             <div className="other-icon align-self-end">
               <Button variant={"link"} style={{ margin: "0px 5px" }}>

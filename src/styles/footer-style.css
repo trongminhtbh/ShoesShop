@@ -172,3 +172,118 @@ h4.overlay-text {
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
 }
+
+.header-and-content {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.our-customer {  
+  flex: 1;   
+  position: relative;   
+}
+
+.our-customer::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-color: #F2F2F2;
+  background-image: url('../assets/img/about-us.png');
+  background-size: 600px;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+
+.our-customer-content {
+  position: relative;
+}
+
+img.avt-about {
+  border-radius: 50%;
+  width: 60px;  
+}
+
+.story-1 {
+  padding: 20px 10px;
+  width: 70%;
+  border-radius: 30px;
+  background-color: white;
+}
+
+.story-1 p{
+  text-align: justify;
+}
+
+.story-2 {
+  padding: 20px 10px;
+  width: 70%;
+  border-radius: 30px;
+  background-color: white;
+}
+
+.story-2 p{
+  text-align: justify;
+}
+
+.about-us-title h3 {
+  text-align: right;
+  font-family: "Fredoka One", cursive;
+  color: #fb4b29;
+}
+
+h3.shopping-cart, h3.order-summary {
+  font-family: "Fredoka One", cursive;
+  color: #fb4b29;
+}
+
+.cart-container {
+  border-radius: 30px;
+}
+
+.cart-left-side {
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.cart-right-side {
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+button.cart-confirm-button {
+  background-color: #fb4b29;
+  width: 70%;
+  border-color: #fb4b29;
+}
+
+h5.order-summary-bold {
+  font-weight: bold;
+  font-family: "Fredoka One", cursive;
+}
+
+.summary-align-right h5 {
+  text-align: right;
+}
+
+.cart-content-div {
+  background-color: #F2F2F2;
+  flex-grow: 1;   
+  position: relative;   
+}
+
+h5.custom-font-bold {
+  font-weight: bold;
+  font-family: "Fredoka One", cursive;
+}
+
+div.list-item-cart {
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
