@@ -5,7 +5,7 @@ import Info from "../components/Info/Info";
 
 import logo from "../assets/img/logo.png";
 
-const ProductDetail = ({shoesItem}) => {
+const ProductDetail = ({shoesItem, addItemToCart}) => {
   var sizes, colors, shoes, gradients, shoeBackground, shoeHeight;
   var prevColor = "blue";
   var animateOrNot = true;
@@ -103,7 +103,7 @@ const ProductDetail = ({shoesItem}) => {
 
             <ProductImages />
           </div>
-          <Info shoesItem = {shoesItem} />
+          <Info addItemToCart = {addItemToCart} shoesItem = {shoesItem} />
         </div>
       </div>
     </div>

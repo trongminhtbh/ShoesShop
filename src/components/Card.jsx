@@ -4,7 +4,7 @@ import shoes from "../assets/img/blue.png"
 import ProductDetail from "../pages/ProductDetail"
 import { Row, Col, Button, Modal } from "react-bootstrap";
 
-function Cards({shoesItem}) {
+function Cards({shoesItem, addItemToCart}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -49,7 +49,7 @@ function Cards({shoesItem}) {
             <Modal.Header closeButton>
             </Modal.Header>
             <Modal.Body >
-                <ProductDetail shoesItem = {shoesItem}/>
+                <ProductDetail addItemToCart = {addItemToCart} shoesItem = {shoesItem}/>
             </Modal.Body>
         </Modal>
     </div>

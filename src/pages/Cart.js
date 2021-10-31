@@ -6,11 +6,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 
-export default function Cart() {
+export default function Cart({listOrder}) {
   return (
     <div>
       <div className="header-and-content">
-        <Header />
         <div className="cart-content-div">
           <Container className="cart-container h-100 pt-3 pb-3">
             <Row className="h-100">
@@ -22,16 +21,11 @@ export default function Cart() {
                 <h3 className="shopping-cart mt-3">Shopping Cart </h3>
                 <hr></hr>
                 <div className="list-item-cart flex-grow-1">
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
-                  <CartItem/>
+                  {
+                    listOrder.map(orderItem => {
+                      return <CartItem cartItem={orderItem}/>
+                    })
+                  }
                 </div>
               </Col>
               <Col
@@ -42,10 +36,10 @@ export default function Cart() {
                 <h3 className="order-summary mt-3 mb-5 text-center">Order Summary</h3>
                 <Row>
                   <Col>
-                    <h5 className="order-summary-bold">3 items</h5>
+                    <h5 className="order-summary-bold">{listOrder.length} items</h5>
                   </Col>
                   <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">$ 567</h5>
+                    <h5 className="order-summary-bold"> {listOrder.reduce((x,y) => (x + y.price), 0)}</h5>
                   </Col>
                 </Row>
                 <hr></hr>
@@ -84,7 +78,6 @@ export default function Cart() {
           </Container>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

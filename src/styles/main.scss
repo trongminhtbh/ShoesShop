@@ -8,9 +8,9 @@
 }
 .container1 {
   @include fc;
-  min-height: 100vh;
+  min-height: 80vh;
   overflow: hidden;
-  padding: 40px;
+  padding: 10px;
 }
 
 .card1 {

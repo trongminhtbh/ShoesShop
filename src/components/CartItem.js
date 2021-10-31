@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import { AddCircle, RemoveCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/black.png";
 
-export default function CartItem() {
-  const [num, setNum] = useState(0);
+export default function CartItem({cartItem}) {
+  const [num, setNum] = useState(1);
 
   const incQuantity = () => {
     setNum(num + 1);
@@ -24,17 +24,17 @@ export default function CartItem() {
         <Col md={3} className="align-self-center">
           <Row>
             <Col>
-              <h5 className="custom-font-bold">Adidas</h5>
+              <h5 className="custom-font-bold">{cartItem.name}</h5>
             </Col>
           </Row>
           <Row>
             <Col>
-              <p>Running shoes</p>
+              <p>{cartItem.desc}</p>
             </Col>
           </Row>
         </Col>
         <Col md={2} className="align-self-center">
-          <h5 className="custom-font-bold">$ 189</h5>
+          <h5 className="custom-font-bold">{cartItem.price}</h5>
         </Col>
         <Col md={2} className="align-self-center">
           <Button
@@ -54,7 +54,7 @@ export default function CartItem() {
           </Button>
         </Col>
         <Col md={2} className="align-self-center">
-          <h5 className="custom-font-bold price-item">{ num * 189}</h5>
+          <h5 className="custom-font-bold price-item">{ num * cartItem.price}</h5>
         </Col>
       </Row>
     </div>

@@ -5,7 +5,7 @@ import "../styles/footer-style.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 
-function Header() {
+function Header({shopingCart, productPage}) {
   return (
     <div className="header">
       <Navbar absolute="top" className="color-nav" variant="dark">
@@ -27,7 +27,7 @@ function Header() {
               <Nav.Link href="#features">SALES</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link href="#pricing">PRODUCT</Nav.Link>
+              <Nav.Link onClick={productPage} href="#product">PRODUCT</Nav.Link>
             </div>
             <div className="menu-item">
               <Nav.Link href="#pricing">SERVICE</Nav.Link>
@@ -39,7 +39,7 @@ function Header() {
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
                 <Search style={{ fill: "#FB4B29" }}></Search>
               </Button>
-              <Button variant={"link"} style={{ margin: "0px 5px" }}>
+              <Button variant={"link"} onClick = {shopingCart} style={{ margin: "0px 5px" }}>
                 <ShoppingCart style={{ fill: "#FB4B29" }}></ShoppingCart>
               </Button>
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
