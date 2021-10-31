@@ -4,6 +4,7 @@ import React from "react";
 // import SignUpPage from "./pages/Signup";
 // import ForgotPasswordPage from "./pages/Resetpassword";
 import Product from "./pages/Product";
+
 import "./App.scss";
 import Cart from "./pages/Cart.js";
 const App = () => {

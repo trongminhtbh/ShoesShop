@@ -5,7 +5,7 @@ import Info from "../components/Info/Info";
 
 import logo from "../assets/img/logo.png";
 
-const Home = () => {
+const ProductDetail = ({shoesItem}) => {
   var sizes, colors, shoes, gradients, shoeBackground, shoeHeight;
   var prevColor = "blue";
   var animateOrNot = true;
@@ -103,11 +103,11 @@ const Home = () => {
 
             <ProductImages />
           </div>
-          <Info />
+          <Info shoesItem = {shoesItem} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default ProductDetail;

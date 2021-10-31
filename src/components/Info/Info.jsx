@@ -1,10 +1,10 @@
 import React from "react";
 
-const Info = () => {
+const Info = ({shoesItem}) => {
   const shoeName = (
     <div className="shoeName">
       <div>
-        <h1 className="big">Nike Zoom KD 12</h1>
+        <h1 className="big">{shoesItem.name}</h1>
         <span className="new">new</span>
       </div>
       <h3 className="small">Men's running shoes</h3>
@@ -15,13 +15,7 @@ const Info = () => {
     <div className="description">
       <h3 className="title">Product Info</h3>
       <p className="text">
-        Ensure a comfortable running session by wearing this pair of cool
-        running shoes from Nike nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
-        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
-        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
-        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh 
-        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh
-        nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh nhanh
+        {shoesItem.desc}
       </p>
     </div>
   );
@@ -59,7 +53,7 @@ const Info = () => {
       </a>
       <div className="price">
         <i className="fas fa-dollar-sign"></i>
-        <h1>149.99</h1>
+        <h1>{shoesItem.price}</h1>
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ function Product() {
                     <div className="shoes-list">
                         {
                         shoesList1.map( shoes =>  {
-                            return <Card listShoes = {shoes} />
+                            return <Card shoesItem = {shoes} />
                         })
                         }
                     </div>
@@ -87,7 +87,7 @@ function Product() {
                     <div className="shoes-list">
                         {
                         shoesList2.map( shoes =>  {
-                            return <Card listShoes = {shoes} />
+                            return <Card shoesItem = {shoes} />
                         })
                         }
                     </div>
@@ -97,7 +97,7 @@ function Product() {
                     <div className="shoes-list">
                         {
                         shoesList3.map( shoes =>  {
-                            return <Card listShoes = {shoes} />
+                            return <Card shoesItem = {shoes} />
                         })
                         }
                     </div>
