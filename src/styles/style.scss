@@ -78,6 +78,7 @@ body {
   min-height: 100% !important;
   height: 100% !important;
   display: flex;
+  margin-bottom: 60px;
   a {
     text-decoration: none;
     text-align: end;
@@ -87,7 +88,7 @@ body {
     font-family: "Fredoka One", cursive;
     background-color: white;
     border-radius: 20px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-align: justify;
     margin-top: 70px;
     height: 600px;
@@ -97,11 +98,11 @@ body {
     .side-navigation-panel-select-option-text{
       margin-left: 0rem !important;
       margin-top: 1rem !important;
-      font-size: 1.6rem !important;
+      font-size: 1.3rem !important;
     }
     .side-navigation-panel-select-inner-option-text{
       margin-left: -2rem !important;
-      font-size: 1.3rem !important;
+      font-size: 1.1rem !important;
     }
     ul {
       margin-left: 50px;
@@ -148,22 +149,23 @@ body {
         display: flex;
         flex-direction: row;
         width: 30%;
-        min-width: 560px;
-        height: 220px;
+        min-width: 380px;
+        height: 180px;
         border: 1px solid black;
         border-radius: 15px;
         background-color: white;
         margin-left: 10px;
         padding: 0px;
         margin-top: 10px;
+        font-size: 1rem;
         .card-img {
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
           background-color: rgb(118, 5, 43);
           img {
-            width: 182px;
-            height: 170px;
-            margin-top: 12px;
+            width: 130px;
+            height: 130px;
+            margin-top: 15px;
           }
           width: 35%;
         }
@@ -174,6 +176,7 @@ body {
           margin-top: 0.8rem;
           display: flex;
           flex-direction: column;
+          font-size: 0.8rem;
           button {
             width: 50%;
             height: 30px;
@@ -183,6 +186,7 @@ body {
             cursor: pointer;
           }
           .card-content-header {
+            font-size: 0.9rem;
             font-weight: 700;
           }
           .card-content-price{

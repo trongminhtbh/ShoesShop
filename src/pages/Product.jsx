@@ -2,7 +2,8 @@ import React from "react";
 import Card from "../components/Card"
 import SideBar from "./Sidebar";
 import BranchTitle from "../components/ShoesBranch";
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 const shoesList1 = [
      {
         name: "AIR MAX PEGASUS",
@@ -68,38 +69,42 @@ const shoesList3 = [
 
 function Product() {
     return (
-        <div className="product-container">
-            <SideBar />
-            <div className="product-display">
-                <BranchTitle name = "Nike"/>
-                <div className="shoes-list">
-                    {
-                    shoesList1.map( shoes =>  {
-                        return <Card listShoes = {shoes} />
-                    })
-                    }
-                </div>
+        <div className="product-page-container">
+            <Header/>
+            <div className="product-container">
+                <SideBar />
+                <div className="product-display">
+                    <BranchTitle name = "Nike"/>
+                    <div className="shoes-list">
+                        {
+                        shoesList1.map( shoes =>  {
+                            return <Card listShoes = {shoes} />
+                        })
+                        }
+                    </div>
 
-                <BranchTitle name = "Adidas"/>
-                <div className="shoes-list">
-                    {
-                    shoesList2.map( shoes =>  {
-                        return <Card listShoes = {shoes} />
-                    })
-                    }
-                </div>
+                    <BranchTitle name = "Adidas"/>
+                    <div className="shoes-list">
+                        {
+                        shoesList2.map( shoes =>  {
+                            return <Card listShoes = {shoes} />
+                        })
+                        }
+                    </div>
 
 
-                <BranchTitle name = "Others"/>
-                <div className="shoes-list">
-                    {
-                    shoesList3.map( shoes =>  {
-                        return <Card listShoes = {shoes} />
-                    })
-                    }
+                    <BranchTitle name = "Others"/>
+                    <div className="shoes-list">
+                        {
+                        shoesList3.map( shoes =>  {
+                            return <Card listShoes = {shoes} />
+                        })
+                        }
+                    </div>
+                    
                 </div>
-                
             </div>
+            <Footer/>
         </div>
     )
 }
