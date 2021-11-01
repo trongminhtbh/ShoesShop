@@ -105,6 +105,7 @@ function ProductAndCart() {
         setShowAboutUs(false)
         setShowService(false)
         setShowCart(true)
+        setShowUser(false)
     }
     const showUserPage = () => {
         setShowHome(false)
@@ -120,6 +121,7 @@ function ProductAndCart() {
         setShowAboutUs(false)
         setShowService(false)
         setShowCart(false)
+        setShowUser(false)
     }
     const showProductPage = () => {
         setShowCart(false)
@@ -127,6 +129,7 @@ function ProductAndCart() {
         setShowAboutUs(false)
         setShowService(false)
         setShowProduct(true)
+        setShowUser(false)
     }
     const showAboutUsPage = () => {
         setShowAboutUs(true)
@@ -134,6 +137,7 @@ function ProductAndCart() {
         setShowHome(false)
         setShowService(false)
         setShowProduct(false)
+        setShowUser(false)
     }
     const showServicePage = () => {
         setShowAboutUs(false)
@@ -141,6 +145,7 @@ function ProductAndCart() {
         setShowHome(false)
         setShowProduct(false)
         setShowService(true)
+        setShowUser(false)
     }
     return (
         <div className="Page">
