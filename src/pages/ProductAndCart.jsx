@@ -94,6 +94,7 @@ function ProductAndCart() {
 
     const addItemToCart = (item) => {
         setOrder(prev => [...prev, item]);
+        showCartPage();
     }
     console.log("re-render")
     const showCartPage = () => {
