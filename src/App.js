@@ -3,6 +3,7 @@ import React from "react";
 // import SignUpPage from "./pages/Signup";
 // import ForgotPasswordPage from "./pages/Resetpassword";
 import ProductAndCart from "./pages/ProductAndCart";
+import User from "./pages/user";
 import "./App.scss";
 const App = () => {
   return (

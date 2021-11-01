@@ -30,7 +30,7 @@ const StyledLink1 = styled(Link)`
 `;
 
 
-class user extends React.Component {
+class User extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -114,5 +114,5 @@ class user extends React.Component {
  
 
 
-export default user;
+export default User;
 

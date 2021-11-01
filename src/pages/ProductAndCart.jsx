@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutUs from "./AbousUs";
 import Service from "./service";
+import User from "./user";
 const shoesList1 = [
     {
        name: "AIR MAX PEGASUS",
@@ -90,6 +91,7 @@ function ProductAndCart() {
     const [showProduct, setShowProduct] = useState(false);
     const [showHome, setShowHome] = useState(true)
     const [showService, setShowService] = useState(false)
+    const [showUser, setShowUser] = useState(false)
     const [orders, setOrder] = useState([]);
 
     const addItemToCart = (item) => {
@@ -103,6 +105,14 @@ function ProductAndCart() {
         setShowAboutUs(false)
         setShowService(false)
         setShowCart(true)
+    }
+    const showUserPage = () => {
+        setShowHome(false)
+        setShowProduct(false)
+        setShowAboutUs(false)
+        setShowService(false)
+        setShowCart(false)
+        setShowUser(true)
     }
     const showHomePage = () => {
         setShowHome(true)
@@ -134,12 +144,13 @@ function ProductAndCart() {
     }
     return (
         <div className="Page">
-            <Header productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage} aboutUsPage = {showAboutUsPage} ServicePage = {showServicePage}/>
+            <Header userPage = {showUserPage} productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage} aboutUsPage = {showAboutUsPage} ServicePage = {showServicePage}/>
             {showHome && <Homepage/>}
             { showProduct && <Product shoesList = {shoesList} addItemToCart = {addItemToCart}  /> }
             {showCart && <Cart listOrder = {orders} />}
             {showAboutUs && <AboutUs/>}
             {showService && <Service />}
+            {showUser && <User />}
             <Footer />
         </div>
     )

@@ -6,7 +6,7 @@ import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 
 function Header(props) {
-  const {shopingCart, productPage, homePage, aboutUsPage, ServicePage} = props
+  const {shopingCart, productPage, homePage, aboutUsPage, ServicePage, userPage} = props
   return (
     <div className="header">
       <Navbar absolute="top" className="color-nav" variant="dark">
@@ -44,7 +44,7 @@ function Header(props) {
                 <ShoppingCart style={{ fill: "#FB4B29" }}></ShoppingCart>
               </Button>
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
-                <AccountCircle style={{ fill: "white" }}></AccountCircle>
+                <AccountCircle onClick={userPage} style={{ fill: "white" }}></AccountCircle>
               </Button>
             </div>
           </Nav>
