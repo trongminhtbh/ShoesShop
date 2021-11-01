@@ -168,9 +168,11 @@ body {
           border-bottom-left-radius: 15px;
           background-color: rgb(118, 5, 43);
           img {
-            width: 130px;
+            width: 160px;
             height: 130px;
             margin-top: 15px;
+            margin-left: -31px;
+            transform: rotateZ(-30deg);
           }
           width: 35%;
         }
