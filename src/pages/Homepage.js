@@ -22,7 +22,6 @@ function Homepage() {
   };
   return (
     <div className="App">
-      <Header></Header>
       <Container fluid className="fit-screen">
         <Row>
           <Col md={2} className="align-self-center">
@@ -234,7 +233,6 @@ function Homepage() {
           </OwlCarousel>
         </Container>
       </Container>
-      <Footer></Footer>
     </div>
   );
 }

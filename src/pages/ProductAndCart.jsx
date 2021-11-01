@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Product from "./Product";
 import Cart from "./Cart";
-
+import Homepage from "./Homepage";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -80,7 +80,8 @@ const shoesList3 = [
 
 function ProductAndCart() {
     const [showCart, setShowCart] = useState(false);
-    const [showProduct, setShowProduct] = useState(true);
+    const [showProduct, setShowProduct] = useState(false);
+    const [showHome, setShowHome] = useState(true)
     const [orders, setOrder] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState({});
 
@@ -90,17 +91,24 @@ function ProductAndCart() {
     }
     console.log("re-render")
     const showCartPage = () => {
-        setShowCart(true)
+        setShowHome(false)
         setShowProduct(false)
+        setShowCart(true)
     }
-
+    const showHomePage = () => {
+        setShowHome(true)
+        setShowProduct(false)
+        setShowCart(false)
+    }
     const showProductPage = () => {
         setShowCart(false)
+        setShowHome(false)
         setShowProduct(true)
     }
     return (
         <div className="Page">
-            <Header productPage = {showProductPage} shopingCart = {showCartPage}/>
+            <Header productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage}/>
+            {showHome && <Homepage/>}
             { showProduct && <Product shoesList1 = {shoesList1} shoesList2 = {shoesList2} shoesList3 = {shoesList3} addItemToCart = {addItemToCart}  /> }
             {showCart && <Cart listOrder = {orders} />}
             <Footer />

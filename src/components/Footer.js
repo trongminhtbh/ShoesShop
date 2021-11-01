@@ -40,32 +40,34 @@ function Footer() {
           <Col>
             <h4>CONTACT</h4>
             <table>
-              <tr>
-                <td>
-                  <LocationOn />
-                </td>
-                <td>
-                  <div>
-                    268 Ly Thuong Kiet, Ward 15, District 10 <br/>Ho Chi Minh City
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Email />
-                </td>
-                <td>
-                  <div>amazingshoes@gmailcom</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Phone />
-                </td>
-                <td>
-                  <div>1900545454</div>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>
+                    <LocationOn />
+                  </td>
+                  <td>
+                    <div>
+                      268 Ly Thuong Kiet, Ward 15, District 10 <br/>Ho Chi Minh City
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Email />
+                  </td>
+                  <td>
+                    <div>amazingshoes@gmailcom</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Phone />
+                  </td>
+                  <td>
+                    <div>1900545454</div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </Col>
           <Col>

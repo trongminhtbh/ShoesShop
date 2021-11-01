@@ -48,7 +48,7 @@ export default function Cart({listOrder}) {
                     <h6>Discount Code</h6>
                   </Col>
                   <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">DIS20</h5>
+                    <h5 className="order-summary-bold">No Discount</h5>
                   </Col>
                 </Row>
                 <hr></hr>
@@ -57,7 +57,7 @@ export default function Cart({listOrder}) {
                     <h6>Discount</h6>
                   </Col>
                   <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">20%(100$)</h5>
+                    <h5 className="order-summary-bold">0</h5>
                   </Col>
                 </Row>
                 <Row>
@@ -65,7 +65,7 @@ export default function Cart({listOrder}) {
                     <h6>Total</h6>
                   </Col>
                   <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">$ 467</h5>
+                    <h5 className="order-summary-bold">{listOrder.reduce((x,y) => (x + y.price), 0)} vnd</h5>
                   </Col>
                 </Row>
                 <Row className="flex-grow-1">

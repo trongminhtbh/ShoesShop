@@ -5,12 +5,13 @@ import "../styles/footer-style.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 
-function Header({shopingCart, productPage}) {
+function Header(props) {
+  const {shopingCart, productPage, homePage} = props
   return (
     <div className="header">
       <Navbar absolute="top" className="color-nav" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand onClick={homePage} href="#home">
             <img
               alt=""
               src={shoeicon}

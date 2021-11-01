@@ -3,9 +3,8 @@ import React from "react";
 // import SignUpPage from "./pages/Signup";
 // import ForgotPasswordPage from "./pages/Resetpassword";
 import ProductAndCart from "./pages/ProductAndCart";
-
+import Homepage from "./pages/Homepage.js";
 import "./App.scss";
-import Cart from "./pages/Cart.js";
 const App = () => {
   return (
     <div className="App">
