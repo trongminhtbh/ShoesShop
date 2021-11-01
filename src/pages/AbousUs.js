@@ -10,7 +10,6 @@ export default function AboutUs() {
   return (
     <div>
       <div className="header-and-content">
-        <Header></Header>
         <div className="our-customer pt-3 pb-3">
           <div className="our-customer-content h-100">
             <Container className="h-100">
@@ -52,7 +51,6 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 }

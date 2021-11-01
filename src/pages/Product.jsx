@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card"
 import SideBar from "./Sidebar";
 import BranchTitle from "../components/ShoesBranch";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Cart from "./Cart";
 
 
-function Product({shoesList1, shoesList2, shoesList3, addItemToCart}) {
+
+function Product(props) {
+    const {shoesList, addItemToCart} = props
+    console.log(props);
+    const {shoesList1, shoesList2, shoesList3} = shoesList
     return (
         <div className="product-page-container">
             <div className="product-container">

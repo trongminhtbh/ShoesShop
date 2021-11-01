@@ -8,7 +8,7 @@ import box1 from '../assets/img/box1.svg'
 import ReactCompareImage from "react-compare-image";
 import { relativeTimeRounding } from 'moment';
 
-class service extends React.Component {
+class Service extends React.Component {
     render() { 
         return  (
         <div className="service">
@@ -70,14 +70,14 @@ class service extends React.Component {
  
 
 
-export default service;
+export default Service;
 
 
-service.propTypes = {
+Service.propTypes = {
     name: PropTypes.string
   };
   
-  service.defaultProps = {
+  Service.defaultProps = {
     name: 'Thinh'
 }
 

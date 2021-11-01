@@ -6,7 +6,7 @@ import { Row, Col, Button, Modal } from "react-bootstrap";
 
 function Cards({shoesItem, addItemToCart}) {
     const [show, setShow] = useState(false);
-
+    const [showDetail, setShowDetail] = useState(true)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -49,7 +49,7 @@ function Cards({shoesItem, addItemToCart}) {
             <Modal.Header closeButton>
             </Modal.Header>
             <Modal.Body >
-                <ProductDetail addItemToCart = {addItemToCart} shoesItem = {shoesItem}/>
+                {showDetail && <ProductDetail addItemToCart = {addItemToCart} shoesItem = {shoesItem}/>}
             </Modal.Body>
         </Modal>
     </div>

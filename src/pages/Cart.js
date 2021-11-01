@@ -1,9 +1,7 @@
 import React from "react";
-import Header from "../components/Header";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import "../styles/footer-style.css";
 import "bootstrap/dist/css/bootstrap.css";
-import Footer from "../components/Footer";
 import CartItem from "../components/CartItem";
 
 export default function Cart({listOrder}) {

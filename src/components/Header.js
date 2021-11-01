@@ -6,7 +6,7 @@ import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 
 function Header(props) {
-  const {shopingCart, productPage, homePage} = props
+  const {shopingCart, productPage, homePage, aboutUsPage, ServicePage} = props
   return (
     <div className="header">
       <Navbar absolute="top" className="color-nav" variant="dark">
@@ -31,10 +31,10 @@ function Header(props) {
               <Nav.Link onClick={productPage} href="#product">PRODUCT</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link href="#pricing">SERVICE</Nav.Link>
+              <Nav.Link onClick={ServicePage} href="#pricing">SERVICE</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link href="#pricing">ABOUT US</Nav.Link>
+              <Nav.Link onClick={aboutUsPage} href="#aboutus">ABOUT US</Nav.Link>
             </div>
             <div className="other-icon align-self-end">
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
