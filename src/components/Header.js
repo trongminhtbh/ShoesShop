@@ -11,7 +11,7 @@ function Header(props) {
     <div className="header">
       <Navbar absolute="top" className="color-nav" variant="dark">
         <Container fluid>
-          <Navbar.Brand onClick={homePage} href="#home">
+          <Navbar.Brand onClick={homePage} href="/home">
             <img
               alt=""
               src={shoeicon}
@@ -22,19 +22,19 @@ function Header(props) {
           </Navbar.Brand>
           <Nav className="ms-auto">
             <div className="menu-item">
-              <Nav.Link href="#home">BRANDS</Nav.Link>
+              <Nav.Link onClick={homePage} href="/home">BRANDS</Nav.Link>
             </div>
             <div className="menu-item">
               <Nav.Link href="#features">SALES</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link onClick={productPage} href="#product">PRODUCT</Nav.Link>
+              <Nav.Link onClick={productPage} href="/product">PRODUCT</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link onClick={ServicePage} href="#pricing">SERVICE</Nav.Link>
+              <Nav.Link onClick={ServicePage} href="/pricing">SERVICE</Nav.Link>
             </div>
             <div className="menu-item">
-              <Nav.Link onClick={aboutUsPage} href="#aboutus">ABOUT US</Nav.Link>
+              <Nav.Link onClick={aboutUsPage} href="/aboutus">ABOUT US</Nav.Link>
             </div>
             <div className="other-icon align-self-end">
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
