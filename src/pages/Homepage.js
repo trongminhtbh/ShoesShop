@@ -188,7 +188,7 @@ function Homepage(props) {
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
             {
               shoesList3.map( shoes =>  {
-                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+                  return <div key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
               })
             }
           </OwlCarousel>
@@ -202,7 +202,7 @@ function Homepage(props) {
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               shoesList3.map( shoes =>  {
-                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+                  return <div key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
               })
             }           
           </OwlCarousel>
@@ -215,7 +215,7 @@ function Homepage(props) {
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               shoesList3.map( shoes =>  {
-                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+                  return <div  key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
               })
             }              
           </OwlCarousel>

@@ -287,3 +287,6 @@ div.list-item-cart {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.card{
+  border-radius: 30px !important;
+}
