@@ -3,6 +3,7 @@ import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 
 function SideBar(){
+
     return (
 
           <div className="fixed menu">
@@ -10,7 +11,6 @@ function SideBar(){
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
                 onSelect={({itemId}) => {
-                  // maybe push to the route
                 }}
                 items={[
                   {
@@ -25,7 +25,7 @@ function SideBar(){
                     subNav: [
                       {
                         title: 'Nike',
-                        itemId: '/branch/nike',
+                        itemId: 'NikeSection',
                         // Requires v1.9.1+ (https://github.com/abhijithvijayan/react-minimal-side-navigation/issues/13)
                       },
                       {

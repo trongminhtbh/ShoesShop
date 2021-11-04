@@ -15,7 +15,7 @@ function Product(props) {
             <div className="product-container">
                 <SideBar />
                 <div className="product-display">
-                    <BranchTitle name = "Nike"/>
+                    <BranchTitle id="NikeSection" name = "Nike"/>
                     <div className="shoes-list">
                         {
                         shoesList1.map( shoes =>  {
@@ -24,7 +24,7 @@ function Product(props) {
                         }
                     </div>
 
-                    <BranchTitle name = "Adidas"/>
+                    <BranchTitle id="AdidasSection" name = "Adidas"/>
                     <div className="shoes-list">
                         {
                         shoesList2.map( shoes =>  {
@@ -34,7 +34,7 @@ function Product(props) {
                     </div>
 
 
-                    <BranchTitle name = "Others"/>
+                    <BranchTitle id="OtherSection" name = "Others"/>
                     <div className="shoes-list">
                         {
                         shoesList3.map( shoes =>  {

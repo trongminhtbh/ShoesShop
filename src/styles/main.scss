@@ -6,13 +6,16 @@
     height: 100%;
   }
 }
+
 .container1 {
   @include fc;
   min-height: 80vh;
   overflow: hidden;
   padding: 10px;
 }
-
+.add-btn{
+  cursor: pointer;
+}
 .card1 {
   @include fc;
   width: 860px;

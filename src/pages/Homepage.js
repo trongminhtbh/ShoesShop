@@ -12,7 +12,38 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
-function Homepage() {
+const shoesList3 = [
+  {
+      name: "AIR MAX PEGASUS 7",
+      brand: "Adidas",
+      id: 7,
+      price: 500000,
+      desc: "chay nhanh"
+  },
+  {
+      name: "AIR MAX PEGASUS 8",
+      brand: "Adidas",
+      id: 8,
+      price: 600000,
+      desc: "chay em"
+  }, 
+  {
+      name: "AIR MAX PEGASUS 9",
+      brand: "Adidas",
+      id: 9,
+      price: 400000,
+      desc: "chay tot"
+  },
+  {
+    name: "AIR MAX PEGASUS 10",
+    brand: "Adidas",
+    id: 10,
+    price: 400000,
+    desc: "chay tot"
+}
+]
+function Homepage(props) {
+  const {addItemToCart} = props
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
@@ -155,18 +186,11 @@ function Homepage() {
           <Col md={3}></Col>
           <Col md={9}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>            
+            {
+              shoesList3.map( shoes =>  {
+                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+              })
+            }
           </OwlCarousel>
           </Col>
         </Row>
@@ -176,18 +200,11 @@ function Homepage() {
         <h6 className="homepage-topic">The hotest model in our store</h6>
         <Container className="product-container1">
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>            
+            {
+              shoesList3.map( shoes =>  {
+                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+              })
+            }           
           </OwlCarousel>
         </Container>
         <h3 className="homepage-topic">BEST SELLER</h3>
@@ -196,18 +213,11 @@ function Homepage() {
         </h6>
         <Container className="product-container1">
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>
-            <div>
-              <ProductCard></ProductCard>
-            </div>            
+            {
+              shoesList3.map( shoes =>  {
+                  return <div><ProductCard addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} /></div>
+              })
+            }              
           </OwlCarousel>
         </Container>
         <h3 className="homepage-topic">POST</h3>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Product from "./Product";
 import Cart from "./Cart";
 import Homepage from "./Homepage";
@@ -81,6 +81,13 @@ const shoesList3 = [
 ]
 
 function ProductAndCart() {
+    // const [listShoes, setListShoes] = useState([])
+
+    // useEffect(() => {
+    //     fetch('https://pacific-ridge-30189.herokuapp.com/brand/Adidas')
+    //         .then(res => res.json())
+    //         .then(listShoes => setListShoes(listShoes))
+    // })
     const shoesList = {
         shoesList1: [...shoesList1],
         shoesList2: [...shoesList2],
@@ -150,7 +157,7 @@ function ProductAndCart() {
     return (
         <div className="Page">
             <Header userPage = {showUserPage} productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage} aboutUsPage = {showAboutUsPage} ServicePage = {showServicePage}/>
-            {showHome && <Homepage/>}
+            {showHome && <Homepage addItemToCart = {addItemToCart}/>}
             { showProduct && <Product shoesList = {shoesList} addItemToCart = {addItemToCart}  /> }
             {showCart && <Cart listOrder = {orders} />}
             {showAboutUs && <AboutUs/>}
