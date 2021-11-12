@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutUs from "./AbousUs";
 import Service from "./service";
+import RegisterPage from "./Register";
 import User from "./user";
 const shoesList1 = [
     {
@@ -99,70 +100,34 @@ function ProductAndCart() {
     const [showHome, setShowHome] = useState(true)
     const [showService, setShowService] = useState(false)
     const [showUser, setShowUser] = useState(false)
+    const [showRegister, setShowRegister] = useState(false)
     const [orders, setOrder] = useState([]);
 
     const addItemToCart = (item) => {
         setOrder(prev => [...prev, item]);
-        showCartPage();
+        showPage({cart:true});
     }
     console.log("re-render")
-    const showCartPage = () => {
-        setShowHome(false)
-        setShowProduct(false)
-        setShowAboutUs(false)
-        setShowService(false)
-        setShowCart(true)
-        setShowUser(false)
-    }
-    const showUserPage = () => {
-        setShowHome(false)
-        setShowProduct(false)
-        setShowAboutUs(false)
-        setShowService(false)
-        setShowCart(false)
-        setShowUser(true)
-    }
-    const showHomePage = () => {
-        setShowHome(true)
-        setShowProduct(false)
-        setShowAboutUs(false)
-        setShowService(false)
-        setShowCart(false)
-        setShowUser(false)
-    }
-    const showProductPage = () => {
-        setShowCart(false)
-        setShowHome(false)
-        setShowAboutUs(false)
-        setShowService(false)
-        setShowProduct(true)
-        setShowUser(false)
-    }
-    const showAboutUsPage = () => {
-        setShowAboutUs(true)
-        setShowCart(false)
-        setShowHome(false)
-        setShowService(false)
-        setShowProduct(false)
-        setShowUser(false)
-    }
-    const showServicePage = () => {
-        setShowAboutUs(false)
-        setShowCart(false)
-        setShowHome(false)
-        setShowProduct(false)
-        setShowService(true)
-        setShowUser(false)
+
+    const showPage = ( {product= false, cart = false, home = false, about = false, service = false, user = false, register = false}) => {
+        setShowAboutUs(about)
+        setShowCart(cart)
+        setShowHome(home)
+        setShowProduct(product)
+        setShowService(service)
+        setShowUser(user)
+        setShowRegister(register)
     }
     return (
         <div className="Page">
-            <Header userPage = {showUserPage} productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage} aboutUsPage = {showAboutUsPage} ServicePage = {showServicePage}/>
+            <Header showPage = {showPage}/>
             {showHome && <Homepage addItemToCart = {addItemToCart}/>}
             { showProduct && <Product shoesList = {shoesList} addItemToCart = {addItemToCart}  /> }
             {showCart && <Cart listOrder = {orders} />}
             {showAboutUs && <AboutUs/>}
             {showService && <Service />}
             {showUser && <User />}
+            {showRegister && <RegisterPage/>}
             <Footer />
         </div>
     )
