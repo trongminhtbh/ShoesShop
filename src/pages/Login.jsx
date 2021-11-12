@@ -20,7 +20,7 @@ function LoginPage(props) {
               required
             />
           </div>
-          <div className="password-input input-item row">
+          <div className="password-input input-item">
             <i className="fa fa-lock"></i>
             <input type="password" placeholder="Password" id="passwordInput" />
           </div>
