@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import logo1 from "../assets/img/logo1.png";
 
-function ResetPasswordPage() {
+function ResetPasswordPage(props) {
+  const {signInPage} = props
     return (
       <div className="container-fluild login-container">
       <div className="form-login">
@@ -21,6 +22,7 @@ function ResetPasswordPage() {
           </div>
   
           <button type="submit">Send</button>
+          <span onClick = {signInPage}><a href="#login">Login</a></span>
         </form>
       </div>
     </div>

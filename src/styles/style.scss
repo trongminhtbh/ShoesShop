@@ -5,6 +5,10 @@ body {
 .modal-90w{
   max-width: 1000px !important;
 }
+.register {
+  min-height: 100% !important;
+  height: 100% !important;
+}
 .login-container {
   font-family: "Fredoka One", cursive;
   background-color: rgba(27, 33, 44, 1);
@@ -31,24 +35,25 @@ body {
       display: flex;
       flex-direction: column;
       .input-item {
+        position: relative;
         height: 3rem;
         margin: auto;
         margin-bottom: 1.5rem;
-        width: 100%;
-        i {
+        display: flex;
+        i{
           position: absolute;
-          margin-left: 255px;
-          margin-top: 12px;
+          top: 12px;
+          left: 8px;
           font-size: 1.5rem;
           color: rgba(0, 0, 0,0.7);
         }
+
         input {
           padding-left: 50px;
-          width: 50%;
           height: 100%;
           display: block;
-          margin: auto;
           font-size: 1.3rem;
+          min-width: 320px;
         }
       }
       button {
@@ -59,6 +64,7 @@ body {
         background-color: rgba(251, 75, 41, 1);
         color: white;
         font-size: 1.2rem;
+        min-width: 320px;
       }
       span {
         text-align: end;

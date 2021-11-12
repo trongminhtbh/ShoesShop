@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import logo1 from "../assets/img/logo1.png";
 
-function LoginPage() {
+function LoginPage(props) {
+  const {signUpPage, forgotPage} = props
     return (
       <div className="container-fluild login-container">
       <div className="form-login">
@@ -25,7 +26,8 @@ function LoginPage() {
           </div>
   
           <button type="submit">Login</button>
-          <span><a href="">Forgot password?</a></span>
+          <span onClick = {forgotPage}><a href="#forgot">Forgot password?</a></span>
+          <span onClick = {signUpPage}><a href="#signup">Sign Up?</a></span>
         </form>
       </div>
     </div>
