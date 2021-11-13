@@ -158,7 +158,7 @@ function ProductAndCart() {
         <div className="Page">
             <Header userPage = {showUserPage} productPage = {showProductPage} shopingCart = {showCartPage} homePage = {showHomePage} aboutUsPage = {showAboutUsPage} ServicePage = {showServicePage}/>
             {showHome && <Homepage addItemToCart = {addItemToCart}/>}
-            { showProduct && <Product shoesList = {shoesList} addItemToCart = {addItemToCart}  /> }
+            {showProduct && <Product shoesList = {shoesList} addItemToCart = {addItemToCart}  /> }
             {showCart && <Cart listOrder = {orders} />}
             {showAboutUs && <AboutUs/>}
             {showService && <Service />}

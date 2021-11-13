@@ -14,28 +14,28 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const shoesList3 = [
   {
-      name: "AIR MAX PEGASUS 7",
+      name: "AIR MAX PEGASUS",
       brand: "Adidas",
       id: 7,
       price: 500000,
       desc: "chay nhanh"
   },
   {
-      name: "AIR MAX PEGASUS 8",
+      name: "AIR MAX PEGASUS",
       brand: "Adidas",
       id: 8,
       price: 600000,
       desc: "chay em"
   }, 
   {
-      name: "AIR MAX PEGASUS 9",
+      name: "AIR MAX PEGASUS",
       brand: "Adidas",
       id: 9,
       price: 400000,
       desc: "chay tot"
   },
   {
-    name: "AIR MAX PEGASUS 10",
+    name: "AIR MAX PEGASUS",
     brand: "Adidas",
     id: 10,
     price: 400000,
@@ -182,13 +182,13 @@ function Homepage(props) {
             </Row>
           </Col>
         </Row>
-        <Row className="pt-5">
+        <Row className="pt-3">
           <Col md={3}></Col>
           <Col md={9}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
             {
               shoesList3.map( shoes =>  {
-                  return <div key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
+                  return <ProductCard key={shoes.id} addItemToCart={addItemToCart} shoesItem = {shoes} />
               })
             }
           </OwlCarousel>
