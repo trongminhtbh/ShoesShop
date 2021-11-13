@@ -18,10 +18,15 @@ function Product(props) {
         }
         return brands
     },[])
+
     const showPanel = (title) => {
         if(listBrands.indexOf(title) !== -1){
             setTitle(title)
             let list = shoesList.filter((shoes) => shoes.brand === title)
+            setListShoes(list)
+        }
+        if(title === "nam" || title === "nu") {
+            let list = shoesList.filter((shoes) => shoes.gender === title)
             setListShoes(list)
         }
 

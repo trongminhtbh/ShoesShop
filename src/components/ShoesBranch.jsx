@@ -14,7 +14,7 @@ function Branch(props) {
             <div className="shoes-list">
                 {
                 listShoes.map( shoes =>  {
-                    return <Card addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} />
+                    return <Card addItemToCart={addItemToCart} key={shoes._id} shoesItem = {shoes} />
                 })
                 }
             </div>

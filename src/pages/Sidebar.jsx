@@ -12,7 +12,6 @@ function SideBar(props){
       items.push(item)
       return items
     },[])
-    console.log(listBrands)
     return (
 
           <div className="fixed menu">
@@ -40,11 +39,11 @@ function SideBar(props){
                     subNav: [
                       {
                         title: 'Male',
-                        itemId: '/gender/male',
+                        itemId: 'nam',
                       },
                       {
                         title: 'Female',
-                        itemId: '/gender/Female',
+                        itemId: 'nu',
                       },
                     ],
                   },
