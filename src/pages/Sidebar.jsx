@@ -2,8 +2,17 @@ import React from "react";
 import {Navigation} from 'react-minimal-side-navigation';
 import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 
-function SideBar(){
-
+function SideBar(props){
+    const {listBrands, showPanel} = props
+    const brands = listBrands.reduce((items, brand) => {
+      let item = {
+        title: brand,
+        itemId: brand
+      }
+      items.push(item)
+      return items
+    },[])
+    console.log(listBrands)
     return (
 
           <div className="fixed menu">
@@ -11,28 +20,19 @@ function SideBar(){
                 // you can use your own router's api to get pathname
                 activeItemId="/management/members"
                 onSelect={({itemId}) => {
+                  showPanel(itemId)
                 }}
                 items={[
                   {
                     title: 'All items',
-                    itemId: '/allitems',
+                    itemId: 'All',
                     // you can use your own custom Icon component as well
                     // icon is optional
                   },
                   {
                     title: 'Branch',
                     itemId: '/branch',
-                    subNav: [
-                      {
-                        title: 'Nike',
-                        itemId: 'NikeSection',
-                        // Requires v1.9.1+ (https://github.com/abhijithvijayan/react-minimal-side-navigation/issues/13)
-                      },
-                      {
-                        title: 'Adidas',
-                        itemId: '/branch/adidas',
-                      },
-                    ],
+                    subNav: brands,
                   },
                   {
                     title: 'Gender',

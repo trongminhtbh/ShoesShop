@@ -38,7 +38,7 @@ function Cards({shoesItem, addItemToCart}) {
             </div>
             <div className="card-content-desc">
                 Description: 
-                <div>{shoesItem.desc}</div>
+                <div>{shoesItem.description}</div>
             </div>
             <Button variant="primary" onClick={handleShow}>
                 Detail

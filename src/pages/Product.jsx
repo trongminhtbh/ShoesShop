@@ -2,48 +2,42 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Card from "../components/Card"
 import SideBar from "./Sidebar";
-import BranchTitle from "../components/ShoesBranch";
+import Branch from "../components/ShoesBranch";
 
 
 
 function Product(props) {
     const {shoesList, addItemToCart} = props
-    console.log(props);
-    const {shoesList1, shoesList2, shoesList3} = shoesList
+
+    const [title, setTitle] = useState("All");
+    const [listShoes, setListShoes] = useState(shoesList)
+
+    const listBrands = shoesList.reduce((brands, shoes) => {
+        if( brands.indexOf(shoes.brand) === -1 ) {
+            brands.push(shoes.brand)
+        }
+        return brands
+    },[])
+    const showPanel = (title) => {
+        if(listBrands.indexOf(title) !== -1){
+            setTitle(title)
+            let list = shoesList.filter((shoes) => shoes.brand === title)
+            setListShoes(list)
+        }
+
+        if(title === "All") {
+            setTitle("All")
+            setListShoes(shoesList)
+        }
+
+    }
     return (
         <div className="product-page-container">
             <div className="product-container">
-                <SideBar />
+                <SideBar listBrands = {listBrands} showPanel = {showPanel}  />
                 <div className="product-display">
-                    <BranchTitle id="NikeSection" name = "Nike"/>
-                    <div className="shoes-list">
-                        {
-                        shoesList1.map( shoes =>  {
-                            return <Card addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} />
-                        })
-                        }
-                    </div>
-
-                    <BranchTitle id="AdidasSection" name = "Adidas"/>
-                    <div className="shoes-list">
-                        {
-                        shoesList2.map( shoes =>  {
-                            return <Card addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} />
-                        })
-                        }
-                    </div>
-
-
-                    <BranchTitle id="OtherSection" name = "Others"/>
-                    <div className="shoes-list">
-                        {
-                        shoesList3.map( shoes =>  {
-                            return <Card addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} />
-                        })
-                        }
-                    </div>
-                    
-                </div>
+                    <Branch addItemToCart={addItemToCart}  listShoes = {listShoes} id="NikeSection" name = {title}/>   
+                </div>           
             </div>
         </div>
     )

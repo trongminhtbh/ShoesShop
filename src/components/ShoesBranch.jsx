@@ -1,15 +1,25 @@
 import React, { Fragment } from "react";
+import Card from "../components/Card"
 
-
-function BranchTitle({name}) {
+function Branch(props) {
+    const {listShoes, name, addItemToCart} = props
     return (
-        <div className="title-branch d-flex row">
-            <div className="title-branch-header col-1">
-                <h3>{name}</h3> 
+        <div className="product-display-branch">
+            <div className="title-branch d-flex row">
+                <div className="title-branch-header col-1">
+                    <h3>{name}</h3> 
+                </div>
+                <div className="line"></div>
             </div>
-            <div className="line"></div>
+            <div className="shoes-list">
+                {
+                listShoes.map( shoes =>  {
+                    return <Card addItemToCart={addItemToCart} key={shoes.id} shoesItem = {shoes} />
+                })
+                }
+            </div>
         </div>
     )
 }
 
-export default BranchTitle
+export default Branch
