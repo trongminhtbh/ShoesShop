@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo1 from "../assets/img/logo1.png";
 
 function ResetPasswordPage(props) {
