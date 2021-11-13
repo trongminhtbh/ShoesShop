@@ -8,23 +8,21 @@ function SignUpPage(props) {
   
   const sendRequest = (e) => {
     e.preventDefault();
+    let bodyContent = JSON.stringify({
+      name: "",
+      dob: "",
+      phone: "",
+      email: email,
+      password: password
+    })
     fetch ("https://pacific-ridge-30189.herokuapp.com/customer", {
        method: "POST",
-       body: JSON.stringify({
-         name: "",
-         dob: "",
-         phone: "",
-         email: email,
-         password: password
-      }),
+       headers: {
+        "Content-Type": "application/json",
+      },
+       body: bodyContent,
       })
-      console.log(JSON.stringify({
-        name: "",
-        dob: "",
-        phone: "",
-        email: email,
-        password: password
-     }))
+      console.log(bodyContent)
 
       console.log("sendRequest")
   }
