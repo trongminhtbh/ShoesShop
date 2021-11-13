@@ -22,7 +22,6 @@ function SignUpPage(props) {
       },
        body: bodyContent,
       })
-      console.log(bodyContent)
 
       console.log("sendRequest")
   }
@@ -35,7 +34,7 @@ function SignUpPage(props) {
         </div>
         <form action="">
           <div className="email-input input-item">
-            <i className= "fa fa-email"></i>
+            <i className= "fa fa-envelope"></i>
             <input
               type="text"
               placeholder="Email"

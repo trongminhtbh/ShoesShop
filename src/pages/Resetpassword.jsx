@@ -3,6 +3,22 @@ import logo1 from "../assets/img/logo1.png";
 
 function ResetPasswordPage(props) {
   const {signInPage} = props
+  const [email, setEmail] = useState()
+  const sendRequest = (e) => {
+    e.preventDefault();
+    let bodyContent = JSON.stringify({
+      email: email
+    })
+    fetch ("https://pacific-ridge-30189.herokuapp.com/forgot", {
+       method: "POST",
+       headers: {
+        "Content-Type": "application/json",
+      },
+       body: bodyContent,
+      })
+
+      console.log("sendRequest")
+  }
     return (
       <div className="container-fluild login-container">
       <div className="form-login">
@@ -12,16 +28,17 @@ function ResetPasswordPage(props) {
         </div>
         <form action="">
           <div className="email-input input-item">
-            <i className= "fa fa-phone"></i>
+            <i className= "fa fa-envelope"></i>
             <input
-              type="text"
-              placeholder="Phone"
+              type="email"
+              placeholder="Email"
               id="usernameInput"
               required
+              onChange = {e => setEmail(e.target.value)}
             />
           </div>
   
-          <button type="submit">Send</button>
+          <button onClick = {sendRequest} type="submit">Send</button>
           <span onClick = {signInPage}><a href="#login">Login</a></span>
         </form>
       </div>
