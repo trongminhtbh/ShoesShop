@@ -1,7 +1,7 @@
 import { Container, Row, Col, Carousel, Nav } from "react-bootstrap";
 import { StarHalf, Star } from "@material-ui/icons";
 import "bootstrap/dist/css/bootstrap.css";
-import "../styles/footer-style.css";
+import styles from "../styles/footer-style.module.css";
 import React ,{ useState } from "react";
 import PostCard from "../components/PostCard";
 import LargeNikeIcon from "../assets/img/large-nike.png";
@@ -50,18 +50,18 @@ function Homepage(props) {
     setIndex(selectedIndex);
   };
   return (
-    <div className="App">
-      <Container fluid className="fit-screen">
+    <div className={styles["App"]}>
+      <Container fluid className={styles["fit-screen"]}>
         <Row>
           <Col md={2} className="align-self-center">
             <Nav className="ms-auto flex-column">
-              <div className="menu-item-homepage active-item">
+              <div className={`${styles["menu-item-homepage"]} ${styles["active-item"]}`}>
                 <Nav.Link href="#">NIKE</Nav.Link>
               </div>
-              <div className="menu-item-homepage inactive-item">
+              <div className={`${styles["menu-item-homepage"]} ${styles["inactive-item"]}`}>
                 <Nav.Link href="#">ADIDAS</Nav.Link>
               </div>
-              <div className="menu-item-homepage inactive-item">
+              <div className={`${styles["menu-item-homepage"]} ${styles["inactive-item"]}`}>
                 <Nav.Link href="#">OTHER</Nav.Link>
               </div>
             </Nav>
@@ -92,8 +92,8 @@ function Homepage(props) {
               <Col md={4}>
                 <div className="h-100 d-flex flex-column">
                   <Row>
-                    <h2 className="overlay-text">AMAZING SHOES?</h2>
-                    <h4 className="overlay-text">Let us show you!!!</h4>
+                    <h2 className={styles["overlay-text"]}>AMAZING SHOES?</h2>
+                    <h4 className={styles["overlay-text"]}>Let us show you!!!</h4>
                   </Row>
                   <Row className="flex-grow-1">
                     <Col className="align-self-end">
@@ -110,7 +110,7 @@ function Homepage(props) {
                       >
                         <Carousel.Item >
                           <h4 style={{ color: "white" }}>NIKE AIR MAX III</h4>
-                          <div className="rate-price">
+                          <div className={styles["rate-price"]}>
                             <div style={{ display: "inline-block" }}>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
@@ -132,7 +132,7 @@ function Homepage(props) {
                         </Carousel.Item>
                         <Carousel.Item >
                           <h4 style={{ color: "white" }}>NIKE AIR MAX III</h4>
-                          <div className="rate-price">
+                          <div className={styles["rate-price"]}>
                             <div style={{ display: "inline-block" }}>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
@@ -154,7 +154,7 @@ function Homepage(props) {
                         </Carousel.Item>
                         <Carousel.Item>
                           <h4 style={{ color: "white" }}>NIKE AIR MAX III</h4>
-                          <div className="rate-price">
+                          <div className={styles["rate-price"]}>
                             <div style={{ display: "inline-block" }}>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
@@ -196,9 +196,9 @@ function Homepage(props) {
         </Row>
       </Container>
       <Container>
-        <h3 className="homepage-topic">HOTEST</h3>
-        <h6 className="homepage-topic">The hotest model in our store</h6>
-        <Container className="product-container1">
+        <h3 className={styles["homepage-topic"]}>HOTEST</h3>
+        <h6 className={styles["homepage-topic"]}>The hotest model in our store</h6>
+        <Container className={styles["product-container1"]}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               shoesList3.map( shoes =>  {
@@ -207,11 +207,11 @@ function Homepage(props) {
             }           
           </OwlCarousel>
         </Container>
-        <h3 className="homepage-topic">BEST SELLER</h3>
-        <h6 className="homepage-topic">
+        <h3 className={styles["homepage-topic"]}>BEST SELLER</h3>
+        <h6 className={styles["homepage-topic"]}>
           The best model in our store in a month
         </h6>
-        <Container className="product-container1">
+        <Container className={styles["product-container1"]}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               shoesList3.map( shoes =>  {
@@ -220,11 +220,11 @@ function Homepage(props) {
             }              
           </OwlCarousel>
         </Container>
-        <h3 className="homepage-topic">POST</h3>
-        <h6 className="homepage-topic">
+        <h3 className={styles["homepage-topic"]}>POST</h3>
+        <h6 className={styles["homepage-topic"]}>
           The newest posts from our store and brand
         </h6>
-        <Container className="inner-container">
+        <Container className={styles["inner-container"]}>
         <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             <div>
               <PostCard></PostCard>

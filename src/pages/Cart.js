@@ -1,93 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
-import "../styles/footer-style.css";
+import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { algo, enc } from "crypto-js";
 import CartItem from "../components/CartItem";
 
 export default function Cart({ listOrder }) {
-  let total = 50000;
-  const [momo, setMomo] = useState("No request");
   function Payment() {
-    let partnerCode = "MOMO";
-    let accessKey = "F8BBA842ECF85";
-    let secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
-    let requestId = partnerCode + new Date().getTime();
+    let requestId = "MOMO" + new Date().getTime();
     let orderId = requestId;
-    let orderInfo = "pay with MoMo";
-    let redirectUrl = "https://momo.vn";
-    let ipnUrl = "https://momo.vn";
-    // let ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
-    let amount = "50000";
-    let requestType = "captureWallet";
-    let extraData = "email=nghia.tran.179@hcmut.edu.vn"; //pass empty value if your merchant does not have stores
-
-    //before sign HMAC SHA256 with format
-    //accessKey=$accessKey&amount=$amount&extraData=$extraData&ipnUrl=$ipnUrl&orderId=$orderId&orderInfo=$orderInfo&partnerCode=$partnerCode&redirectUrl=$redirectUrl&requestId=$requestId&requestType=$requestType
-    let rawSignature =
-      "accessKey=" +
-      accessKey +
-      "&amount=" +
-      amount +
-      "&extraData=" +
-      extraData +
-      "&ipnUrl=" +
-      ipnUrl +
-      "&orderId=" +
-      orderId +
-      "&orderInfo=" +
-      orderInfo +
-      "&partnerCode=" +
-      partnerCode +
-      "&redirectUrl=" +
-      redirectUrl +
-      "&requestId=" +
-      requestId +
-      "&requestType=" +
-      requestType;
-    //puts raw signature
-    console.log("--------------------RAW SIGNATURE----------------");
-    console.log(rawSignature);
-    let signature = algo.HMAC.create(algo.SHA256, secretkey)
-      .update(rawSignature)
-      .finalize()
-      .toString(enc.Hex);
-    console.log("--------------------SIGNATURE----------------");
-    console.log(signature);
-    const requestBody = JSON.stringify({
-      partnerCode: partnerCode,
-      accessKey: accessKey,
-      requestId: requestId,
-      amount: amount,
-      orderId: orderId,
-      orderInfo: orderInfo,
-      redirectUrl: redirectUrl,
-      ipnUrl: ipnUrl,
-      extraData: extraData,
-      requestType: requestType,
-      signature: signature,
-      lang: "en",
-    });
-    console.log(requestBody);
-    console.log(Buffer.byteLength(requestBody));
     const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-        "Content-Length": Buffer.byteLength(requestBody)
-      },
-      body: requestBody
+      method: "GET",
     };
-    //
-    // fetch("https://test-payment.momo.vn/v2/gateway/api/create", requestOptions)
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
-    postData("https://test-payment.momo.vn/v2/gateway/api/create", requestOptions);
-  }
-
-  async function postData(url = " ", requestOptions) {
-    const res = await fetch(url, requestOptions);
-    return res.json();
+    fetch("http://localhost:3003", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        window.location = data;
+      });
   }
 
   return (

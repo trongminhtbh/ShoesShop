@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "../styles/footer-style.css";
+import styles from "../styles/footer-style.module.css";
 import {
   Facebook,
   Instagram,
@@ -14,23 +14,23 @@ import shoeicon from "../assets/img/logo1.png";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className={styles["footer"]}>
       <Container>
         <Row style={{textAlign:"center"}}>
           <Col>
-            <div className="shop">
-              <div className="shop-inline">
+            <div className={styles["shop"]}>
+              <div className={styles["shop-inline"]}>
                 <img src={shoeicon} alt="Shoe icon" width="70px" />
               </div>
-              <div className="shop-inline">
+              <div className={styles["shop-inline"]}>
                 <h2>AMAZING SHOES</h2>
               </div>
             </div>
-            <div className="social-network">
-              <div className="shop-inline">
+            <div className={styles["social-network"]}>
+              <div className={styles["shop-inline"]}>
                 <h4>Find us on</h4>
               </div>
-              <div className="shop-inline">
+              <div className={styles["shop-inline"]}>
                 {" "}
                 <Facebook />
                 <Instagram />
@@ -80,7 +80,7 @@ function Footer() {
           </Col>
         </Row>
         <Row>
-          <div className="cp-right">
+          <div className={styles["cp-right"]}>
             <Copyright />
             2021
           </div>
