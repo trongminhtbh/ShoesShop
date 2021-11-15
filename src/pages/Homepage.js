@@ -50,7 +50,7 @@ function Homepage(props) {
     setIndex(selectedIndex);
   };
   return (
-    <div className="App">
+    <>
       <Container fluid className="fit-screen">
         <Row>
           <Col md={2} className="align-self-center">
@@ -241,7 +241,7 @@ function Homepage(props) {
           </OwlCarousel>
         </Container>
       </Container>
-    </div>
+    </>
   );
 }
 
