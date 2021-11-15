@@ -1,0 +1,48 @@
+.users-list__header {
+    padding: 10px;
+}
+
+.users-list {
+    width: 1100px;
+    overflow-x: auto;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    background: white;
+}
+
+.users-list tr {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.users-list :is(td, th) {
+    padding: 10px 20px;
+}
+
+.users-list__id {
+    min-width: 80px;
+}
+
+.users-list__name {
+    min-width: 250px;
+}
+
+.users-list__phone {
+    min-width: 150px;
+}
+
+.users-list__email {
+    min-width: 200px;
+}
+
+.users-list__date-of-birth {
+    min-width: 200px;
+}
+
+.users-list__actions {
+    min-width: 100%;
+}

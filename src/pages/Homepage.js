@@ -241,7 +241,7 @@ function Homepage(props) {
           </OwlCarousel>
         </Container>
       </Container>
-    </div>
+    </>
   );
 }
 

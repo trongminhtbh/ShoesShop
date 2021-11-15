@@ -1,0 +1,56 @@
+.orders-list__header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orders-list__action {
+    padding: 2px;
+    background: white;
+    outline: none;
+    border: none;
+}
+
+.orders-list {
+    width: 1100px;
+    overflow-x: auto;
+    border-collapse: separate;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    background: white;
+    max-height: 100%;
+    margin: 10px 0;
+}
+
+.orders-list tr {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.orders-list :is(td, th) {
+    padding: 10px 20px;
+    vertical-align: center;
+}
+
+.orders-list__customer {
+    min-width: 300px;
+}
+
+.orders-list__total-price {
+    min-width: 250px;
+}
+
+.orders-list__status {
+    min-width: 150px;
+}
+
+.orders-list__date {
+    min-width: 150px;
+}
+
+
+.orders-list__paginatinon {
+    align-self: flex-end;
+}
