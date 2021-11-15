@@ -1,0 +1,32 @@
+.sidebar {
+    min-width: 200px;
+    padding: 0 20px;
+    list-style: none;
+    background-color: #C4C4C4;
+    border: 1px solid rgba($color: #000000, $alpha: .25);
+    border-radius: 10px;
+}
+
+.sidebar__link {
+    font-size: large;
+    font-weight: 600;
+    color: black;
+}
+
+.sidebar__link:hover, .sidebar__link.active {
+    color: #FB4B29 ;
+}
+
+a {
+    text-decoration: none;
+    color: rgba($color: #000000, $alpha: .55);
+    display: block;
+    font-weight: 550;
+    padding: 12px;
+    border-bottom: 2px solid rgba($color: #000000, $alpha: .25);
+}
+
+a:hover {
+    color: #037bb8;
+}
+
