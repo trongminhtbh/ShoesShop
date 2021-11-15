@@ -1,0 +1,27 @@
+.form__title {
+    margin-left: 20px;
+}
+
+.form {
+    display: block;
+    padding: 20px;
+    min-width: 1000px;
+    overflow: hidden;
+    background: white;
+    border-radius: 20px;
+}
+
+.form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+@media screen and (max-width: 527px) {
+    .form__title {
+        text-align: center;
+    }
+    .form__group aside {
+        text-align: left;
+    }
+}
