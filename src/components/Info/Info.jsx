@@ -1,6 +1,13 @@
 import React from "react";
-
-const Info = ({shoesItem, addItemToCart}) => {
+import { useStore, addItemToCart } from "../../store";
+import { NavLink } from "react-router-dom";
+const Info = ({shoesItem}) => {
+  const [state, dispatch] = useStore()
+  const handleAdd = (item) => {
+    console.log("add")
+    dispatch(addItemToCart(item))
+  }
+  console.log(state.orders)
   const shoeName = (
     <div className="shoeName">
       <div>
@@ -48,9 +55,9 @@ const Info = ({shoesItem, addItemToCart}) => {
 
   const BuySection = (
     <div className="buy-price">
-      <a href="/#" onClick={() => addItemToCart(shoesItem)} className="buy">
+      <NavLink to="/cart" onClick={() => {handleAdd(shoesItem)}} className="buy">
         <i className="fas fa-shopping-cart"></i>Add to card
-      </a>
+      </NavLink>
       <div className="price">
         <i className="fas fa-dollar-sign"></i>
         <h1>{shoesItem.price}</h1>

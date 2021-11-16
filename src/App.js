@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useContext } from "react";
-import { StoreContext } from "./store";
+import { useStore, actions } from "./store";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Footer from "./components/Footer";
@@ -10,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 const App = () => {
-  const [state, dispath] = useContext(StoreContext)
+  const [state, dispatch] = useStore()
   const [listShoes, setListShoes] = useState([])
 
   useEffect(() => {

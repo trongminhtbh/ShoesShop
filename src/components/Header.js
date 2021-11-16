@@ -5,6 +5,7 @@ import styles from "../styles/footer-style.module.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 function Header(props) {
@@ -24,49 +25,50 @@ function Header(props) {
             </Navbar.Brand>
             <Nav className="ms-auto">
               <div className={styles["menu-item"]}>
-                <Nav.Link  href="/home">
+                <NavLink to="/home">
                   BRANDS
-                </Nav.Link>
+                </NavLink>
               </div>
               <div className={styles["menu-item"]}>
-                <Nav.Link
-                  href="/register"
+                <NavLink
+                  to="/register"
                 >
                   REGISTER
-                </Nav.Link>
+                </NavLink>
               </div>
               <div className={styles["menu-item"]}>
-                <Nav.Link
-                  href="/product"
+                <NavLink
+                  to="/product"
                 >
                   PRODUCT
-                </Nav.Link>
+                </NavLink>
               </div>
               <div className={styles["menu-item"]}>
-                <Nav.Link
-                  href="/service"
+                <NavLink
+                  to="/service"
                 >
                   SERVICE
-                </Nav.Link>
+                </NavLink>
               </div>
               <div className={styles["menu-item"]}>
-                <Nav.Link
-                  href="/about"
+                <NavLink
+                  to="/about"
                 >
                   ABOUT US
-                </Nav.Link>
+                </NavLink>
               </div>
               <div className={`${styles["other-icon"]} align-self-end`}>
                 <Button variant={"link"} style={{ margin: "0px 5px" }}>
                   <Search style={{ fill: "#FB4B29" }}></Search>
                 </Button>
-                <Button
-                  variant={"link"}
-                  href = "/cart"
-                  style={{ margin: "0px 5px" }}
-                >
-                  <ShoppingCart style={{ fill: "#FB4B29" }}></ShoppingCart>
-                </Button>
+                <NavLink to= "cart">
+                  <Button
+                    variant={"link"}
+                    style={{ margin: "0px 5px" }}
+                  >
+                    <ShoppingCart style={{ fill: "#FB4B29" }}></ShoppingCart>
+                  </Button>
+                </NavLink>
                 <Button variant={"link"} style={{ margin: "0px 5px" }}>
                   <AccountCircle
                     href = "/user"
