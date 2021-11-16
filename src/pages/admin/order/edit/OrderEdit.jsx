@@ -1,6 +1,15 @@
 import React from "react";
 import { useHistory } from "react-router";
-import { FormControlWithStyles, FormGroupWithStyles, FormRowWithStyles, FormLabelWithStyles } from "../../helpers/components";
+import {
+    FormControlWithStyles,
+    FormGroupWithStyles,
+    FormRowWithStyles,
+    FormLabelWithStyles,
+    FormSelectWithStyles,
+    FormOptionWithStyles,
+    FormSubmitWithStyles,
+    BackButtonWithStyles
+} from "../../helpers/components";
 import styles from "./order-edit.module.scss";
 
 const products = [
@@ -41,6 +50,7 @@ export default function OrderEdit(props) {
     }
 
     const handleDirectingBackToList = (event) => {
+        event.preventDefault();
         history.goBack();
     }
 
@@ -72,8 +82,11 @@ export default function OrderEdit(props) {
                         <FormLabelWithStyles htmlFor="status">
                             Status
                         </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="status" name="status"
-                            onChange={handleFormInputChange} />
+                        <FormSelectWithStyles id="status" name="status">
+                            <FormOptionWithStyles>Waiting</FormOptionWithStyles>
+                            <FormOptionWithStyles>Confirmed</FormOptionWithStyles>
+                            <FormOptionWithStyles>Delivered</FormOptionWithStyles>
+                        </FormSelectWithStyles>
                     </FormGroupWithStyles>
                 </FormRowWithStyles>
 
@@ -111,11 +124,12 @@ export default function OrderEdit(props) {
                 </div>
 
                 <div className={styles["form__actions"]}>
-                    <button className="btn"
+                    <BackButtonWithStyles
                         onClick={(event) => handleDirectingBackToList(event)}>
                         Back To List
-                    </button>
-                    <input type="submit" className="btn btn-primary" value="Create New" />
+                    </BackButtonWithStyles>
+
+                    <FormSubmitWithStyles value="Update Order" />
                 </div>
             </form>
         </section >
