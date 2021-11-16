@@ -9,6 +9,7 @@ import LargeNikeIcon1 from "../assets/img/black.png";
 import LargeNikeIcon2 from "../assets/img/blue.png";
 import ProductCard from "../components/ProductCard";
 import OwlCarousel from "react-owl-carousel";
+import Header from "../components/Header";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
@@ -50,7 +51,7 @@ function Homepage(props) {
     setIndex(selectedIndex);
   };
   return (
-    <div className={styles["App"]}>
+    <>
       <Container fluid className={styles["fit-screen"]}>
         <Row>
           <Col md={2} className="align-self-center">

@@ -4,8 +4,12 @@ import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { algo, enc } from "crypto-js";
 import CartItem from "../components/CartItem";
+import { useContext } from "react";
+import { StoreContext } from "../store";
 
-export default function Cart({ listOrder }) {
+export default function Cart() {
+  const [state, dispath] = useContext(StoreContext)
+  const [listOrder, setListOrder] = useState(state.order)
   function Payment() {
     let requestId = "MOMO" + new Date().getTime();
     let orderId = requestId;

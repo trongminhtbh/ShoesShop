@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card"
 import SideBar from "./Sidebar";
 import Branch from "../components/ShoesBranch";
-
+import { useContext } from "react";
+import { StoreContext } from "../store";
 
 
 function Product(props) {
-    const {shoesList, addItemToCart} = props
-
+    const [state, dispath] = useContext(StoreContext)
     const [title, setTitle] = useState("All");
-    const [listShoes, setListShoes] = useState(shoesList)
-
+    const [listShoes, setListShoes] = useState(state.listShoes)
+    const shoesList = state.listShoes
     const listBrands = shoesList.reduce((brands, shoes) => {
         if( brands.indexOf(shoes.brand) === -1 ) {
             brands.push(shoes.brand)
@@ -41,7 +41,7 @@ function Product(props) {
             <div className="product-container">
                 <SideBar listBrands = {listBrands} showPanel = {showPanel}  />
                 <div className="product-display">
-                    <Branch addItemToCart={addItemToCart}  listShoes = {listShoes} id="NikeSection" name = {title}/>   
+                    <Branch   listShoes = {listShoes} id="NikeSection" name = {title}/>   
                 </div>           
             </div>
         </div>
