@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import logo1 from "../assets/img/logo1.png";
+import { useStore, login } from "../store";
 
 function LoginPage(props) {
   const {signUpPage, forgotPage} = props
+  const [state, dispatch] = useStore()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const [result, setResult] = useState("")
   
   const sendRequest = (e) => {
     e.preventDefault();
@@ -20,7 +21,8 @@ function LoginPage(props) {
       },
        body: bodyContent,
       }).then((response) => response.json())
-      .then((data) => setResult(data));
+      .then((data) => dispatch(login(data)));
+
   }
     return (
       <div className="container-fluild login-container">
@@ -29,6 +31,7 @@ function LoginPage(props) {
             <img src={logo1} alt=""/>
             <h2>LOGIN SITE</h2>
           </div>
+          { state.login._id? <h2 className="noti-message">Chào mừng {state.login.name} đã quay trở lại! </h2> : 
           <form action="">
             <div className="email-input input-item">
               <i className= "fa fa-envelope"></i>
@@ -49,6 +52,7 @@ function LoginPage(props) {
             <span onClick = {forgotPage}><a href="#forgot">Forgot password?</a></span>
             <span onClick = {signUpPage}><a href="#signup">Sign Up?</a></span>
           </form>
+        }
         </div>
     </div>
     );

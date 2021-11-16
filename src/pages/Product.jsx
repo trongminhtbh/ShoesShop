@@ -18,7 +18,7 @@ function Product(props) {
         }
         return brands
     },[])
-
+    console.log(state.login)
     const showPanel = (title) => {
         if(listBrands.indexOf(title) !== -1){
             setTitle(title)

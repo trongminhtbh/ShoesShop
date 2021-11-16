@@ -1,4 +1,4 @@
-import {ADD_ITEM_TO_CART} from "./constants"
+import {ADD_ITEM_TO_CART, LOGIN} from "./constants"
 
 const initState = {
     listShoes: [],
@@ -12,6 +12,11 @@ function reducer(state, action) {
             return {
                 ...state,
                 orders: [...state.orders, action.item]
+            }
+        case LOGIN:
+            return {
+                ...state,
+                login: action.payload
             }
         default:
             throw new Error("invalid action")

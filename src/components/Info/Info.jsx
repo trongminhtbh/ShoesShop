@@ -3,9 +3,8 @@ import { useStore, addItemToCart } from "../../store";
 import { NavLink } from "react-router-dom";
 const Info = ({shoesItem}) => {
   const [state, dispatch] = useStore()
-  const handleAdd = (item) => {
-    console.log("add")
-    dispatch(addItemToCart(item))
+  const handleAdd = () => {
+    dispatch(addItemToCart(shoesItem))
   }
   console.log(state.orders)
   const shoeName = (
@@ -55,7 +54,7 @@ const Info = ({shoesItem}) => {
 
   const BuySection = (
     <div className="buy-price">
-      <NavLink to="/cart" onClick={() => {handleAdd(shoesItem)}} className="buy">
+      <NavLink to="/cart" onClick={handleAdd} className="buy">
         <i className="fas fa-shopping-cart"></i>Add to card
       </NavLink>
       <div className="price">

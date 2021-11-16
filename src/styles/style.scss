@@ -22,6 +22,10 @@ body {
   min-height: 100% !important;
   height: 100% !important;
   display: flex;
+  .noti-message{
+    color: white;
+    text-align: center;
+  }
   .form-login {
     width: 40%;
     margin: auto;
