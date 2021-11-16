@@ -16,8 +16,8 @@ import AboutUs from "../pages/AbousUs"
 function Header(props) {
   const { showPage } = props;
   return (
+    <Router>
     <div className={styles["header"]}>
-      <Router>
         <Navbar absolute="top" className={styles["color-nav"]} variant="dark">
           <Container fluid>
             <Navbar.Brand onClick={() => showPage({ home: true })} href="#home">
@@ -84,8 +84,7 @@ function Header(props) {
             </Nav>
           </Container>
         </Navbar>
-
-          <Switch>
+    </div>
             <Route path="/home" exact>
                 <Homepage />
             </Route>
@@ -114,9 +113,7 @@ function Header(props) {
             <Route path="/" exact >
                 <Homepage  />
             </Route>
-        </Switch>
-      </Router>
-    </div>
+    </Router>
   );
 }
 
