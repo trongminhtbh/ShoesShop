@@ -41,6 +41,7 @@ export default function ProductEdit(props) {
     const handleProductupdate = async (event) => {
         event.preventDefault();
         await ShoeApiClient.update(id, product);
+        alert("Product Updated");
     }
 
     const handleFormInputChange = (event) => {
@@ -57,7 +58,6 @@ export default function ProductEdit(props) {
             [event.target.name]: value
         })
 
-        alert("Product Updated");
     }
 
     const handleDirectingBackToList = (event) => {
@@ -144,7 +144,7 @@ export default function ProductEdit(props) {
                             Size
                         </FormLabelWithStyles>
                         <FormControlWithStyles type="number" id="size" name="size" value={product.size}
-                        onChange={handleFormInputChange} />
+                            onChange={handleFormInputChange} />
                     </FormGroupWithStyles>
                 </FormRowWithStyles>
 
