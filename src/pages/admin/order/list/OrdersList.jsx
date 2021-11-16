@@ -40,7 +40,7 @@ export default function OrdersList(props) {
                 <tbody className="orders-list__body">
                     {
                         orders && orders.map((order) =>
-                            <tr>
+                            <tr key={order._id}>
                                 <td className={styles["orders-list__id"]}>{order._id}</td>
                                 <td className={styles["orders-list__customer"]}>{order.user_id}</td>
                                 <td className={styles["orders-list__total-price"]}>{order.total}</td>
