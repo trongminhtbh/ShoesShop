@@ -16,12 +16,3 @@
     justify-content: flex-end;
     gap: 20px;
 }
-
-@media screen and (max-width: 527px) {
-    .form__title {
-        text-align: center;
-    }
-    .form__group aside {
-        text-align: left;
-    }
-}
