@@ -2,7 +2,8 @@ import {ADD_ITEM_TO_CART} from "./constants"
 
 const initState = {
     listShoes: [],
-    orders: []
+    orders: [],
+    login: {},
 }
 
 function reducer(state, action) {

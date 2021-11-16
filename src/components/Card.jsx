@@ -14,23 +14,11 @@ function Cards({shoesItem, addItemToCart}) {
         
     <div className="card-item d-flex flex-row">
         <div className="card-img ">
-            <img src={shoes} alt=""></img>
+            <img src={shoesItem.link} alt=""></img>
         </div>
         <div className="card-content d-flex flex-column">
             <div className="card-content-header">
                 {shoesItem.name}
-            </div>
-            <div className="card-content-star star-rating">
-                <input type="radio" id= {"5-stars-"+shoesItem.id} name="rating" value="5" />
-                <label htmlFor={"5-stars-"+shoesItem.id} className="star">&#9733;</label>
-                <input type="radio" id={"4-stars-"+shoesItem.id} name="rating" value="4" />
-                <label htmlFor={"4-stars-"+shoesItem.id} className="star">&#9733;</label>
-                <input type="radio" id={"3-stars-"+shoesItem.id} name="rating" value="3" />
-                <label htmlFor={"3-stars-"+shoesItem.id} className="star">&#9733;</label>
-                <input type="radio" id={"2-stars-"+shoesItem.id} name="rating" value="2" />
-                <label htmlFor={"2-stars-"+shoesItem.id} className="star">&#9733;</label>
-                <input type="radio" id={"1-stars-"+shoesItem.id} name="rating" value="1" />
-                <label htmlFor={"1-stars-"+shoesItem.id} className="star">&#9733;</label>
             </div>
 
             <div className="card-content-price">
