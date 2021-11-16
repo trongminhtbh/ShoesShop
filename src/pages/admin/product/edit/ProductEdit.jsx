@@ -99,7 +99,7 @@ export default function ProductEdit(props) {
                         <FormLabelWithStyles htmlFor="quantity">
                             Quantity
                         </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="quantity" name="quantity"
+                        <FormControlWithStyles type="number" id="quantity" name="quantity"
                             onChange={handleFormInputChange} value={product.quantity} />
                     </FormGroupWithStyles>
                 </FormRowWithStyles>
