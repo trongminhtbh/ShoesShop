@@ -1,0 +1,68 @@
+.form-group {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px 0;
+}
+
+.form-control {
+    flex: 1 1 0;
+    display: block;
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+}
+
+.form-group aside {
+    width: 100px;
+    text-align: right;
+    margin-right: 50px;
+}
+
+.form-container {
+    margin: 20px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20px;
+}
+
+.form-container > * {
+    flex: 1 1 0;
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0px;
+}
+
+.form-container aside {
+    display: inline-block;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.form-select {
+    flex: 1 1 0;
+    padding: 7px 12px;
+    border-radius: 5px;
+    background-color: white;
+    display: block;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+}
+
+.form-submit {
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 17pt;
+    color: white;
+    background: #ff5521;
+}
+
+.form-submit:hover {
+    filter: brightness(1.25);
+    box-shadow: 0 0 0 4px rgba($color: #bb6b6b, $alpha: 0.25);
+}

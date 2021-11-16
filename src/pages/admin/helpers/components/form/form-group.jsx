@@ -3,7 +3,7 @@ import styles from "./form.module.scss";
 
 export default function FormGroupWithStyles(props) {
     return (
-        <div className={styles["form__group"]}>
+        <div className={styles["form-group"]}>
             {props.children}
         </div>
     );

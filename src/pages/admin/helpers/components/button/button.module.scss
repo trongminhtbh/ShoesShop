@@ -1,0 +1,15 @@
+.link-button {
+    display: inline-block;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px 10px;
+    color: #1b212c;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.link-button:hover {
+    filter: contrast(2.5) brightness(.5);
+}

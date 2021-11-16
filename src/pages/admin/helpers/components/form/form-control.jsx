@@ -7,7 +7,8 @@ export default function FormControlWithStyles(props) {
             id={props.id || ""}
             name={props.name || ""}
             value={props.value}
-            readOnly={props.readOnly || false}
-            className={styles["form__control"]} />
+            className={styles["form-control"]}
+            readOnly={props.readOnly}
+            onChange={props.onChange} />
     )
 }

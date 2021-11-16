@@ -1,28 +1,24 @@
 export default class UserApiClient {
-    static USER_BASE_URL = ""
+    static BASE_URL = "https://pacific-ridge-30189.herokuapp.com";
 
-    static findOne(id, callback) {
-        fetch({
-            method: "get",
-            url: this.USER_BASE_URL
-        })
+    static async findOne(id, callback) {
+        const path = "customer";
+        const queryString = `?id=${id}`;
+        const response = await fetch(`${this.BASE_URL}/${path}/${queryString}`)
             .then((response) => response.json())
-            .then((response) => callback(response))
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch((error) => console.log(error));
+
+        return response;
     }
 
-    static findAll(callback) {
-        fetch({
-            method: "get",
-            url: this.USER_BASE_URL
-        })
+    static async findAll() {
+        const path = "user/list/";
+        const response = await fetch(`${this.BASE_URL}/${path}`)
             .then((response) => response.json())
-            .then((response) => callback(response))
-            .catch((error) => {
-                console.log(error);
-            });
+            .catch(error => { console.log(error) });
+
+        console.log(response);
+        return response;
     }
 
     static remove(id) {

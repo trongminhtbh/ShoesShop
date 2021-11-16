@@ -4,7 +4,7 @@ import styles from "./form.module.scss";
 export default function FormLabelWithStyles(props) {
     return (
         <aside>
-            <label htmlFor={props.htmlFor || ""} className={styles["form__label"]}>
+            <label htmlFor={props.htmlFor || ""} className={styles["form-label"]}>
                 {props.children}
             </label>
         </aside>
