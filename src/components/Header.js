@@ -5,18 +5,11 @@ import styles from "../styles/footer-style.module.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Product from "../pages/Product";
-import User from "../pages/user";
-import Service from "../pages/service";
-import Cart from "../pages/Cart";
-import Homepage from "../pages/Homepage";
-import RegisterPage from "../pages/Register";
-import AboutUs from "../pages/AbousUs"
+
 
 function Header(props) {
   const { showPage } = props;
   return (
-    <Router>
     <div className={styles["header"]}>
         <Navbar absolute="top" className={styles["color-nav"]} variant="dark">
           <Container fluid>
@@ -85,35 +78,6 @@ function Header(props) {
           </Container>
         </Navbar>
     </div>
-            <Route path="/home" exact>
-                <Homepage />
-            </Route>
-
-            <Route path="/product" exact>
-                <Product />
-            </Route>
-
-            <Route path="/service" exact>
-                <Service />
-            </Route>
-            <Route path="/about" exact>
-                <AboutUs />
-            </Route>
-            <Route path="/user" exact>
-                <User />
-            </Route>
-
-            <Route path="/cart" exact >
-                <Cart />
-            </Route>
-
-            <Route path="/register" exact >
-                <RegisterPage  />
-            </Route>
-            <Route path="/" exact >
-                <Homepage  />
-            </Route>
-    </Router>
   );
 }
 

@@ -9,7 +9,6 @@ import LargeNikeIcon1 from "../assets/img/black.png";
 import LargeNikeIcon2 from "../assets/img/blue.png";
 import ProductCard from "../components/ProductCard";
 import OwlCarousel from "react-owl-carousel";
-import Header from "../components/Header";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 
