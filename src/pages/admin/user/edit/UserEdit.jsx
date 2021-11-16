@@ -1,30 +1,47 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
-import { FormControlWithStyles, FormGroupWithStyles, FormLabelWithStyles, FormRowWithStyles } from "../../helpers/components";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router";
+import { UserApiClient } from "../../helpers/api";
+import {
+    FormControlWithStyles,
+    FormGroupWithStyles,
+    FormLabelWithStyles,
+    FormRowWithStyles,
+    FormSubmitWithStyles,
+    BackButtonWithStyles
+} from "../../helpers/components";
 import styles from "./user-edit.module.scss";
 
 export default function UserEdit(props) {
     const history = useHistory();
 
-    const [formState, setFormState] = useState({
-        name: '',
-        price: '',
-        imageLink: '',
-        gender: '',
-        side: '',
-        color: '',
-        quantity: 0,
-    })
+    const { id } = useParams();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    }
+    const [user, setUser] = useState({
+        _id: "",
+        name: "",
+        phone: "",
+        email: "",
+        dob: "",
+        password: "",
+    });
+
+    useEffect(() => {
+        (async function () {
+            const fetchedAndJsonified = await UserApiClient.findOne(id);
+            if (fetchedAndJsonified) {
+                setUser(fetchedAndJsonified);
+            }
+        })();
+    }, [])
 
     const handleFormInputChange = (event) => {
-        setFormState({
-            ...formState,
+        setUser({
             [event.target.name]: event.target.value
-        })
+        });
+    }
+
+    const handleUserUpdate = (event) => {
+        event.preventDefault();
     }
 
     const handleDirectingBackToList = (event) => {
@@ -33,49 +50,68 @@ export default function UserEdit(props) {
 
     return (
         <section className={styles["product-edit"]}>
-            <form onSubmit={(event) => handleSubmit(event)} className={styles["form"]}>
+            <form onSubmit={(event) => handleUserUpdate(event)} className={styles["form"]}>
                 <h3 className={styles["form__title"]}>User Detail</h3>
                 <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="username">
+                    <FormLabelWithStyles htmlFor="username" >
+                        Id
+                    </FormLabelWithStyles>
+                    <FormControlWithStyles type="text" id="username" name="username" value={user._id} readOnly />
+                </FormGroupWithStyles>
+
+                <FormGroupWithStyles>
+                    <FormLabelWithStyles htmlFor="username" >
                         Username
                     </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="username" name="username" readOnly />
+                    <FormControlWithStyles type="text" id="username" name="username" value={user.name} readOnly />
                 </FormGroupWithStyles>
 
                 <FormGroupWithStyles>
                     <FormLabelWithStyles htmlFor="name">
                         Name
                     </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="name" name="name" readOnly />
+                    <FormControlWithStyles type="text" id="name" name="name" value={user.name} readOnly />
                 </FormGroupWithStyles>
 
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="phone">
-                        Phone
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="phone" name="phone" />
-                </FormGroupWithStyles>
+                <FormRowWithStyles>
+                    <FormGroupWithStyles>
+                        <FormLabelWithStyles htmlFor="phone">
+                            Phone
+                        </FormLabelWithStyles>
+                        <FormControlWithStyles type="text" id="phone" name="phone" value={user.phone}
+                            onChange={(event) => handleFormInputChange(event)} />
+                    </FormGroupWithStyles>
+
+                    <FormGroupWithStyles>
+                        <FormLabelWithStyles htmlFor="dob">
+                            Date Of Birth
+                        </FormLabelWithStyles>
+                        <FormControlWithStyles type="text" id="date-of-birth" name="dob" value={user.dob}
+                            onChange={(event) => handleFormInputChange(event)} />
+                    </FormGroupWithStyles>
+                </FormRowWithStyles>
 
                 <FormGroupWithStyles>
                     <FormLabelWithStyles htmlFor="email">
                         Email
                     </FormLabelWithStyles>
-                    <FormControlWithStyles type="email" id="email" name="email" />
+                    <FormControlWithStyles type="email" id="email" name="email" value={user.email}
+                        onChange={(event) => handleFormInputChange(event)} />
                 </FormGroupWithStyles>
 
                 <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="date-of-birth">
-                        Date Of Birth
+                    <FormLabelWithStyles htmlFor="email">
+                        Password
                     </FormLabelWithStyles>
-                    <FormControlWithStyles type="date" id="date-of-birth" name="date-of-birth" />
+                    <FormControlWithStyles type="password" id="password" name="password" value={user.password}
+                        onChange={(event) => handleFormInputChange(event)} />
                 </FormGroupWithStyles>
 
                 <div className={styles["form__actions"]}>
-                    <button className="btn"
-                        onClick={(event) => handleDirectingBackToList(event)}>
+                    <BackButtonWithStyles onClick={handleDirectingBackToList}>
                         Back To List
-                    </button>
-                    <input type="submit" className="btn btn-primary" value="Create New" />
+                    </BackButtonWithStyles>
+                    <FormSubmitWithStyles value="Update User" onClick={handleUserUpdate} />
                 </div>
             </form>
         </section>

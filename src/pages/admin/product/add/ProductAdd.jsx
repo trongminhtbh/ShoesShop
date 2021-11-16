@@ -1,47 +1,50 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { FormGroupWithStyles, FormControlWithStyles, FormLabelWithStyles, FormRowWithStyles } from "../../helpers";
+import {
+    FormGroupWithStyles,
+    FormControlWithStyles,
+    FormLabelWithStyles,
+    FormRowWithStyles,
+    BackButtonWithStyles,
+    FormSubmitWithStyles,
+    ShoeApiClient
+} from "../../helpers";
 import styles from "./product-add.module.scss";
 
 export default function ProductAdd(props) {
     const history = useHistory();
 
-    const [formState, setFormState] = useState({
-        name: '',
-        price: '',
-        imageLink: '',
-        gender: '',
-        side: '',
-        color: '',
-        quantity: 0,
-    })
+    const [product, setProduct] = useState({});
 
-    const handleSubmit = (event) => {
+    const handleCreateProduct = async (event) => {
         event.preventDefault();
+        await ShoeApiClient.create(product);
+        alert("Product Created");
     }
 
     const handleFormInputChange = (event) => {
-        setFormState({
-            ...formState,
-            [event.target.name]: event.target.value
+        let value = event.target.value;
+        const type = event.target.type;
+        
+        if (type == "number") {
+            value = Number(value);
+        }
+
+        setProduct({
+            ...product,
+            [event.target.name]: value
         })
     }
-
+    
     const handleDirectingBackToList = (event) => {
+        event.preventDefault();
         history.goBack();
     }
-
+    
     return (
         <section className={styles["product-edit"]}>
-            <form onSubmit={(event) => handleSubmit(event)} className={styles["form"]}>
+            <form onSubmit={(event) => handleCreateProduct(event)} className={styles["form"]}>
                 <h3 className={styles["form__title"]}>Product Form</h3>
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="id">
-                        Id
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="id" name="id" readOnly />
-                </FormGroupWithStyles>
-
                 <FormGroupWithStyles>
                     <FormLabelWithStyles htmlFor="name">
                         Name
@@ -59,10 +62,10 @@ export default function ProductAdd(props) {
                 </FormGroupWithStyles>
 
                 <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="image-link">
+                    <FormLabelWithStyles htmlFor="link">
                         Image Link
                     </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="image-link" name="image-link"
+                    <FormControlWithStyles type="text" id="link" name="link"
                         onChange={handleFormInputChange} />
                 </FormGroupWithStyles>
 
@@ -111,11 +114,12 @@ export default function ProductAdd(props) {
                 </FormGroupWithStyles>
 
                 <div className={styles["form__actions"]}>
-                    <button className="btn"
-                        onClick={(event) => handleDirectingBackToList(event)}>
+                    <BackButtonWithStyles
+                        onClick={handleDirectingBackToList}>
                         Back To List
-                    </button>
-                    <input type="submit" className="btn btn-primary" value="Create New" />
+                    </BackButtonWithStyles>
+
+                    <FormSubmitWithStyles value="Create Product"/>
                 </div>
             </form>
         </section >

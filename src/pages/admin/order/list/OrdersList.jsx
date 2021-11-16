@@ -1,46 +1,23 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
 import { Pagination } from "../../../../components/pagination";
 import { Edit, Delete } from "@material-ui/icons";
 import styles from "./orders-list.module.scss";
-
-const orders = [
-    {
-        id: 1,
-        customer: "Tang Minh Nhat",
-        totalPrice: 200000,
-        date: "12/11/2021",
-        status: "waiting",
-    },
-
-    {
-        id: 2,
-        customer: "Tang Minh Nhat",
-        totalPrice: 200000,
-        date: "12/11/2021",
-        status: "waiting",
-    },
-
-    {
-        id: 3,
-        customer: "Tang Minh Nhat",
-        totalPrice: 200000,
-        date: "12/11/2021",
-        status: "waiting",
-    },
-
-
-    {
-        id: 4,
-        customer: "Tang Minh Nhat",
-        totalPrice: 200000,
-        date: "12/11/2021",
-        status: "waiting",
-    },
-]
+import { OrderApiClient } from "../../helpers/api";
 
 export default function OrdersList(props) {
     const history = useHistory();
+    
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        (async function(){
+            const fetchedAndJsoned = await OrderApiClient.findAll();
+            if (fetchedAndJsoned ){
+                setOrders(fetchedAndJsoned);
+            }
+        })();
+    }, [])
 
     const directToOrderEdit = (id) => {
         history.push(`/orders/edit/${id}`);
@@ -62,16 +39,16 @@ export default function OrdersList(props) {
                 </thead>
                 <tbody className="orders-list__body">
                     {
-                        orders.map((order) =>
+                        orders && orders.map((order) =>
                             <tr>
-                                <td className={styles["orders-list__id"]}>{order.id}</td>
-                                <td className={styles["orders-list__customer"]}>{order.customer}</td>
-                                <td className={styles["orders-list__total-price"]}>{order.totalPrice}</td>
-                                <td className={styles["orders-list__date"]}>{order.date}</td>
-                                <td className={styles["orders-list__link"]}>{order.status}</td>
+                                <td className={styles["orders-list__id"]}>{order._id}</td>
+                                <td className={styles["orders-list__customer"]}>{order.user_id}</td>
+                                <td className={styles["orders-list__total-price"]}>{order.total}</td>
+                                <td className={styles["orders-list__date"]}>{order.order_date}</td>
+                                <td className={styles["orders-list__link"]}>{order.state}</td>
                                 <td className={styles["orders-list__action"]}>
                                     <button className={styles["orders-list__action"]} 
-                                        onClick={() => directToOrderEdit(order.id)}>
+                                        onClick={() => directToOrderEdit(order._id)}>
                                         <Edit />
                                     </button>
                                     <button className={styles["orders-list__action"]}>
