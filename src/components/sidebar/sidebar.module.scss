@@ -8,11 +8,18 @@
 }
 
 .sidebar__link {
+    display: inline-block;
+    padding: 10px 5px;
     font-size: large;
     font-weight: 600;
     color: black;
+    border-bottom: 1px solid rgba($color: #000000, $alpha: .25);
 }
 
 .sidebar__link:hover, .sidebar__link.active {
     color: #FB4B29 ;
+}
+
+.sidebar__link:link {
+    text-decoration: none;
 }

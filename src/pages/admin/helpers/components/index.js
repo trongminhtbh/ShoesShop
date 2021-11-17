@@ -1,11 +1,8 @@
 export {
-    FormControlWithStyles,
-    FormGroupWithStyles,
-    FormLabelWithStyles,
     FormRowWithStyles,
     FormSelectWithStyles,
-    FormOptionWithStyles,
-    FormSubmitWithStyles
+    FormSubmitWithStyles,
+    TextInputWithStyles
 } from "./form";
 
 export {

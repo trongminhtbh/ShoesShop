@@ -1,12 +1,9 @@
 export { OrderApiClient, ShoeApiClient, UserApiClient } from "./api";
 export {
-    FormControlWithStyles,
-    FormGroupWithStyles,
-    FormLabelWithStyles,
     FormRowWithStyles,
-    FormOptionWithStyles,
     FormSelectWithStyles,
-    FormSubmitWithStyles
+    FormSubmitWithStyles,
+    TextInputWithStyles,
 } from "./components/form";
 
 export {

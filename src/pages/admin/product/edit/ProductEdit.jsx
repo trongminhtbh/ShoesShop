@@ -7,6 +7,7 @@ import {
     FormRowWithStyles,
     FormSubmitWithStyles,
     BackButtonWithStyles,
+    TextInputWithStyles,
     ShoeApiClient
 } from "../../helpers";
 import styles from "./product-edit.module.scss";
@@ -23,10 +24,10 @@ export default function ProductEdit(props) {
         brand: "",
         link: "",
         gender: "",
+        color: "",
         size: 0,
         quantity: 0,
         description: "",
-        discount: 0
     });
 
     useEffect(() => {
@@ -67,90 +68,51 @@ export default function ProductEdit(props) {
 
     return (
         <section className={styles["product-edit"]}>
-            <form onSubmit={(event) => handleProductupdate(event)} className={styles["form"]}>
+            <form onSubmit={handleProductupdate} className={styles["form"]}>
                 <h3 className={styles["form__title"]}>Product Form</h3>
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="id">
-                        Id
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="id" name="id" readOnly
-                        value={product._id} />
-                </FormGroupWithStyles>
+                <TextInputWithStyles htmlFor="id" label="Id" id="id" name="id"
+                    type="text" value={product._id} readOnly={true} />
 
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="name">
-                        Name
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="name" name="name" value={product.name}
+                <TextInputWithStyles htmlFor="name" label="Name" id="name" name="name"
+                    type="text" value={product.name}
+                    onChange={handleFormInputChange} />
+
+                <FormRowWithStyles>
+                    <TextInputWithStyles htmlFor="price" label="Price" id="price" name="price"
+                        type="number" value={product.price}
                         onChange={handleFormInputChange} />
-                </FormGroupWithStyles>
 
-
-                <FormRowWithStyles>
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="price">
-                            Price
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="number" id="price" name="price"
-                            onChange={handleFormInputChange} value={product.price} />
-                    </FormGroupWithStyles>
-
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="quantity">
-                            Quantity
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="number" id="quantity" name="quantity"
-                            onChange={handleFormInputChange} value={product.quantity} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="quantity" label="Quantity" id="quantity" name="quantity"
+                        type="number" value={product.quantity}
+                        onChange={handleFormInputChange} />
                 </FormRowWithStyles>
 
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="link">
-                        Image Link
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="link" name="link"
-                        onChange={handleFormInputChange} value={product.link} />
-                </FormGroupWithStyles>
+                <TextInputWithStyles htmlFor="link" label="Image Link" id="link" name="link"
+                    type="text" value={product.link}
+                    onChange={handleFormInputChange} />
 
                 <FormRowWithStyles>
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="gender">
-                            Gender
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="gender" name="gender" value={product.gender}
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
+                        type="text" value={product.gender}
+                        onChange={handleFormInputChange} />
 
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="brand">
-                            Brand
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="brand" name="brand" v value={product.brand}
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
+                        type="text" value={product.brand}
+                        onChange={handleFormInputChange} />
                 </FormRowWithStyles>
 
                 <FormRowWithStyles>
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="color">
-                            Color
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="color" name="color" value={product.color}
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="color" label="Color" id="color" name="color"
+                        type="text" value={product.color}
+                        onChange={handleFormInputChange} />
 
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="size">
-                            Size
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="number" id="size" name="size" value={product.size}
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="size" label="Size" id="size" name="size"
+                        type="text" value={product.size}
+                        onChange={handleFormInputChange} />
                 </FormRowWithStyles>
 
                 <div className={styles["form__actions"]}>
-                    <BackButtonWithStyles
-                        onClick={handleDirectingBackToList}>
+                    <BackButtonWithStyles onClick={handleDirectingBackToList}>
                         Back To List
                     </BackButtonWithStyles>
 

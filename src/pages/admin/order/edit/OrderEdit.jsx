@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import {
-    FormControlWithStyles,
-    FormGroupWithStyles,
+    TextInputWithStyles,
     FormRowWithStyles,
-    FormLabelWithStyles,
     FormSelectWithStyles,
-    FormOptionWithStyles,
     FormSubmitWithStyles,
     BackButtonWithStyles
 } from "../../helpers/components";
@@ -45,6 +42,10 @@ const products = [
 export default function OrderEdit(props) {
     const history = useHistory();
 
+    const [order, setOrder] = useState({
+        _id: "",
+    })
+
     const handleSubmit = (event) => {
         event.preventDefault();
     }
@@ -54,73 +55,50 @@ export default function OrderEdit(props) {
         history.goBack();
     }
 
-    const handleFormInputChange = () => {
-
+    const handleFormInputChange = (event) => {
+        event.preventDefault();
     }
 
     return (
         <section className={styles["order-edit"]}>
-            <form onSubmit={(event) => handleSubmit(event)} className={styles["form"]}>
+            <form onSubmit={handleSubmit}
+                className={styles["form"]}>
+
                 <h3 className={styles["form__title"]}>Order Detail</h3>
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="id">
-                        Id
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="id" name="id" readOnly />
-                </FormGroupWithStyles>
+
+                <TextInputWithStyles htmlFor="id" label="Id" name="id" type="id" readOnly={true}
+                    value={order._id} />
+
 
                 <FormRowWithStyles>
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="date">
-                            Date
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="date" id="date" name="date"
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="date" label="Date" name="date" type="date"
+                        value={order.date} onChange={handleFormInputChange} />
 
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="status">
-                            Status
-                        </FormLabelWithStyles>
-                        <FormSelectWithStyles id="status" name="status">
-                            <FormOptionWithStyles>Waiting</FormOptionWithStyles>
-                            <FormOptionWithStyles>Confirmed</FormOptionWithStyles>
-                            <FormOptionWithStyles>Delivered</FormOptionWithStyles>
-                        </FormSelectWithStyles>
-                    </FormGroupWithStyles>
+                    <FormSelectWithStyles
+                        htmlFor="status" id="status" name="status"
+                        label="Status" options={[
+                            { value: "waiting", text: "Waiting" },
+                            { value: "confirmed", text: "Confirmed" },
+                            { value: "delivered", text: "Delivered" }]}
+                    />
                 </FormRowWithStyles>
 
-                <FormGroupWithStyles>
-                    <FormLabelWithStyles htmlFor="customer">
-                        Customer
-                    </FormLabelWithStyles>
-                    <FormControlWithStyles type="text" id="customer" name="customer"
-                        onChange={handleFormInputChange} />
-                </FormGroupWithStyles>
+                <TextInputWithStyles htmlFor="customer" label="Customer" name="customer" type="text"
+                    value={order.customer} onChange={handleFormInputChange} />
 
                 <FormRowWithStyles>
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="total-price">
-                            Total Price
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="total-price" name="total-price"
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="total-price" label="Total Price" name="total-price" type="number"
+                        value={order.totalPrice} onChange={handleFormInputChange} />
 
-                    <FormGroupWithStyles>
-                        <FormLabelWithStyles htmlFor="discount">
-                            Discount
-                        </FormLabelWithStyles>
-                        <FormControlWithStyles type="text" id="discount" name="discount"
-                            onChange={handleFormInputChange} />
-                    </FormGroupWithStyles>
+                    <TextInputWithStyles htmlFor="discount" label="Discount" name="discount" type="text"
+                        value={order.discount} onChange={handleFormInputChange} />
+
                 </FormRowWithStyles>
 
                 <div className={styles["products-list"]}>
                     <h3>Products</h3>
                     {products.map((product) =>
                         <ProductRow product={product} />)}
-
                 </div>
 
                 <div className={styles["form__actions"]}>
