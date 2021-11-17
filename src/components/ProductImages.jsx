@@ -6,14 +6,14 @@ import green from "../assets/img/green.png";
 import red from "../assets/img/red.png";
 import orange from "../assets/img/orange.png";
 
-const ProductImages = () => {
+const ProductImages = ({shoesItem}) => {
   return (
     <Fragment>
-      <img src={blue} alt="blue shoe" className="shoe show" color="blue" />
-      <img src={red} alt="red shoe" className="shoe" color="red" />
-      <img src={green} alt="green shoe" className="shoe" color="green" />
-      <img src={orange} alt="orange shoe" className="shoe" color="orange" />
-      <img src={black} alt="black shoe" className="shoe " color="black" />
+      <img src={shoesItem.link} alt="blue shoe" className="shoe show" color="blue" />
+      <img src={shoesItem.link} alt="red shoe" className="shoe" color="red" />
+      <img src={shoesItem.link} alt="green shoe" className="shoe" color="green" />
+      <img src={shoesItem.link} alt="orange shoe" className="shoe" color="orange" />
+      <img src={shoesItem.link} alt="black shoe" className="shoe " color="black" />
     </Fragment>
   );
 };

@@ -5,7 +5,7 @@ import Info from "../components/Info/Info";
 
 import logo from "../assets/img/logo.png";
 
-const ProductDetail = ({shoesItem, addItemToCart}) => {
+const ProductDetail = ({shoesItem}) => {
   var sizes, colors, shoes, gradients, shoeBackground, shoeHeight;
   var prevColor = "blue";
   var animateOrNot = true;
@@ -101,9 +101,9 @@ const ProductDetail = ({shoesItem, addItemToCart}) => {
               <i className="fas fa-share-alt"></i>
             </a>
 
-            <ProductImages />
+            <ProductImages shoesItem = {shoesItem} />
           </div>
-          <Info addItemToCart = {addItemToCart} shoesItem = {shoesItem} />
+          <Info shoesItem = {shoesItem} />
         </div>
       </div>
     </div>

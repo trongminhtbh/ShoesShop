@@ -21,7 +21,7 @@ const Info = ({shoesItem}) => {
     <div className="description">
       <h3 className="title">Product Info</h3>
       <p className="text">
-        {shoesItem.desc}
+        {shoesItem.description}
       </p>
     </div>
   );
@@ -43,11 +43,11 @@ const Info = ({shoesItem}) => {
     <div className="size-container">
       <h3 className="title">size</h3>
       <div className="sizes">
-        <span className="size">7</span>
-        <span className="size">8</span>
-        <span className="size active">9</span>
-        <span className="size">10</span>
-        <span className="size">11</span>
+        <span className="size">38</span>
+        <span className="size">39</span>
+        <span className="size active">40</span>
+        <span className="size">41</span>
+        <span className="size">42</span>
       </div>
     </div>
   );
@@ -58,7 +58,6 @@ const Info = ({shoesItem}) => {
         <i className="fas fa-shopping-cart"></i>Add to card
       </NavLink>
       <div className="price">
-        <i className="fas fa-dollar-sign"></i>
         <h1>{shoesItem.price}</h1>
       </div>
     </div>
