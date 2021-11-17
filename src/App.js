@@ -4,7 +4,7 @@ import { useStore, actions } from "./store";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import Footer from "./components/Footer";
-import User from "./pages/user"
+import User from "./pages/User"
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 

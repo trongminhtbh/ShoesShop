@@ -1,79 +1,68 @@
 import React from 'react';
 import Moment from 'moment';
+import {useStore} from "../store"
 
-class info extends React.Component {
-    constructor(props) {
-        // var d1 = Date.parse("2012-11-01");
-        // var d2 = Date.parse("2012-11-04");
-        // if (d1 < d2) {
-        //     alert ("Error!");
-        // }   
-        super(props);
-        // state 1 is complete, 2 is cancel, 0 is all, 
-        this.state = 
-        { 
-            status: "All", 
-            date_from: "01-01-2000", 
-            date_to: "01-01-2099", 
-            products: 
-                [
-                    {
-                        code: "ABCD",
-                        detail: "orderofX",
-                        total: 240000,
-                        status: "Complete",
-                        date: "12-11-2021",
-                    },
-                    {
-                        code: "ACCD",
-                        detail: "orderofY",
-                        total: 250000,
-                        status: "Cancel",
-                        date: "23-11-2021",
-                    },
-                    {
-                        code: "AACD",
-                        detail: "orderofZ",
-                        total: 200000,
-                        status: "Complete",
-                        date: "3-11-2021",
-                    }
-                ]
-        };
-        this.change = this.change.bind(this);
-        this.getFilteredItems = this.getFilteredItems.bind(this);
-    }
+import { useState, useEffect } from "react";
 
+export default function Info(){
+    const [state, dispath] = useStore()
+    const [user_id, setUser_id] = useState(-1)
+    const [status, setStatus] = useState({
+        status_: "All", 
+        date_from: "2000-01-01", 
+        date_to: "2099-01-01", 
+    })
+    
+    const islogin = state.login._id
+    const [orders, setOrders] = useState([]
+    )
+    useEffect(() => {
+        if (state.login._id != null ){
+            setUser_id(state.login._id)
+            fetch('https://pacific-ridge-30189.herokuapp.com/order?id='+String(state.login._id))
+            .then((response) => response.json())
+            .then(ret_order => {
+                if (ret_order){
+                    setOrders(ret_order);
+                }
+            });
+        }
+    },[])
+    
 
-
-    getFilteredItems(status,date_from,date_to){
+    function getFilteredItems(status_,date_from,date_to){
         var number = 0;
         var result = [];
-        var date1 = Moment(date_from).format('YYYY-MM-DD')
-        var date2 = Moment(date_to).format('YYYY-MM-DD')
-        for (var index = 0; index < this.state.products.length; index++){
-            var date = Moment(date_to).format('YYYY-MM-DD')
-            if (status === "All"){
+        var date1 = date_from.replace(new RegExp('-', 'g'),"")
+        var date2 = date_to.replace(new RegExp('-', 'g'),"")
+        console.log("length",orders.length)
+        if(orders.length === 0){
+            return
+        }
+        console.log(orders)
+        for (var index = 0; index < orders.length; index++){
+            var date = orders[index].order_date.replace(new RegExp('-', 'g'),"")
+            if (status_ === "All" && date1<date && date<date2){
                 number += 1;
                 result.push(
                     <tr>
                         <th>{number}</th>
-                        <th>{this.state.products[index].code}</th>
-                        <th>{this.state.products[index].detail}</th>
-                        <th>{this.state.products[index].total}</th>
-                        <th>{this.state.products[index].status}</th>
+                        <th>{orders[index].order_date}</th>
+                        <th>{orders[index].detail}</th>
+                        <th>{orders[index].total}</th>
+                        <th>{orders[index].state}</th>
                     </tr>
                 );
             }
-            else if (this.state.products[index].status===status){
+            else if (orders[index].state===status_ && date1<date && date<date2){
                 number += 1;
                 result.push(
                     <tr>
                         <th>{number}</th>
-                        <th>{this.state.products[index].code}</th>
-                        <th>{this.state.products[index].detail}</th>
-                        <th>{this.state.products[index].total}</th>
-                        <th>{this.state.products[index].status}</th>
+                        <th>{orders[index].order_date}</th>
+                        <th>{orders[index].detail}</th>
+                        <th>{orders[index].total}</th>
+                        <th>{orders[index].state}</th>
                     </tr>
                 );
             }
@@ -81,48 +70,41 @@ class info extends React.Component {
         return result
     }
 
-    change(event){
+    function change(event){
         var value = event.target.value;
-        // if(event.target.name==="date_from"||event.target.name==="date_to"){
-        //     value = Moment(value).format('DD-MM-YYYY')
-        // }
-        this.setState({
-            ...this.state,
+        setStatus({
+            ...status,
             [event.target.name] : value
         })
     }
-
-    render() { 
-        return(
-            <div className= 'renBox'> 
-                <div className='infoBoxName'>
-                    Oder information
-                </div>
-                <div className='infoboxdetail'>
-                    <label>State</label>
-                    <select onChange={this.change} value={this.state.value} name = "status"> 
-                       <option>All</option>
-                       <option>Complete</option>
-                       <option>Cancel</option>
-                    </select>
-                    <label>From</label>
-                    <input type = "date" onChange={this.change} value={this.state.value} name = "date_from"></input>
-                    <label>To</label>
-                    <input type = "date" onChange={this.change} value={this.state.value} name = "date_to"></input>
-                </div>
-                <table>
-                    <tr>
-                        <th>No</th>
-                        <th>Order Code</th>
-                        <th>Detail</th>
-                        <th>Total</th>
-                        <th>State</th>
-                    </tr>
-                    {this.getFilteredItems(this.state.status,this.state.date_from,this.state.date_to)}
-                </table>
+    
+    return(
+        <div className= 'renBox'> 
+            <div className='infoBoxName'>
+                Oder information
             </div>
-        );
-    }
+            <div className='infoboxdetail'>
+                <label>State</label>
+                <select onChange={change} value={state.value} name = "status_"> 
+                   <option>All</option>
+                   <option>Complete</option>
+                   <option>Cancel</option>
+                </select>
+                <label>From</label>
+                <input className = "date" type = "date" onChange={change} value={state.value} name = "date_from"></input>
+                <label>To</label>
+                <input className = "date" type = "date" onChange={change} value={state.value} name = "date_to"></input>
+            </div>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Order Date</th>
+                    <th>Detail</th>
+                    <th>Total</th>
+                    <th>State</th>
+                </tr>
+                {getFilteredItems(status.status_,status.date_from,status.date_to)}
+            </table>
+        </div>
+    );
 }
- 
-export default info;

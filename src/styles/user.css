@@ -4,7 +4,7 @@
     text-align: center;
     display: flex;
     background-color: #F2F2F2;
-    padding-top: 40px;
+    padding-top: 80px;
     padding-bottom: 80px;
 }
 .Info{
@@ -20,6 +20,7 @@
 }
 .Info h3{
     text-align: center;
+    padding-top: 15px;
     font-weight: 800;
 }
 .Info ul{
@@ -29,7 +30,8 @@
     display: block;
     min-width: 100px;
     max-width: 200px;
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
 }
 .Info li:hover{
     cursor: pointer;
@@ -81,7 +83,9 @@ table{
     cursor: pointer;
     color: white;
 }
-
+.date{
+    width: 150px;
+}
 .infoBoxName{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -92,7 +96,7 @@ table{
     background-color: #C4C4C4;
 }
 .infoboxdetail label{
-    margin-left: 20px;
+    margin-left: 15px;
     margin-right: 10px;
     display: inline-block;
     min-width: fit-content;
@@ -122,9 +126,9 @@ table{
     align-self: 100px;
 }
 #usericon{
-    width: 25px;
+    width: 35px;
     margin-right: 5px;
-    margin-bottom: -5px;
+    margin-bottom: 5px;
 }
 #updateaccountf,#infoiconf,#paymenticonf{
     margin-top: 5px;
