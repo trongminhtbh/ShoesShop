@@ -48,60 +48,28 @@ class User extends React.Component {
                             {this.state.name}
                         </h3>
                         <ul>
-                            <Switch>
-                            <Route exact path="/Update">
-                                <li><img src={updateaccount} id="updateaccountf" alt="updateaccountf"></img>
-                                    <StyledLink1 to="/Update">Update account</StyledLink1>
-                                </li>
-                                <li>
-                                    <img src={infoicon} id="infoicon" alt="infoicon"></img>
-                                    <StyledLink to="/Info">Order information</StyledLink>
-                                </li>
-                                <li>
-                                    <img src={paymenticon} id="paymenticon" alt="paymenticon"></img>
-                                    <StyledLink to="/Payment">Payment methods</StyledLink>
-                                </li>
-                            </Route>
-                            <Route path="/Info">
-                                <li><img src={updateaccount} id="updateaccount" alt="updateaccount"></img>
-                                    <StyledLink to="/Update">Update account</StyledLink>
-                                </li>
-                                <li>
-                                    <img src={infoicon} id="infoiconf" alt="infoiconf"></img>
-                                    <StyledLink1 to="/Info">Order information</StyledLink1>
-                                </li>
-                                <li>
-                                    <img src={paymenticon} id="paymenticon" alt="paymenticon"></img>
-                                    <StyledLink to="/Payment">Payment methods</StyledLink>
-                                </li>
-                            </Route>
-                            <Route path="/Payment">
-                                <li><img src={updateaccount} id="updateaccount" alt="updateaccount"></img>
-                                    <StyledLink to="/Update">Update account</StyledLink>
-                                </li>
-                                <li>
-                                    <img src={infoicon} id="infoicon" alt="infoicon"></img>
-                                    <StyledLink to="/Info">Order information</StyledLink>
-                                </li>
-                                <li>
-                                    <img src={paymenticon} id="paymenticonf" alt="paymenticonf"></img>
-                                    <StyledLink1 to="/Payment">Payment methods</StyledLink1>
-                                </li>
-                            </Route>
-                            </Switch>
-                            
+                            <li><img src={updateaccount} id="updateaccountf" alt="updateaccountf"></img>
+                                <StyledLink1 to="/user/update">Update account</StyledLink1>
+                            </li>
+                            <li>
+                                <img src={infoicon} id="infoicon" alt="infoicon"></img>
+                                <StyledLink to="/user">Order information</StyledLink>
+                            </li>
+                            <li>
+                                <img src={paymenticon} id="paymenticon" alt="paymenticon"></img>
+                                <StyledLink to="/user/payment">Payment methods</StyledLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <Switch> 
-                    <Redirect exact from="/" to="/Update" />
-                    <Route exact path="/Update">
+                    <Route exact path="/user/update" >
                         <Update></Update>
                     </Route>
-                    <Route path="/Info">
+                    <Route path="/user" exact>
                         <Info></Info>
                     </Route>
-                    <Route path="/Payment">
+                    <Route path="/user/payment" exact>
                         <Payment></Payment>
                     </Route>
                 </Switch>

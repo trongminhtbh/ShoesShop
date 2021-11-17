@@ -4,31 +4,34 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-
+import { useStore } from "../store";
 
 function Header(props) {
   const { showPage } = props;
+  const [state, dispatch] = useStore()
+
   return (
     <div className={styles["header"]}>
         <Navbar absolute="top" className={styles["color-nav"]} variant="dark">
           <Container fluid>
-            <Navbar.Brand onClick={() => showPage({ home: true })} href="#home">
+            <NavLink to="/home">
               <img
                 alt=""
                 src={shoeicon}
                 width="75"
                 height="45"
                 className="d-inline-block align-top"
-              />{" "}
-            </Navbar.Brand>
+              />{""}
+            </NavLink>
             <Nav className="ms-auto">
               <div className={styles["menu-item"]}>
                 <NavLink to="/home">
                   BRANDS
                 </NavLink>
               </div>
+              { !state.login._id &&
               <div className={styles["menu-item"]}>
                 <NavLink
                   to="/register"
@@ -36,6 +39,7 @@ function Header(props) {
                   REGISTER
                 </NavLink>
               </div>
+              }
               <div className={styles["menu-item"]}>
                 <NavLink
                   to="/product"
@@ -70,10 +74,12 @@ function Header(props) {
                   </Button>
                 </NavLink>
                 <Button variant={"link"} style={{ margin: "0px 5px" }}>
-                  <AccountCircle
-                    href = "/user"
-                    style={{ fill: "white" }}
-                  ></AccountCircle>
+                  <NavLink to="/user">
+                    <AccountCircle
+                      href = "/user"
+                      style={{ fill: "white" }}
+                    ></AccountCircle>
+                  </NavLink>
                 </Button>
               </div>
             </Nav>

@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Product from "../pages/Product";
 import User from "../pages/user";
 import Service from "../pages/service";
@@ -7,7 +7,11 @@ import Cart from "../pages/Cart";
 import Homepage from "../pages/Homepage";
 import RegisterPage from "../pages/Register";
 import AboutUs from "../pages/AbousUs"
+import { useStore } from "../store";
+
 export default function Section() {
+
+    const [state, dispatch] = useStore()
     return (
     <>
         <Route path="/home" exact>
@@ -33,6 +37,7 @@ export default function Section() {
         </Route>
 
         <Route path="/register" exact >
+            {state.login._id && <Redirect to="/home"></Redirect>}
             <RegisterPage  />
         </Route>
         <Route path="/" exact >
