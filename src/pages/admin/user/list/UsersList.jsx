@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useRouteMatch } from "react-router";
 import { Pagination } from "../../../../components/pagination";
 import { Edit, Delete } from "@material-ui/icons";
 import { UserApiClient } from "../../helpers/api";
@@ -7,11 +7,12 @@ import styles from "./users-list.module.scss";
 
 export default function UsersList(props) {
     const history = useHistory();
+    const match = useRouteMatch();
 
     const [users, setUsers] = useState([])
 
     useEffect(() => {
-        (async function() {
+        (async function () {
             const response = await UserApiClient.findAll();
             if (response != null) {
                 setUsers(response);
@@ -20,7 +21,8 @@ export default function UsersList(props) {
     }, [])
 
     const directToUserEdit = (id) => {
-        history.push(`/users/edit/${id}`);
+        const pathToUserEdit = `${match.path}/edit/${id}`;
+        history.push(pathToUserEdit);
     }
 
     return (

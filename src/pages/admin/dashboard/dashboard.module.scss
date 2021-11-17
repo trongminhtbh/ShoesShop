@@ -4,3 +4,10 @@
     gap: 20px;
 }
 
+.view-container {
+    margin: 30px auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    min-height: 80vh;
+}

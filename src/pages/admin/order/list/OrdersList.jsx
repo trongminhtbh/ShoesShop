@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useHistory, useRouteMatch } from "react-router";
 import { Pagination } from "../../../../components/pagination";
 import { Edit, Delete } from "@material-ui/icons";
 import styles from "./orders-list.module.scss";
@@ -7,20 +7,22 @@ import { OrderApiClient } from "../../helpers/api";
 
 export default function OrdersList(props) {
     const history = useHistory();
-    
+    const match = useRouteMatch();
+
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        (async function(){
+        (async function () {
             const fetchedAndJsoned = await OrderApiClient.findAll();
-            if (fetchedAndJsoned ){
+            if (fetchedAndJsoned) {
                 setOrders(fetchedAndJsoned);
             }
         })();
     }, [])
 
     const directToOrderEdit = (id) => {
-        history.push(`/orders/edit/${id}`);
+        const pathToOrderEdit = `${match.path}/edit/${id}`;
+        history.push(pathToOrderEdit);
     }
 
     return (
@@ -47,7 +49,7 @@ export default function OrdersList(props) {
                                 <td className={styles["orders-list__date"]}>{order.order_date}</td>
                                 <td className={styles["orders-list__link"]}>{order.state}</td>
                                 <td className={styles["orders-list__action"]}>
-                                    <button className={styles["orders-list__action"]} 
+                                    <button className={styles["orders-list__action"]}
                                         onClick={() => directToOrderEdit(order._id)}>
                                         <Edit />
                                     </button>
@@ -59,7 +61,7 @@ export default function OrdersList(props) {
                     }
                 </tbody>
             </table>
-            <Pagination pagesCount={5}  className={styles["orders-list__paginatinon"]}/>
+            <Pagination pagesCount={5} className={styles["orders-list__paginatinon"]} />
         </section>
     )
 }

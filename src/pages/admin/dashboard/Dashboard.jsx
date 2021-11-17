@@ -9,56 +9,57 @@ import styles from "./dashboard.module.scss";
 const routeConfig = [
     {
         key: 0,
-        path: "/users",
+        path: "/admin/users/",
         linkText: "Users Management"
     },
 
     {
         key: 1,
-        path: "/orders",
+        path: "/admin/orders/",
         linkText: "Orders Management",
     },
 
     {
         key: 2,
-        path: "/products",
+        path: "/admin/products/",
         linkText: "Products Summary",
     }
 ]
 
 export default function Dashboard() {
+
     return (
-        <section>
+        <section className={styles["view-container"]}>
             <div className={styles["flex-container"]}>
                 <Router>
                     <Sidebar routeConfig={routeConfig} />
 
                     <Switch>
-                        <Route path="/users" exact>
+                        <Route path="/admin/users" exact>
                             <UsersList />
                         </Route>
 
-                        <Route path="/users/edit/:id" exact>
+                        <Route path="/admin/users/edit/:id" exact>
                             <UserEdit />
                         </Route>
 
-                        <Route path="/orders" exact>
+                        <Route path="/admin/orders" exact>
                             <OrdersList />
                         </Route>
 
-                        <Route path="/orders/edit/:id" exact>
+                        <Route path="/admin/orders/edit/:id" exact>
                             <OrderEdit />
                         </Route>
 
-                        <Route path="/products" exact >
+                        <Route path="/admin/products" exact >
                             <ProductsList />
                         </Route>
 
-                        <Route path="/products/add" exact >
+                        <Route path="/admin/products/add" exact >
                             <ProductAdd  />
                         </Route>
 
-                        <Route path="/products/edit/:id" exact>
+                        <Route path="/admin/products/edit/:id" exact>
                             <ProductEdit /> 
                         </Route>
                     </Switch>
