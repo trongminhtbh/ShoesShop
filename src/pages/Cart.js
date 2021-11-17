@@ -23,9 +23,8 @@ export default function Cart() {
         window.location = data;
       });
   }
-
   return (
-    <div>
+    <div style={{minHeight: '100%'}}>
       <div className="header-and-content">
         <div className="cart-content-div">
           <Container className="cart-container h-100 pt-3 pb-3">
@@ -37,11 +36,13 @@ export default function Cart() {
               >
                 <h3 className="shopping-cart mt-3">Shopping Cart </h3>
                 <hr></hr>
+                {listOrder.length === 0? <div className="mt-2 h100"> <h3>Empty Cart!</h3></div>:
                 <div className="list-item-cart flex-grow-1">
                   {listOrder.map((orderItem) => {
                     return <CartItem cartItem={orderItem} />;
                   })}
                 </div>
+                }
               </Col>
               <Col
                 md={3}
