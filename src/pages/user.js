@@ -24,7 +24,7 @@ const StyledLink = styled(Link)`
     color: black;
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
-`;
+`;  
 const StyledLink1 = styled(Link)`
     text-decoration: none;
     color: rgb(247, 82, 22);
