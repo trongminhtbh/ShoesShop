@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import styles from "../styles/footer-style.module.css";
 import { AddCircle, RemoveCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/black.png";
 
@@ -24,7 +25,7 @@ export default function CartItem({cartItem}) {
         <Col md={3} className="align-self-center">
           <Row>
             <Col>
-              <h5 className="custom-font-bold">{cartItem.name}</h5>
+              <h5 className={`${styles["custom-font-bold"]}`}>{cartItem.name}</h5>
             </Col>
           </Row>
           <Row>
@@ -34,7 +35,7 @@ export default function CartItem({cartItem}) {
           </Row>
         </Col>
         <Col md={2} className="align-self-center">
-          <h5 className="custom-font-bold">{cartItem.price}</h5>
+          <h5 className={`${styles["custom-font-bold"]}`}>{cartItem.price}</h5>
         </Col>
         <Col md={2} className="align-self-center">
           <Button
@@ -44,7 +45,7 @@ export default function CartItem({cartItem}) {
             <RemoveCircle />
           </Button>
           <div className="d-inline-block w-50 text-center">
-            <h5 className="custom-font-bold">{num}</h5>
+            <h5 className={`${styles["custom-font-bold"]}`}>{num}</h5>
           </div>
           <Button
             onClick={incQuantity}
@@ -54,7 +55,7 @@ export default function CartItem({cartItem}) {
           </Button>
         </Col>
         <Col md={2} className="align-self-center">
-          <h5 className="custom-font-bold price-item">{ num * cartItem.price}</h5>
+          <h5 className={`${styles["custom-font-bold"]} ${styles["price-item"]}`}>{ num * cartItem.price}</h5>
         </Col>
       </Row>
     </div>

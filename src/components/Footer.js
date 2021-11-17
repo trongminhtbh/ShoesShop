@@ -15,10 +15,11 @@ import shoeicon from "../assets/img/logo1.png";
 function Footer() {
   return (
     <div className={styles["footer"]}>
-      <Container>
-        <Row style={{textAlign:"center"}}>
-          <Col>
-            <div className={styles["shop"]}>
+      <Container fluid>
+        <Row>
+          <Col md={1}></Col>
+          <Col md={3} className="text-center">
+            <div className={`${styles["shop"]}`}>
               <div className={styles["shop-inline"]}>
                 <img src={shoeicon} alt="Shoe icon" width="70px" />
               </div>
@@ -37,17 +38,18 @@ function Footer() {
               </div>
             </div>
           </Col>
-          <Col>
-            <h4>CONTACT</h4>
-            <table>
+          <Col md={1}></Col>
+          <Col md={3}>
+            <h4 className="text-center">CONTACT</h4>
+            <table className="justify-content-center m-0">
               <tbody>
                 <tr>
                   <td>
                     <LocationOn />
                   </td>
                   <td>
-                    <div>
-                      268 Ly Thuong Kiet, Ward 15, District 10 <br/>Ho Chi Minh City
+                    <div className="ps-3">
+                      268 Ly Thuong Kiet, Ward 15, District 10, Ho Chi Minh City
                     </div>
                   </td>
                 </tr>
@@ -56,7 +58,7 @@ function Footer() {
                     <Email />
                   </td>
                   <td>
-                    <div>amazingshoes@gmailcom</div>
+                    <div className="ps-3">amazingshoes@gmailcom</div>
                   </td>
                 </tr>
                 <tr>
@@ -64,13 +66,14 @@ function Footer() {
                     <Phone />
                   </td>
                   <td>
-                    <div>1900545454</div>
+                    <div className="ps-3">1900545454</div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </Col>
-          <Col>
+          <Col md={1}></Col>
+          <Col md={3}>
             <h4>SERVICE INFO</h4>
             <div>Introduce</div>
             <div>Policy</div>

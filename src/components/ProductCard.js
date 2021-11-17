@@ -24,7 +24,7 @@ function ProductCard({ shoesItem, addItemToCart }) {
             <Card.Img src={shoe} />
           </div>
         </Col>
-        <Col md={7} className="ps-0">
+        <Col md={7} className="p-0">
           <Card.Body className={styles["nopaddingleft"]}>
             <Card.Title className={styles["shoe-title"]}>
               {shoesItem.name}

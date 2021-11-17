@@ -66,7 +66,7 @@ function Homepage(props) {
               </div>
             </Nav>
           </Col>
-          <Col md={10}>
+          <Col md={9} className={styles["nike-box"]}>
             <Row>
               <Col md={8}>
                 <Carousel
@@ -179,19 +179,20 @@ function Homepage(props) {
                   </Row>
                 </div>
               </Col>
+              <Col md={1}></Col>
             </Row>
           </Col>
         </Row>
-        <Row className="pt-3">
+        <Row className="pt-3 mt-4">
           <Col md={3}></Col>
           <Col md={9}>
-          <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
-            {
-              shoesList3.map( shoes =>  {
-                  return <ProductCard key={shoes.id} addItemToCart={addItemToCart} shoesItem = {shoes} />
-              })
-            }
-          </OwlCarousel>
+            <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
+              {
+                shoesList3.map( shoes =>  {
+                    return <ProductCard key={shoes.id} addItemToCart={addItemToCart} shoesItem = {shoes} />
+                })
+              }
+            </OwlCarousel>
           </Col>
         </Row>
       </Container>

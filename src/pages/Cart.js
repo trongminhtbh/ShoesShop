@@ -24,20 +24,19 @@ export default function Cart() {
       });
   }
   return (
-    <div style={{minHeight: '100%'}}>
-      <div className="header-and-content">
-        <div className="cart-content-div">
-          <Container className="cart-container h-100 pt-3 pb-3">
+      <div className={styles["page-content"]}>
+        <div className={styles["cart-content-div"]}>
+          <Container className={`${styles["cart-container"]} h-100 pt-3 pb-3`}>
             <Row className="h-100">
               <Col
                 md={9}
                 style={{ backgroundColor: "white" }}
-                className="ps-5 pe-3 cart-left-side flex-column d-flex h-100"
+                className={`${styles["cart-left-side"]} ps-5 pe-3  flex-column d-flex h-100`}
               >
-                <h3 className="shopping-cart mt-3">Shopping Cart </h3>
+                <h3 className={`${styles["shopping-cart"]} mt-3`}>Shopping Cart </h3>
                 <hr></hr>
                 {listOrder.length === 0? <div className="mt-2 h100"> <h3>Empty Cart!</h3></div>:
-                <div className="list-item-cart flex-grow-1">
+                <div className={`${styles["list-item-cart"]} flex-grow-1`}>
                   {listOrder.map((orderItem) => {
                     return <CartItem cartItem={orderItem} />;
                   })}
@@ -47,19 +46,19 @@ export default function Cart() {
               <Col
                 md={3}
                 style={{ backgroundColor: "#C4C4C4" }}
-                className="cart-right-side flex-column d-flex h-100"
+                className={`${styles["cart-right-side"]} flex-column d-flex h-100`}
               >
-                <h3 className="order-summary mt-3 mb-5 text-center">
+                <h3 className={`${styles["order-summary"]} mt-3 mb-5 text-center`}>
                   Order Summary
                 </h3>
                 <Row>
                   <Col>
-                    <h5 className="order-summary-bold">
+                    <h5 className={`${styles["order-summary-bold"]}`}>
                       {listOrder.length} items
                     </h5>
                   </Col>
-                  <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">
+                  <Col className={`${styles["summary-align-right"]}`}>
+                    <h5 className={`${styles["order-summary-bold"]}`}>
                       {" "}
                       {listOrder.reduce((x, y) => x + y.price, 0)}
                     </h5>
@@ -70,8 +69,8 @@ export default function Cart() {
                   <Col>
                     <h6>Discount Code</h6>
                   </Col>
-                  <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">No Discount</h5>
+                  <Col className={`${styles["summary-align-right"]}`}>
+                    <h5 className={`${styles["order-summary-bold"]}`}>No Discount</h5>
                   </Col>
                 </Row>
                 <hr></hr>
@@ -79,16 +78,24 @@ export default function Cart() {
                   <Col>
                     <h6>Discount</h6>
                   </Col>
-                  <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">0</h5>
+                  <Col className={`${styles["summary-align-right"]}`}>
+                    <h5 className={`${styles["order-summary-bold"]}`}>0</h5>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <h6>Shipping Fee</h6>
+                  </Col>
+                  <Col className={`${styles["summary-align-right"]}`}>
+                    <h5 className={`${styles["order-summary-bold"]}`}>0</h5>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <h6>Total</h6>
                   </Col>
-                  <Col className="summary-align-right">
-                    <h5 className="order-summary-bold">
+                  <Col cclassName={`${styles["summary-align-right"]}`}>
+                    <h5 className={`${styles["order-summary-bold"]}`}>
                       {listOrder.reduce((x, y) => x + y.price, 0)} vnd
                     </h5>
                   </Col>
@@ -96,7 +103,7 @@ export default function Cart() {
                 <Row className="flex-grow-1">
                   <Col className="text-center align-self-end">
                     <Button
-                      className="cart-confirm-button mb-4"
+                      className={`${styles["cart-confirm-button"]} mb-4`}
                       onClick={Payment}
                     >
                       Confirm
@@ -108,6 +115,5 @@ export default function Cart() {
           </Container>
         </div>
       </div>
-    </div>
   );
 }

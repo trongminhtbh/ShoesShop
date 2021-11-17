@@ -8,7 +8,7 @@ import avatar from "../assets/img/avt.jpg";
 
 export default function AboutUs() {
   return (
-    <div className={styles["header-and-content"]}>
+    <div className={styles["page-content"]}>
       <div className={`${styles["our-customer"]} pt-3 pb-3`}>
         <div className={`${styles["our-customer-content"]} h-100`}>
           <Container className="h-100">
