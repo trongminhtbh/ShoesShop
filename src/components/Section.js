@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Product from "../pages/Product";
-import User from "../pages/user";
+import User from "../pages/User";
 import Service from "../pages/service";
 import Cart from "../pages/Cart";
 import Homepage from "../pages/Homepage";
