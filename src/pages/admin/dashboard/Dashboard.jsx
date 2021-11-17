@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../../../components/sidebar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { UsersList, UserEdit } from "../user";
 import { OrdersList, OrderEdit } from "../order";
 import { ProductsList, ProductEdit, ProductAdd } from "../product";
@@ -56,11 +56,15 @@ export default function Dashboard() {
                         </Route>
 
                         <Route path="/admin/products/add" exact >
-                            <ProductAdd  />
+                            <ProductAdd />
                         </Route>
 
                         <Route path="/admin/products/edit/:id" exact>
-                            <ProductEdit /> 
+                            <ProductEdit />
+                        </Route>
+
+                        <Route path="/admin" >
+                            <UsersList />
                         </Route>
                     </Switch>
                 </Router>
