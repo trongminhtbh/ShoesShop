@@ -36,7 +36,7 @@ export default function CartItem({cartItem}) {
     <div>
       <Row>
         <Col md={3}>
-          <img src={shoeicon} alt="icon" style={{ width: "150px" }} />
+          <img src={cartItem.link} alt="icon" style={{ width: "150px" }} />
         </Col>
         <Col md={3} className="align-self-center">
           <Row>

@@ -29,7 +29,7 @@ function ProductCard( props) {
               alignItems: "center",
             }}
           >
-            <Card.Img src={shoe} />
+            <Card.Img src={shoesItem.link} />
           </div>
         </Col>
         <Col md={7} className="p-0">
