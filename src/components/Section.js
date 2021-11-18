@@ -10,13 +10,14 @@ import AboutUs from "../pages/AbousUs";
 import Admin from "../pages/admin";
 import { useStore } from "../store";
 
-export default function Section() {
+export default function Section(props) {
+    const {listShoes} = props
 
     const [state, dispatch] = useStore()
     return (
         <>
             <Route path="/home" exact>
-                <Homepage />
+                <Homepage listShoes={listShoes} />
             </Route>
 
             <Route path="/product" exact>
