@@ -4,16 +4,32 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import { AddCircle, RemoveCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/black.png";
+import { useStore } from "../store";
+import {addItemToCart, removeItemCart} from "../store"
 
 export default function CartItem({cartItem}) {
-  const [num, setNum] = useState(1);
+  const [state, dispatch] = useStore()
+
+  const handleAdd = () => {
+    dispatch(addItemToCart(cartItem))
+  }
+  const handleRemove = () => {
+    dispatch(removeItemCart(cartItem))
+  }
+  
+  const num = state.orders.reduce((listOrders, item)=>{
+    if(item === cartItem) {
+      listOrders.push(item)
+    }
+    return listOrders
+  },[]).length
 
   const incQuantity = () => {
-    setNum(num + 1);
+    handleAdd()
   };
 
   const decQuantity = () => {
-    if (num > 0) setNum(num - 1);
+    handleRemove()
   };
 
   return (
@@ -30,7 +46,7 @@ export default function CartItem({cartItem}) {
           </Row>
           <Row>
             <Col>
-              <p>{cartItem.desc}</p>
+              <p>{cartItem.description}</p>
             </Col>
           </Row>
         </Col>
@@ -55,7 +71,7 @@ export default function CartItem({cartItem}) {
           </Button>
         </Col>
         <Col md={2} className="align-self-center">
-          <h5 className={`${styles["custom-font-bold"]} ${styles["price-item"]}`}>{ num * cartItem.price}</h5>
+          <h5 className={`${styles["custom-font-bold"]} ${styles["price-item"]}`}>{ num*cartItem.price}</h5>
         </Col>
       </Row>
     </div>
