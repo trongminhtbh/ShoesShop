@@ -77,7 +77,7 @@ export default function ProductsList(props) {
                                 <td className={styles["products-list__price"]}>{product.price}</td>
                                 <td className={styles["products-list__gender"]}>{product.gender}</td>
                                 <td className={styles["products-list__link"]}>{product.link}</td>
-                                <td className={styles["products-list__discount"]}>{product.discount * 100}%</td>
+                                <td className={styles["products-list__discount"]}>{product.discount || "0"}%</td>
                                 <td className={styles["products-list__actions"]}>
                                     <button className={styles["products-list__action"]}
                                         onClick={(event) => directToProductEdit(event, product._id)}>

@@ -8,7 +8,8 @@ import {
     FormSubmitWithStyles,
     BackButtonWithStyles,
     TextInputWithStyles,
-    ShoeApiClient
+    ShoeApiClient,
+    FormSelectWithStyles
 } from "../../helpers";
 import styles from "./product-edit.module.scss";
 
@@ -26,6 +27,7 @@ export default function ProductEdit(props) {
         gender: "",
         color: "",
         size: 0,
+        discount: 0,
         quantity: 0,
         description: "",
     });
@@ -92,12 +94,15 @@ export default function ProductEdit(props) {
                     onChange={handleFormInputChange} />
 
                 <FormRowWithStyles>
-                    <TextInputWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
-                        type="text" value={product.gender}
+                    <FormSelectWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
+                        value={product.gender}
+                        options={[
+                            { text: "Nam", value: "Nam" }, { text: "Nữ", value: "Nữ" },
+                            { text: "Nam & Nữ", value: "Nam & Nữ" }]}
                         onChange={handleFormInputChange} />
 
-                    <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
-                        type="text" value={product.brand}
+                    <TextInputWithStyles htmlFor="discount" label="Discount" id="discount" name="discount"
+                        type="number" value={product.discount}
                         onChange={handleFormInputChange} />
                 </FormRowWithStyles>
 
@@ -110,6 +115,10 @@ export default function ProductEdit(props) {
                         type="text" value={product.size}
                         onChange={handleFormInputChange} />
                 </FormRowWithStyles>
+
+                <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
+                    type="text" value={product.brand}
+                    onChange={handleFormInputChange} />
 
                 <div className={styles["form__actions"]}>
                     <BackButtonWithStyles onClick={handleDirectingBackToList}>

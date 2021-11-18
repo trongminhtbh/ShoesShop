@@ -38,26 +38,29 @@
 }
 
 .products-list :is(td, th) {
+    text-overflow: ellipsis;
     padding: 10px 20px;
     vertical-align: center;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.products-list__name {
-    min-width: 200px;
+.products-list__name {    
+    max-width: 250px;
 }
 
 .products-list__brand {
-    min-width: 150px;
+    max-width: 200px;
 }
 
 .products-list__price {
-    min-width: 100px;
+    max-width: 150px;
 }
 
 .products-list__gender {
-    min-width: 100px;
+    max-width: 100px;
 }
 
 .products-list__link {
-    min-width: 200px;
+    max-width: 200px;
 }

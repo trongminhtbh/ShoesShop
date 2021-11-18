@@ -5,7 +5,8 @@ import {
     BackButtonWithStyles,
     FormSubmitWithStyles,
     TextInputWithStyles,
-    ShoeApiClient
+    ShoeApiClient,
+    FormSelectWithStyles
 } from "../../helpers";
 import styles from "./product-add.module.scss";
 
@@ -39,6 +40,7 @@ export default function ProductAdd(props) {
         history.goBack();
     }
 
+
     return (
         <section className={styles["product-edit"]}>
             <form onSubmit={(event) => handleCreateProduct(event)} className={styles["form"]}>
@@ -47,13 +49,22 @@ export default function ProductAdd(props) {
                 <TextInputWithStyles label="Name" htmlFor="name" type="text" id="name" name="name"
                     onChange={handleFormInputChange} />
 
-                <TextInputWithStyles label="Price" htmlFor="price" type="number" id="price" name="price"
-                    onChange={handleFormInputChange} />
+                <FormRowWithStyles>
+                    <TextInputWithStyles label="Price" htmlFor="price" type="number" id="price" name="price"
+                        onChange={handleFormInputChange} />
+
+                    <TextInputWithStyles label="Discount" htmlFor="discount" type="number" id="discount" name="discount"
+                        onChange={handleFormInputChange} />
+                </FormRowWithStyles>
 
                 <TextInputWithStyles label="Image Link" htmlFor="link" type="text" id="link" name="link"
                     onChange={handleFormInputChange} />
 
-                <TextInputWithStyles label="Gender" htmlFor="gender" type="text" id="gender" name="gender"
+                <FormSelectWithStyles label="Gender" htmlFor="gender" id="gender" name="gender"
+                    options={[
+                        { text: "Nam", value: "Nam" },
+                        { text: "Nữ", value: "Nữ" },
+                        { text: "Nam & Nữ", value: "Nam & Nữ" }]}
                     onChange={handleFormInputChange} />
 
                 <FormRowWithStyles>
@@ -65,9 +76,6 @@ export default function ProductAdd(props) {
                 </FormRowWithStyles>
 
                 <TextInputWithStyles label="Brand" htmlFor="brand" type="text" id="brand" name="brand"
-                    onChange={handleFormInputChange} />
-
-                <TextInputWithStyles label="Quantity" htmlFor="quantity" type="number" id="quantity" name="quantity"
                     onChange={handleFormInputChange} />
 
                 <div className={styles["form__actions"]}>
