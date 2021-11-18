@@ -9,7 +9,6 @@ import {useStore} from "../store"
 
 export default function Cart() {
   const [state, dispath] = useStore()
-  const [listOrder, setListOrder] = useState(state.orders)
   function Payment() {
     let requestId = "MOMO" + new Date().getTime();
     let orderId = requestId;
@@ -35,9 +34,14 @@ export default function Cart() {
               >
                 <h3 className={`${styles["shopping-cart"]} mt-3`}>Shopping Cart </h3>
                 <hr></hr>
-                {listOrder.length === 0? <div className="mt-2 h100"> <h3>Empty Cart!</h3></div>:
+                {state.orders.length === 0? <div className="mt-2 h100"> <h3>Empty Cart!</h3></div>:
                 <div className={`${styles["list-item-cart"]} flex-grow-1`}>
-                  {listOrder.map((orderItem) => {
+                  {state.orders.reduce((listOrders, item)=>{
+                    if(listOrders.indexOf(item) === -1) {
+                      listOrders.push(item)
+                    }
+                    return listOrders
+                  },[]).map((orderItem) => {
                     return <CartItem cartItem={orderItem} />;
                   })}
                 </div>
@@ -54,13 +58,13 @@ export default function Cart() {
                 <Row>
                   <Col>
                     <h5 className={`${styles["order-summary-bold"]}`}>
-                      {listOrder.length} items
+                      {state.orders.length} items
                     </h5>
                   </Col>
                   <Col className={`${styles["summary-align-right"]}`}>
                     <h5 className={`${styles["order-summary-bold"]}`}>
                       {" "}
-                      {listOrder.reduce((x, y) => x + y.price, 0)}
+                      {state.orders.reduce((x, y) => x + y.price, 0)}
                     </h5>
                   </Col>
                 </Row>
@@ -96,7 +100,7 @@ export default function Cart() {
                   </Col>
                   <Col cclassName={`${styles["summary-align-right"]}`}>
                     <h5 className={`${styles["order-summary-bold"]}`}>
-                      {listOrder.reduce((x, y) => x + y.price, 0)} vnd
+                      {state.orders.reduce((x, y) => x + y.price, 0)} vnd
                     </h5>
                   </Col>
                 </Row>
