@@ -2,7 +2,7 @@ import { Container, Row, Col, Carousel, Nav } from "react-bootstrap";
 import { StarHalf, Star } from "@material-ui/icons";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
-import React ,{ useState } from "react";
+import React ,{ useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import LargeNikeIcon from "../assets/img/large-nike.png";
 import LargeNikeIcon1 from "../assets/img/black.png";
@@ -11,44 +11,26 @@ import ProductCard from "../components/ProductCard";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import {ShoeApiClient} from "../pages/admin/helpers"
+import { useStore } from "../store";
 
-const shoesList3 = [
-  {
-      name: "AIR MAX PEGASUS",
-      brand: "Adidas",
-      id: 7,
-      price: 500000,
-      desc: "chay nhanh"
-  },
-  {
-      name: "AIR MAX PEGASUS",
-      brand: "Adidas",
-      id: 8,
-      price: 600000,
-      desc: "chay em"
-  }, 
-  {
-      name: "AIR MAX PEGASUS",
-      brand: "Adidas",
-      id: 9,
-      price: 400000,
-      desc: "chay tot"
-  },
-  {
-    name: "AIR MAX PEGASUS",
-    brand: "Adidas",
-    id: 10,
-    price: 400000,
-    desc: "chay tot"
-}
-]
 function Homepage(props) {
-  const {addItemToCart} = props
   const [index, setIndex] = useState(0);
+  const [state, dispatch] = useStore()
+  const [listShoes, setListShoes] = useState(state.listShoes)
 
+  useEffect(() => {
+    (async function () {
+        const shoes = await ShoeApiClient.findAll();
+        if (shoes) {
+          setListShoes(shoes)
+        }
+    })();
+  }, [])
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+  console.log(listShoes)
   return (
     <>
       <Container fluid className={styles["fit-screen"]}>
@@ -188,8 +170,8 @@ function Homepage(props) {
           <Col md={9}>
             <OwlCarousel items={3} className="owl-theme" loop nav margin={8} dots={false}>
               {
-                shoesList3.map( shoes =>  {
-                    return <ProductCard key={shoes.id} addItemToCart={addItemToCart} shoesItem = {shoes} />
+                listShoes.slice(0,3).map( shoes =>  {
+                    return <ProductCard key={shoes._id}  shoesItem = {shoes} />
                 })
               }
             </OwlCarousel>
@@ -202,8 +184,8 @@ function Homepage(props) {
         <Container className={styles["product-container1"]}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
-              shoesList3.map( shoes =>  {
-                  return <div key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
+              listShoes.slice(3,9).map( shoes =>  {
+                  return <div key={shoes.id}><ProductCard  shoesItem = {shoes} /></div>
               })
             }           
           </OwlCarousel>
@@ -215,8 +197,8 @@ function Homepage(props) {
         <Container className={styles["product-container1"]}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
-              shoesList3.map( shoes =>  {
-                  return <div  key={shoes.id}><ProductCard addItemToCart={addItemToCart} shoesItem = {shoes} /></div>
+              listShoes.slice(5,14).map( shoes =>  {
+                  return <div  key={shoes.id}><ProductCard  shoesItem = {shoes} /></div>
               })
             }              
           </OwlCarousel>

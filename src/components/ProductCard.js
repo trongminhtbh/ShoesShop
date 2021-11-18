@@ -4,8 +4,16 @@ import { AddCircle, StarHalf, Star } from "@material-ui/icons";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import shoe from "../assets/img/shoe.png";
+import { useStore, addItemToCart } from "../store";
+import { NavLink } from "react-router-dom";
 
-function ProductCard({ shoesItem, addItemToCart }) {
+function ProductCard( props) {
+  const {shoesItem} = props
+
+  const [state, dispatch] = useStore()
+  const handleAdd = () => {
+    dispatch(addItemToCart(shoesItem))
+  }
   return (
     <Card className={styles["round-border"]}>
       <Row>
@@ -43,10 +51,11 @@ function ProductCard({ shoesItem, addItemToCart }) {
               {shoesItem.desc}
             </Card.Text>
             <div
-              onClick={() => addItemToCart(shoesItem)}
               className={styles["add-btn"]}
             >
-              Add to card <AddCircle style={{ fill: "#FB4B29" }}></AddCircle>
+              <NavLink to="/cart" onClick={handleAdd}>
+                Add to card <AddCircle style={{ fill: "#FB4B29" }}></AddCircle>
+              </NavLink>
             </div>
           </Card.Body>
         </Col>
