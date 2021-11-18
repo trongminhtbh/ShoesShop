@@ -8,7 +8,7 @@ import box1 from '../assets/img/box1.svg'
 import ReactCompareImage from "react-compare-image";
 import { relativeTimeRounding } from 'moment';
 import {useStore} from "../store"
-import Popup from './../components/ServicePopup'
+import Popup from '../components/ServicePopup'
 import { useState, useEffect } from "react";
 
 
