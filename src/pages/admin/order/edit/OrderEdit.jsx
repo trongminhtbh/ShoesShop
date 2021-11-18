@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useHistory, useParams } from "react-router";
+import { OrderApiClient } from "../../helpers";
 import {
     TextInputWithStyles,
     FormRowWithStyles,
@@ -9,133 +11,141 @@ import {
 } from "../../helpers/components";
 import styles from "./order-edit.module.scss";
 
-const products = [
-    {
-        id: 1,
-        name: "sandal 1",
-        brands: "nike",
-        price: 196000,
-        imageLink: 'image',
-        quantity: 2
-    },
+export default function OrderEdit() {
+    const { register, handleSubmit, setValue,
+        formState: { errors } } = useForm();
 
-    {
-        id: 2,
-        name: "sandal 2",
-        brands: "nike",
-        price: 125000,
-        imageLink: 'image',
-        quantity: 2
-    },
-
-    {
-        id: 3,
-        name: "sandal 3",
-        brands: "nike",
-        price: 100000,
-        imageLink: 'image',
-        quantity: 2
-    }
-]
-
-
-export default function OrderEdit(props) {
-    const history = useHistory();
-
-    const [order, setOrder] = useState({
-        _id: "",
-    })
-
-    const handleSubmit = (event) => {
+    const onSubmit = async (orderData, event) => {
         event.preventDefault();
+        await OrderApiClient.update(orderData._id, orderData);
+        alert("Order Updated");
     }
 
-    const handleDirectingBackToList = (event) => {
+    const [order, setOrder] = useState({})
+    const { id } = useParams();
+    useEffect(() => onMounted(), [])
+    const onMounted = () => {
+        (async () => {
+            const fetched = await OrderApiClient.findOne(id);
+            setOrder(fetched);
+        })();
+    }
+
+    useEffect(() => onFetched(), [order])
+    const onFetched = () => Object.entries(order)
+        .forEach(([key, value]) => setValue(key, value));
+
+
+    const history = useHistory();
+    const directBackToList = (event) => {
         event.preventDefault();
         history.goBack();
     }
 
-    const handleFormInputChange = (event) => {
-        event.preventDefault();
-    }
+    const { items } = order;
 
     return (
         <section className={styles["order-edit"]}>
-            <form onSubmit={handleSubmit}
-                className={styles["form"]}>
+            <FormProvider {...{ register, handleSubmit, errors }}>
+                <form onSubmit={handleSubmit(onSubmit)}
+                    className={styles["form"]}>
 
-                <h3 className={styles["form__title"]}>Order Detail</h3>
+                    <h3 className={styles["form-title"]}>
+                        Order Detail
+                    </h3>
 
-                <TextInputWithStyles htmlFor="id" label="Id" name="id" type="id" readOnly={true}
-                    value={order._id} />
+                    <TextInputWithStyles htmlFor="id" label="Id" id="id"
+                        name="_id" type="id" readOnly={true} />
 
+                    <FormRowWithStyles>
+                        <TextInputWithStyles htmlFor="date" label="Date" id="date"
+                            name="order_date" type="date" />
 
-                <FormRowWithStyles>
-                    <TextInputWithStyles htmlFor="date" label="Date" name="date" type="date"
-                        value={order.date} onChange={handleFormInputChange} />
+                        <FormSelectWithStyles
+                            htmlFor="status" id="status" name="state"
+                            label="Status" options={[
+                                { value: "Waiting", text: "Waiting" },
+                                { value: "Confirmed", text: "Confirmed" },
+                                { value: "Delivered", text: "Delivered" },
+                                { value: "Canceled", text: "Canceled" }]}
+                        />
+                    </FormRowWithStyles>
 
-                    <FormSelectWithStyles
-                        htmlFor="status" id="status" name="status"
-                        label="Status" options={[
-                            { value: "waiting", text: "Waiting" },
-                            { value: "confirmed", text: "Confirmed" },
-                            { value: "delivered", text: "Delivered" }]}
-                    />
-                </FormRowWithStyles>
+                    <TextInputWithStyles htmlFor="customer" label="Customer Id"
+                        name="user_id" type="text" />
 
-                <TextInputWithStyles htmlFor="customer" label="Customer" name="customer" type="text"
-                    value={order.customer} onChange={handleFormInputChange} />
+                    <TextInputWithStyles htmlFor="total-price" label="Total Price"
+                        name="total" type="number" />
 
-                <FormRowWithStyles>
-                    <TextInputWithStyles htmlFor="total-price" label="Total Price" name="total-price" type="number"
-                        value={order.totalPrice} onChange={handleFormInputChange} />
+                    <ProductList products={items} />
 
-                    <TextInputWithStyles htmlFor="discount" label="Discount" name="discount" type="text"
-                        value={order.discount} onChange={handleFormInputChange} />
+                    <div className={styles["form-actions"]}>
+                        <BackButtonWithStyles
+                            onClick={(event) => directBackToList(event)}>
+                            Back To List
+                        </BackButtonWithStyles>
 
-                </FormRowWithStyles>
-
-                <div className={styles["products-list"]}>
-                    <h3>Products</h3>
-                    {products.map((product) =>
-                        <ProductRow product={product} />)}
-                </div>
-
-                <div className={styles["form__actions"]}>
-                    <BackButtonWithStyles
-                        onClick={(event) => handleDirectingBackToList(event)}>
-                        Back To List
-                    </BackButtonWithStyles>
-
-                    <FormSubmitWithStyles value="Update Order" />
-                </div>
-            </form>
+                        <FormSubmitWithStyles value="Update Order" />
+                    </div>
+                </form>
+            </FormProvider>
         </section >
     )
 }
 
-const ProductRow = (props) => {
-    const product = props.product;
+const ProductList = (props) => {
+    const products = props.products;
 
     return (
-        <div className={styles["product"]}>
-            <div className={styles["product__image"]}>
-                {product.imageLink}
-            </div>
-            <div>
-                <div className={styles["product__brand"]}>
-                    {product.brands}
-                </div>
-                <div className={styles["product__name"]}>
-                    {product.name}
-                </div>
-            </div>
-            <div className={styles["product__price"]}>
-                {product.price}
-            </div>
-            <div className={styles["product__quantity"]}>
-                {product.quantity}
-            </div>
-        </div>
+        <table className={styles["product-table"]}>
+            <ProductTableHeader />
+            <tbody>
+                {
+                    products && products.map(product =>
+                        <ProductTableRow key={product._id} product={product} />)
+                }
+            </tbody>
+        </table>
+
     )
 }
+
+const ProductTableHeader = (props) => {
+    return (
+        <thead>
+            <tr>
+                <th className={styles["product-id"]}>Id</th>
+                <th className={styles["product-name"]}>Name</th>
+                <th className={styles["product-price"]}>Price</th>
+                <th className={styles["product-quantity"]}>Quantity</th>
+                <th className={styles["product-subtotal"]}>Sub Total</th>
+            </tr>
+        </thead>
+    )
+}
+
+const ProductTableRow = (props) => {
+    const { _id, name, price, num } = props.product;
+
+    return (
+        <tr>
+            <td className={styles["product-id"]}>
+                {_id}
+            </td>
+            <td className={styles["product-name"]}>
+                {name}
+            </td>
+            <td className={styles["product-price"]}>
+                {price}
+            </td>
+            <td className={styles["product-quantity"]}>
+                {num}
+            </td>
+            <td className={styles["product-subtotal"]}>
+                {num * price}
+            </td>
+        </tr>
+    )
+}
+
+

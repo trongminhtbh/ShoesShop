@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
+import { useForm, FormProvider } from "react-hook-form";
 import {
-    FormControlWithStyles,
-    FormGroupWithStyles,
-    FormLabelWithStyles,
     FormRowWithStyles,
     FormSubmitWithStyles,
     BackButtonWithStyles,
@@ -14,120 +12,92 @@ import {
 import styles from "./product-edit.module.scss";
 
 export default function ProductEdit(props) {
-    const history = useHistory();
-
-    const { id } = useParams();
-
-    const [product, setProduct] = useState({
-        _id: "",
-        name: "",
-        price: 0,
-        brand: "",
-        link: "",
-        gender: "",
-        color: "",
-        size: 0,
-        discount: 0,
-        quantity: 0,
-        description: "",
-    });
-
-    useEffect(() => {
-        (async function () {
-            const fetchedAndJsonified = await ShoeApiClient.findOne(id);
-            if (fetchedAndJsonified) {
-                setProduct(fetchedAndJsonified);
-            }
-        })();
-    }, [])
-
-    const handleProductupdate = async (event) => {
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+    const onSubmit = async (data, event) => {
         event.preventDefault();
-        await ShoeApiClient.update(id, product);
+        await ShoeApiClient.update(data._id, data);
         alert("Product Updated");
     }
 
-    const handleFormInputChange = (event) => {
-        event.preventDefault();
-
-        const type = event.target.type;
-        let value = event.target.value;
-        if (type === "number") {
-            value = parseInt(value);
-        }
-
-        setProduct({
-            ...product,
-            [event.target.name]: value
-        })
-
+    const [product, setProduct] = useState({});
+    const { id } = useParams();
+    useEffect(() => onMounted(), []);
+    const onMounted = () => {
+        (async () => {
+            const fetchedAndJsonified = await ShoeApiClient.findOne(id);
+            fetchedAndJsonified && setProduct(fetchedAndJsonified);
+        })();
     }
 
-    const handleDirectingBackToList = (event) => {
+    useEffect(() => onShoeDataFetched(), [product]);
+    const onShoeDataFetched = () => Object.entries(product)
+        .forEach(([key, value]) => setValue(key, value));
+
+        
+    const history = useHistory();
+    const directBackToList = (event) => {
         event.preventDefault();
         history.goBack();
     }
 
     return (
         <section className={styles["product-edit"]}>
-            <form onSubmit={handleProductupdate} className={styles["form"]}>
-                <h3 className={styles["form__title"]}>Product Form</h3>
-                <TextInputWithStyles htmlFor="id" label="Id" id="id" name="id"
-                    type="text" value={product._id} readOnly={true} />
+            <FormProvider {...{ register, errors, handleSubmit }}>
+                <form onSubmit={handleSubmit(onSubmit)} className={styles["form"]}>
+                    <h3 className={styles["form__title"]}>
+                        Product Form
+                    </h3>
 
-                <TextInputWithStyles htmlFor="name" label="Name" id="name" name="name"
-                    type="text" value={product.name}
-                    onChange={handleFormInputChange} />
+                    <TextInputWithStyles htmlFor="id" label="Id"
+                        id="id" name="_id" type="text" readOnly={true} />
 
-                <FormRowWithStyles>
-                    <TextInputWithStyles htmlFor="price" label="Price" id="price" name="price"
-                        type="number" value={product.price}
-                        onChange={handleFormInputChange} />
+                    <TextInputWithStyles htmlFor="name" label="Name"
+                        id="name" name="name" type="text" />
 
-                    <TextInputWithStyles htmlFor="quantity" label="Quantity" id="quantity" name="quantity"
-                        type="number" value={product.quantity}
-                        onChange={handleFormInputChange} />
-                </FormRowWithStyles>
+                    <FormRowWithStyles>
+                        <TextInputWithStyles htmlFor="price" label="Price"
+                            id="price" name="price" type="number" />
 
-                <TextInputWithStyles htmlFor="link" label="Image Link" id="link" name="link"
-                    type="text" value={product.link}
-                    onChange={handleFormInputChange} />
+                        <TextInputWithStyles htmlFor="quantity" label="Quantity"
+                            id="quantity" name="quantity" type="number" />
+                    </FormRowWithStyles>
 
-                <FormRowWithStyles>
-                    <FormSelectWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
-                        value={product.gender}
-                        options={[
-                            { text: "Nam", value: "Nam" }, { text: "Nữ", value: "Nữ" },
-                            { text: "Nam & Nữ", value: "Nam & Nữ" }]}
-                        onChange={handleFormInputChange} />
+                    <TextInputWithStyles htmlFor="link" label="Image Link" id="link" name="link"
+                        type="text" value={product.link} />
 
-                    <TextInputWithStyles htmlFor="discount" label="Discount" id="discount" name="discount"
-                        type="number" value={product.discount}
-                        onChange={handleFormInputChange} />
-                </FormRowWithStyles>
+                    <FormRowWithStyles>
+                        <FormSelectWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
+                            value={product.gender}
+                            options={[
+                                { text: "Nam", value: "Nam" },
+                                { text: "Nữ", value: "Nữ" },
+                                { text: "Nam & Nữ", value: "Nam & Nữ" }]} />
 
-                <FormRowWithStyles>
-                    <TextInputWithStyles htmlFor="color" label="Color" id="color" name="color"
-                        type="text" value={product.color}
-                        onChange={handleFormInputChange} />
+                        <TextInputWithStyles htmlFor="discount" label="Discount" id="discount" name="discount"
+                            type="number" value={product.discount} />
+                    </FormRowWithStyles>
 
-                    <TextInputWithStyles htmlFor="size" label="Size" id="size" name="size"
-                        type="text" value={product.size}
-                        onChange={handleFormInputChange} />
-                </FormRowWithStyles>
+                    <FormRowWithStyles>
+                        <TextInputWithStyles htmlFor="color" label="Color" id="color" name="color"
+                            type="text" value={product.color} />
 
-                <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
-                    type="text" value={product.brand}
-                    onChange={handleFormInputChange} />
+                        <TextInputWithStyles htmlFor="size" label="Size" id="size" name="size"
+                            type="text" value={product.size} />
+                    </FormRowWithStyles>
 
-                <div className={styles["form__actions"]}>
-                    <BackButtonWithStyles onClick={handleDirectingBackToList}>
-                        Back To List
-                    </BackButtonWithStyles>
+                    <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
+                        type="text" value={product.brand} />
 
-                    <FormSubmitWithStyles value="Update Product" />
-                </div>
-            </form>
+
+                    <div className={styles["form__actions"]}>
+                        <BackButtonWithStyles onClick={directBackToList}>
+                            Back To List
+                        </BackButtonWithStyles>
+
+                        <FormSubmitWithStyles value="Update Product" />
+                    </div>
+                </form>
+            </FormProvider>
         </section >
     )
 }

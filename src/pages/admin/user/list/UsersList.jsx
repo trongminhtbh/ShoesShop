@@ -6,19 +6,63 @@ import { UserApiClient } from "../../helpers/api";
 import styles from "./users-list.module.scss";
 
 export default function UsersList(props) {
-    const history = useHistory();
-    const match = useRouteMatch();
+    return (
+        <div>
+            <header className={styles["user-list-header"]}>
+                <h3 className={styles["user-list-title"]}>
+                    Users List
+                </h3>
+            </header>
 
-    const [users, setUsers] = useState([])
+            <table className={styles["user-table"]}>
+                <UserTableHead />
+                <UserTableBody />
+            </table>
+            <Pagination pagesCount={5} />
+        </div>
+    )
+}
 
-    useEffect(() => {
+const UserTableHead = () => {
+    return (
+        <tr>
+            <th className={styles["user-id"]}>Id</th>
+            <th className={styles["user-name"]}>Name</th>
+            <th className={styles["user-phone"]}>Phone</th>
+            <th className={styles["user-email"]}>Email</th>
+            <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
+            <th className={styles["user-actions"]}>Actions</th>
+        </tr>
+    )
+}
+
+const UserTableBody = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => onMounted(), [])
+    const onMounted = () => {
         (async function () {
-            const response = await UserApiClient.findAll();
-            if (response != null) {
-                setUsers(response);
+            const fetched = await UserApiClient.findAll();
+            if (fetched) {
+                setUsers(fetched);
             }
         })();
-    }, [])
+    }
+
+    return (
+        <tbody>
+            {users.map((user) =>
+                <UserTableRow key={user._id} user={user} />
+            )}
+        </tbody>
+    )
+}
+
+const UserTableRow = (props) => {
+    const { _id, name, phone, email, dob } = props.user;
+
+    const history = useHistory();
+    const match = useRouteMatch();
 
     const directToUserEdit = (id) => {
         const pathToUserEdit = `${match.path}/edit/${id}`;
@@ -26,44 +70,31 @@ export default function UsersList(props) {
     }
 
     return (
-        <div>
-            <header className={styles["users-list__header"]}>
-                <h3 className={styles["users-list__title"]}>Users List</h3>
-            </header>
-            <table className={styles["users-list"]}>
-                <thead className={styles["users-list__head"]}>
-                    <tr>
-                        <th className={styles["users-list__id"]}>Id</th>
-                        <th className={styles["users-list__name"]}>Name</th>
-                        <th className={styles["users-list__phone"]}>Phone</th>
-                        <th className={styles["users-list__email"]}>Email</th>
-                        <th className={styles["users-list__date-of-birth"]}>Date Of Birth</th>
-                        <th className={styles["users-list__actions"]}>Actions</th>
-                    </tr>
-                </thead>
-                <tbody className={styles["users-list__body"]}>
-                    {
-                        users.map((user) => <tr key={user._id}>
-                            <td className={styles["users-list__id"]}>{user._id}</td>
-                            <td className={styles["users-list__name"]}>{user.name}</td>
-                            <td className={styles["users-list__phone"]}>{user.phone}</td>
-                            <td className={styles["users-list__email"]}>{user.email}</td>
-                            <td className={styles["users-list__date-of-birth"]}>{user.dob}</td>
-                            <td className={styles["users-list__actions"]}>
-                                <button onClick={() => directToUserEdit(user._id)}
-                                    className={styles["users-list__action"]}>
-                                    <Edit />
-                                </button>
-                                <button className={styles["users-list__action"]}>
-                                    <Delete className={styles["users-list__action"]} />
-                                </button>
-                            </td>
-                        </tr>)
-                    }
-
-                </tbody>
-            </table>
-            <Pagination pagesCount={5} />
-        </div>
+        <tr>
+            <td className={styles["user-id"]}>
+                {_id}
+            </td>
+            <td className={styles["user-name"]}>
+                {name}
+            </td>
+            <td className={styles["user-phone"]}>
+                {phone}
+            </td>
+            <td className={styles["user-email"]}>
+                {email}
+            </td>
+            <td className={styles["user-date-of-birth"]}>
+                {dob}
+            </td>
+            <td className={styles["user-actions"]}>
+                <button onClick={() => directToUserEdit(_id)}
+                    className={styles["user-action"]}>
+                    <Edit />
+                </button>
+                <button className={styles["user-action"]}>
+                    <Delete className={styles["user-action"]} />
+                </button>
+            </td>
+        </tr>
     )
 }

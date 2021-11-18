@@ -1,8 +1,8 @@
-.users-list__header {
+.user-list-header {
     padding: 10px;
 }
 
-.users-list {
+.user-table {
     width: 1100px;
     border-spacing: 2px;
     border: 1px solid rgba(0, 0, 0, 0.25);
@@ -12,41 +12,41 @@
     margin: 0;
 }
 
-.users-list tr {
+.user-table tr {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.users-list :is(td, th) {
+.user-table :is(td, th) {
     padding: 10px 20px;
 }
 
-.users-list__id {
+.user-id {
     min-width: 80px;
 }
 
-.users-list__name {
+.user-name {
     min-width: 250px;
 }
 
-.users-list__phone {
+.user-phone {
     min-width: 150px;
 }
 
-.users-list__email {
+.user-email {
     min-width: 200px;
 }
 
-.users-list__date-of-birth {
+.user-date-of-birth {
     min-width: 200px;
 }
 
-.users-list__actions {
+.user-actions {
     min-width: 100%;
 }
 
-.users-list__action {
+.user-action {
     padding: 2px;
     border: none;
     outline: none;
@@ -54,6 +54,6 @@
     border-radius: 50%;
 }
 
-.users-list__action:hover {
+.user-action:hover {
     background-color: rgba(0, 0, 0, 0.065);
 }

@@ -4,14 +4,8 @@
     justify-content: space-between;
 }
 
-.orders-list__action {
-    padding: 2px;
-    background: white;
-    outline: none;
-    border: none;
-}
 
-.orders-list {
+.order-table {
     width: 1100px;
     overflow-x: auto;
     border-collapse: separate;
@@ -23,33 +17,39 @@
     margin: 10px 0;
 }
 
-.orders-list tr {
+.order-table tr {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
-.orders-list :is(td, th) {
+.order-table :is(td, th) {
     padding: 10px 20px;
     vertical-align: center;
 }
 
-.orders-list__customer {
+.order-customer {
     min-width: 300px;
 }
 
-.orders-list__total-price {
+.order-price {
     min-width: 250px;
 }
 
-.orders-list__status {
+.order-status {
     min-width: 150px;
 }
 
-.orders-list__date {
+.order-date {
     min-width: 150px;
 }
 
+.order-action {
+    padding: 2px;
+    background: white;
+    outline: none;
+    border: none;
+}
 
 .orders-list__paginatinon {
     align-self: flex-end;

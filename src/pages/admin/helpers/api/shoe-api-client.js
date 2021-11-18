@@ -28,7 +28,7 @@ export default class ShoeApiClient {
                 "Content-Type": "application/json"
             }
         }).then(response => response.json())
-        .catch(error => console.log(error));
+            .catch(error => console.log(error));
 
         return response;
     }
@@ -36,12 +36,14 @@ export default class ShoeApiClient {
     static async update(id, shoe) {
         const path = "shoes";
         const query = `?id=${id}`;
+        const marshalled = JSON.stringify(shoe);
+
         const response = await fetch(`${this.BASE_URL}/${path}/${query}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(shoe)
+            body: marshalled
         }).then(response => response.json())
             .catch(error => console.log(error));
 
