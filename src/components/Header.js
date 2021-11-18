@@ -33,33 +33,70 @@ function Header(props) {
           </NavLink>
           <Nav className="ms-auto">
             <div className={`${styles["menu-item"]} align-self-center`}>
-              <NavLink to="/home" className={styles["nav-link"]}>
+              <NavLink
+                to="/home"
+                className={styles["nav-link"]}
+                activeStyle={{
+                  color: "#fb4b29",
+                  textDecoration: "underline",
+                }}
+              >
                 BRANDS
               </NavLink>
             </div>
             {!state.login._id && (
               <div className={`${styles["menu-item"]} align-self-center`}>
-                <NavLink to="/register" className={styles["nav-link"]}>
+                <NavLink
+                  to="/register"
+                  className={styles["nav-link"]}
+                  activeStyle={{
+                    color: "#fb4b29",
+                    textDecoration: "underline",
+                  }}
+                >
                   REGISTER
                 </NavLink>
               </div>
             )}
             <div className={`${styles["menu-item"]} align-self-center`}>
-              <NavLink to="/product" className={styles["nav-link"]}>
+              <NavLink
+                to="/product"
+                className={styles["nav-link"]}
+                activeStyle={{
+                  color: "#fb4b29",
+                  textDecoration: "underline",
+                }}
+              >
                 PRODUCT
               </NavLink>
             </div>
             <div className={`${styles["menu-item"]} align-self-center`}>
-              <NavLink to="/service" className={styles["nav-link"]}>
+              <NavLink
+                to="/service"
+                className={styles["nav-link"]}
+                activeStyle={{
+                  color: "#fb4b29",
+                  textDecoration: "underline",
+                }}
+              >
                 SERVICE
               </NavLink>
             </div>
             <div className={`${styles["menu-item"]} align-self-center`}>
-              <NavLink to="/about" className={styles["nav-link"]}>
+              <NavLink
+                to="/about"
+                className={styles["nav-link"]}
+                activeStyle={{
+                  color: "#fb4b29",
+                  textDecoration: "underline",
+                }}
+              >
                 ABOUT US
               </NavLink>
             </div>
-            <div className={`${styles["other-icon"]} align-self-end`}>
+            <div
+              className={`${styles["other-icon"]} ${styles["dropdownNghia"]} align-self-end dropdown`}
+            >
               <Button variant={"link"} style={{ margin: "0px 5px" }}>
                 <Search style={{ fill: "#FB4B29" }}></Search>
               </Button>
@@ -76,6 +113,26 @@ function Header(props) {
                   ></AccountCircle>
                 </NavLink>
               </Button>
+              {!state.login._id && (
+                <div className={`${styles["dropdown-contentNghia"]}`}>
+                  <div className="text-center">
+                    <NavLink
+                      to="/login"
+                      className={`${styles["account-box1"]}`}
+                    >
+                      LOGIN
+                    </NavLink>
+                  </div>
+                  <div className="text-center">
+                    <NavLink
+                      to="/signup"
+                      className={`${styles["account-box2"]}`}
+                    >
+                      SIGN UP
+                    </NavLink>
+                  </div>
+                </div>
+              )}
             </div>
           </Nav>
         </Container>
