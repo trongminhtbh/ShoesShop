@@ -15,9 +15,10 @@ export default function UserEdit(props) {
     const { register, handleSubmit, setValue,
         formState: { errors } } = useForm();
 
-    const onSubmit = (userData, event) => {
+    const onSubmit = async (userData, event) => {
         event.preventDefault();
-        UserApiClient.update(userData._id, userData);
+        await UserApiClient.update(userData._id, userData);
+        alert("User Updated");
     }
 
     const { id } = useParams();
@@ -28,7 +29,6 @@ export default function UserEdit(props) {
             const fetchedAndJsonified = await UserApiClient.findOne(id);
             if (fetchedAndJsonified) {
                 setUser(fetchedAndJsonified);
-                console.log(fetchedAndJsonified);
             }
         })();
     }

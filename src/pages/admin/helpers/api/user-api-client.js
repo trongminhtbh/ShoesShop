@@ -17,7 +17,6 @@ export default class UserApiClient {
             .then((response) => response.json())
             .catch(error => { console.log(error) });
 
-        console.log(response);
         return response;
     }
 
@@ -25,8 +24,21 @@ export default class UserApiClient {
 
     }
 
-    static update(id) {
+    static async update(id, user) {
+        const path = "customer";
+        const query = `?id=${id}`;
+        const marshalled = JSON.stringify(user);
 
+        const response = await fetch(`${this.BASE_URL}/${path}/${query}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: marshalled
+        }).then(response => response.json())
+            .catch(error => console.log(error));
+
+        return response
     }
 
     static create() {

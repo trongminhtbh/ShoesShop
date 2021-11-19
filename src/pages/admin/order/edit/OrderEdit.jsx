@@ -9,7 +9,6 @@ import {
     FormSubmitWithStyles,
     BackButtonWithStyles
 } from "../../helpers/components";
-import TextAreaWithStyles from "../../helpers/components/form/text-area";
 import styles from "./order-edit.module.scss";
 
 export default function OrderEdit() {
@@ -60,7 +59,7 @@ export default function OrderEdit() {
 
                     <FormRowWithStyles>
                         <TextInputWithStyles htmlFor="date" label="Date" id="date"
-                            name="order_date" type="date" />
+                            name="order_date" type="date" readOnly={true} />
 
                         <FormSelectWithStyles
                             htmlFor="status" id="status" name="state"
@@ -73,11 +72,16 @@ export default function OrderEdit() {
                     </FormRowWithStyles>
 
                     <TextInputWithStyles htmlFor="customer" label="Customer Id"
-                        name="user_id" type="text" />
+                        name="user_id" type="text" readOnly={true} />
 
                     <TextInputWithStyles htmlFor="total-price" label="Total Price"
-                        name="total" type="number" />
+                        name="total" type="number" readOnly={true} />
 
+
+
+                    <h3 className="product-list-title">
+                        Products
+                    </h3>
                     <ProductList products={items} />
 
 
