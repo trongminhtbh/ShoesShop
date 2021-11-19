@@ -15,7 +15,7 @@ export default function Update(){
         // email: null,
         password: null,
         delivery_info : state.login.delivery_info
-    })
+    }) 
     
     const islogin = state.login._id
     useEffect(() => {
