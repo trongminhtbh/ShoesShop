@@ -4,7 +4,7 @@ import shoes from "../assets/img/blue.png"
 import ProductDetail from "../pages/ProductDetail"
 import { Row, Col, Button, Modal } from "react-bootstrap";
 
-function Cards({shoesItem, addItemToCart}) {
+function Cards({shoesItem}) {
     const [show, setShow] = useState(false);
     const [showDetail, setShowDetail] = useState(true)
     const handleClose = () => setShow(false);
@@ -13,7 +13,7 @@ function Cards({shoesItem, addItemToCart}) {
     return (
         
     <div className="card-item d-flex flex-row">
-        <div className="card-img ">
+        <div className={"card-img " + "br" + shoesItem._id%3}>
             <img src={shoesItem.link} alt=""></img>
         </div>
         <div className="card-content d-flex flex-column">
@@ -37,7 +37,7 @@ function Cards({shoesItem, addItemToCart}) {
             <Modal.Header closeButton>
             </Modal.Header>
             <Modal.Body >
-                {showDetail && <ProductDetail addItemToCart = {addItemToCart} shoesItem = {shoesItem}/>}
+                {showDetail && <ProductDetail  shoesItem = {shoesItem}/>}
             </Modal.Body>
         </Modal>
     </div>

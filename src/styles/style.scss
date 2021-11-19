@@ -177,10 +177,18 @@ body {
         padding: 0px;
         margin-top: 10px;
         font-size: 1rem;
+        .br0{
+          background-color: rgba(208, 129, 164, 1);
+        }
+        .br1{
+          background-color: rgba(158, 208, 101, 1);
+        }
+        .br2{
+          background-color: rgba(30, 129, 176, 1);
+        }
         .card-img {
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
-          background-color: rgb(118, 5, 43);
           img {
             width: 133px;
             height: 178px;
@@ -199,7 +207,7 @@ body {
           button {
             width: 50%;
             height: 30px;
-            background-color: rgb(190, 54, 54);
+            background-color: rgb(203, 118, 7);
             color: white;
             cursor: pointer;
           }
