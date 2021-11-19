@@ -10,11 +10,9 @@ import '../styles/user.css'
 import { Link } from 'react-router-dom';
 import Update from '../components/Update';
 import Info from '../components/Info';
-import Payment from '../components/payment';
 import usericon from '../assets/img/user.svg'
 import updateaccount from '../assets/img/updateaccount.svg'
 import infoicon from '../assets/img/infoicon.svg'
-import paymenticon from '../assets/img/paymenticon.svg'
 import {useStore} from "../store"
 
 import { useState, useEffect } from "react";
