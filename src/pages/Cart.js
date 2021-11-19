@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -22,6 +22,7 @@ export default function Cart() {
         window.location = data;
       });
   }
+  console.log(state.orders)
   return (
       <div className={styles["page-content"]}>
         <div className={styles["cart-content-div"]}>
@@ -42,7 +43,7 @@ export default function Cart() {
                     }
                     return listOrders
                   },[]).map((orderItem) => {
-                    return <CartItem cartItem={orderItem} />;
+                    return <CartItem key= {orderItem._id} cartItem={orderItem} />;
                   })}
                 </div>
                 }
@@ -98,7 +99,7 @@ export default function Cart() {
                   <Col>
                     <h6>Total</h6>
                   </Col>
-                  <Col cclassName={`${styles["summary-align-right"]}`}>
+                  <Col className={`${styles["summary-align-right"]}`}>
                     <h5 className={`${styles["order-summary-bold"]}`}>
                       {state.orders.reduce((x, y) => x + y.price, 0)} vnd
                     </h5>

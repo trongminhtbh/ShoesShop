@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStore, addItemToCart } from "../../store";
 import { NavLink } from "react-router-dom";
 const Info = ({shoesItem}) => {
   const [state, dispatch] = useStore()
-  const handleAdd = () => {
-    dispatch(addItemToCart(shoesItem))
+  const [cartItem, setCartItem] = useState({...shoesItem, color: "blue", size: 40})
+  const selectColor = (color) => {
+    setCartItem({...cartItem, color: color })
   }
-  console.log(state.orders)
+  const selectSize = (size) => {
+    setCartItem({...cartItem, size: size})
+  }
+  const handleAdd = () => {
+
+    dispatch(addItemToCart(cartItem))
+  }
+  
   const shoeName = (
     <div className="shoeName">
       <div>
@@ -30,11 +38,11 @@ const Info = ({shoesItem}) => {
     <div className="color-container">
       <h3 className="title">Color</h3>
       <div className="colors">
-        <span className="color active" primary="#2175f5" color="blue"></span>
-        <span className="color" primary="#f84848" color="red"></span>
-        <span className="color" primary="#29b864" color="green"></span>
-        <span className="color" primary="#ff5521" color="orange"></span>
-        <span className="color" primary="#444" color="black"></span>
+        <span onClick = {() => {selectColor("blue")}} className="color active" primary="#2175f5" color="blue"></span>
+        <span onClick = {() => {selectColor("red")}} className="color" primary="#f84848" color="red"></span>
+        <span onClick = {() => {selectColor("green")}} className="color" primary="#29b864" color="green"></span>
+        <span onClick = {() => {selectColor("orange")}} className="color" primary="#ff5521" color="orange"></span>
+        <span onClick = {() => {selectColor("black")}} className="color" primary="#444" color="black"></span>
       </div>
     </div>
   );
@@ -43,11 +51,11 @@ const Info = ({shoesItem}) => {
     <div className="size-container">
       <h3 className="title">size</h3>
       <div className="sizes">
-        <span className="size">38</span>
-        <span className="size">39</span>
-        <span className="size active">40</span>
-        <span className="size">41</span>
-        <span className="size">42</span>
+        <span onClick = {() => {selectSize(38)}} className="size">38</span>
+        <span onClick = {() => {selectSize(39)}} className="size">39</span>
+        <span onClick = {() => {selectSize(40)}} className="size active">40</span>
+        <span onClick = {() => {selectSize(41)}} className="size">41</span>
+        <span onClick = {() => {selectSize(42)}} className="size">42</span>
       </div>
     </div>
   );

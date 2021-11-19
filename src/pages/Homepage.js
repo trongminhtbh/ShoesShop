@@ -30,7 +30,7 @@ function Homepage(props) {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-  console.log(listShoes)
+
   return (
     <>
       <Container fluid className={styles["fit-screen"]}>
@@ -185,7 +185,7 @@ function Homepage(props) {
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               listShoes.slice(3,9).map( shoes =>  {
-                  return <div key={shoes.id}><ProductCard  shoesItem = {shoes} /></div>
+                  return <div key={shoes._id}><ProductCard  shoesItem = {shoes} /></div>
               })
             }           
           </OwlCarousel>
@@ -198,7 +198,7 @@ function Homepage(props) {
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             {
               listShoes.slice(5,14).map( shoes =>  {
-                  return <div  key={shoes.id}><ProductCard  shoesItem = {shoes} /></div>
+                  return <div  key={shoes._id}><ProductCard  shoesItem = {shoes} /></div>
               })
             }              
           </OwlCarousel>

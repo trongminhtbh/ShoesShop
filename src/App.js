@@ -23,8 +23,6 @@ const App = () => {
     })();
   }, [])
   state.listShoes = listShoes;
-  console.log("rerender APP component")
-  console.log(state.listShoes)
 
   return (
     <div className="App">
