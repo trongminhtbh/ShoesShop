@@ -75,10 +75,10 @@ export default function Popup(props){
                     
                     <label className="lb">Choose service</label>
                     <div>
-                        <input className="radio" type="radio" name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1)}}></input><label>Standard (20$)</label>
+                        <input className="radio" type="radio" checked = {pack==1&&"checked"} name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1)}}></input><label>Standard (20$)</label>
                     </div>
                     <div>
-                        <input className="radio" type="radio" name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2)}}></input><label>Advanced (40$)</label>
+                        <input className="radio" type="radio" checked = {pack==2&&"checked"} name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2)}}></input><label>Advanced (40$)</label>
                     </div>
                     <label className="lb">Pairs of shoes</label>
                     <input  type="text"
