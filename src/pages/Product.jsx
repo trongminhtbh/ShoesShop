@@ -26,6 +26,7 @@ function Product(props) {
             setListShoes(list)
         }
         if(title === "nam" || title === "nu") {
+            setTitle(title)
             let list = shoesList.filter((shoes) => shoes.gender === title)
             setListShoes(list)
         }
