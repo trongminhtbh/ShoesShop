@@ -46,7 +46,7 @@ export default function CartItem({cartItem}) {
           </Row>
           <Row>
             <Col>
-              <p>{cartItem.description}</p>
+              <p>Size: {cartItem.size}, Color: {cartItem.color}</p>
             </Col>
           </Row>
         </Col>

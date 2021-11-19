@@ -15,8 +15,8 @@ function ProductCard( props) {
     dispatch(addItemToCart(shoesItem))
   }
   return (
-    <Card className={styles["round-border"]}>
-      <Row>
+    <Card className={`${styles["round-border"]}`}>
+      <Row className="h-100">
         <Col md={5}>
           <div
             style={{

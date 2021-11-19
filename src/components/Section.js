@@ -2,10 +2,12 @@ import React from "react"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Product from "../pages/Product";
 import User from "../pages/User";
-import Service from "../pages/service";
+import Service from "../pages/Service";
 import Cart from "../pages/Cart";
 import Homepage from "../pages/Homepage";
 import RegisterPage from "../pages/Register";
+import LoginPage from "../pages/Login";
+import SignUpPage from "../pages/Signup";
 import AboutUs from "../pages/AbousUs";
 import Admin from "../pages/admin";
 import { useStore } from "../store";
@@ -46,6 +48,17 @@ export default function Section(props) {
                 {state.login._id && <Redirect to="/home"></Redirect>}
                 <RegisterPage />
             </Route>
+
+            <Route path="/login" exact >
+                {state.login._id && <Redirect to="/home"></Redirect>}
+                <LoginPage />
+            </Route>
+
+            <Route path="/signup" exact >
+                {state.login._id && <Redirect to="/home"></Redirect>}
+                <SignUpPage />
+            </Route>
+
             <Route path="/" exact >
                 <Homepage />
             </Route>
