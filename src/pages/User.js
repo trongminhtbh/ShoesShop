@@ -10,7 +10,7 @@ import '../styles/user.css'
 import { Link } from 'react-router-dom';
 import Update from '../components/Update';
 import Info from '../components/Info';
-import Payment from '../components/payment';
+import Payment from '../components/Payment';
 import usericon from '../assets/img/user.svg'
 import updateaccount from '../assets/img/updateaccount.svg'
 import infoicon from '../assets/img/infoicon.svg'
