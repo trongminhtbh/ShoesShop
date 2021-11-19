@@ -1,4 +1,4 @@
-import {ADD_ITEM_TO_CART, LOGIN, REMOVE_ITEM_CART} from "./constants"
+import {ADD_ITEM_TO_CART, LOGIN, REMOVE_ITEM_CART, LOGOUT} from "./constants"
 
 export const addItemToCart = item => ({
     type: ADD_ITEM_TO_CART,
@@ -10,6 +10,10 @@ export const login = payload => ({
     payload
 })
 
+export const logout = payload => ({
+    type: LOGOUT,
+    payload
+})
 export const removeItemCart = payload => ({
     type: REMOVE_ITEM_CART,
     payload

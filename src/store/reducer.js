@@ -1,9 +1,10 @@
-import {ADD_ITEM_TO_CART, LOGIN, REMOVE_ITEM_CART} from "./constants"
+import {ADD_ITEM_TO_CART, LOGIN, LOGOUT, REMOVE_ITEM_CART} from "./constants"
+
 
 const initState = {
     listShoes: [],
     orders: [],
-    login: {},
+    login: JSON.parse(localStorage.getItem("user")),
 }
 
 function reducer(state, action) {
@@ -14,9 +15,18 @@ function reducer(state, action) {
                 orders: [...state.orders, action.item]
             }
         case LOGIN:
+            if(action.payload !== "WRONG") {
+                localStorage.setItem("user", JSON.stringify(action.payload))
+            }
             return {
                 ...state,
                 login: action.payload
+            }
+        case LOGOUT:
+            localStorage.removeItem("user")
+            return {
+                ...state,
+                login: {}
             }
         case REMOVE_ITEM_CART:
             const itemIndex = state.orders.lastIndexOf(action.payload)

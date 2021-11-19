@@ -1,5 +1,5 @@
 import { Navbar, Container, Nav, Button, Row } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
@@ -11,12 +11,14 @@ import {
   Redirect,
 } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useStore } from "../store";
+import { useStore, logout } from "../store";
 
 function Header(props) {
   const { showPage } = props;
   const [state, dispatch] = useStore();
-
+  const handleLogout = () => {
+    dispatch(logout())
+  }
   return (
     <div className={styles["header"]}>
       <Navbar absolute="top" className={styles["color-nav"]} variant="dark">
@@ -117,6 +119,18 @@ function Header(props) {
                       className={`${styles["account-box2"]}`}
                     >
                       SIGN UP
+                    </NavLink>
+                  </div>
+                </div>
+              )}
+                {state.login._id && (
+                <div className={`${styles["dropdown-contentNghia"]}`}>
+                  <div className="text-center">
+                    <NavLink onClick = {handleLogout}
+                      to="/home"
+                      className={`${styles["account-box1"]}`}
+                    >
+                      LOGOUT
                     </NavLink>
                   </div>
                 </div>

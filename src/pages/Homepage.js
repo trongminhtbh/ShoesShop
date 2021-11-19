@@ -30,7 +30,6 @@ function Homepage(props) {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-
   return (
     <>
       <Container fluid className={styles["fit-screen"]}>
