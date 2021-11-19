@@ -59,6 +59,11 @@ export default function Section(props) {
                 <SignUpPage />
             </Route>
 
+            <Route path="/forgot" exact >
+                {state.login._id && <Redirect to="/home"></Redirect>}
+                <SignUpPage />
+            </Route>
+
             <Route path="/" exact >
                 <Homepage />
             </Route>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo1 from "../assets/img/logo1.png";
+import { BrowserRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
 
 function SignUpPage(props) {
-  const {signInPage} = props
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   
@@ -49,7 +49,7 @@ function SignUpPage(props) {
           </div>
   
           <button onClick = {sendRequest} type="submit">Confirm</button>
-          <span onClick = {signInPage}><a href="#login">Already have account?</a></span>
+          <span ><NavLink to="/login">Already have account?</NavLink></span>
         </form>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo1 from "../assets/img/logo1.png";
+import { BrowserRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { useStore, login } from "../store";
 
 function LoginPage(props) {
@@ -49,8 +50,8 @@ function LoginPage(props) {
             </div>
     
             <button onClick = {sendRequest} type="submit">Login</button>
-            <span onClick = {forgotPage}><a href="#forgot">Forgot password?</a></span>
-            <span onClick = {signUpPage}><a href="#signup">Sign Up?</a></span>
+            <span ><NavLink to="/forgot">Forgot password?</NavLink></span>
+            <span ><NavLink to="/signup">Sign Up?</NavLink></span>
           </form>
         }
         </div>

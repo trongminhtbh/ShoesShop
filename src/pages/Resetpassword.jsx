@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import logo1 from "../assets/img/logo1.png";
+import { BrowserRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
 
 function ResetPasswordPage(props) {
-  const {signInPage} = props
   const [email, setEmail] = useState()
   const sendRequest = (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ function ResetPasswordPage(props) {
           </div>
   
           <button onClick = {sendRequest} type="submit">Send</button>
-          <span onClick = {signInPage}><a href="#login">Login</a></span>
+          <span ><NavLink to="/login">Login</NavLink></span>
         </form>
       </div>
     </div>

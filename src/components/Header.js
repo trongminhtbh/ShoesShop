@@ -44,20 +44,7 @@ function Header(props) {
                 BRANDS
               </NavLink>
             </div>
-            {!state.login._id && (
-              <div className={`${styles["menu-item"]} align-self-center`}>
-                <NavLink
-                  to="/register"
-                  className={styles["nav-link"]}
-                  activeStyle={{
-                    color: "#fb4b29",
-                    textDecoration: "underline",
-                  }}
-                >
-                  REGISTER
-                </NavLink>
-              </div>
-            )}
+
             <div className={`${styles["menu-item"]} align-self-center`}>
               <NavLink
                 to="/product"
@@ -112,6 +99,7 @@ function Header(props) {
                     style={{ fill: "white" }}
                   ></AccountCircle>
                 </NavLink>
+                {state.login._id && (<span style={{textDecoration: "none", color: "white"}}>{state.login.name}</span>)}
               </Button>
               {!state.login._id && (
                 <div className={`${styles["dropdown-contentNghia"]}`}>
