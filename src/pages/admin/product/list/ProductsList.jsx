@@ -15,7 +15,6 @@ export default function ProductsList(props) {
         history.push(pathToProductAdd);
     }
 
-
     return (
         <section>
             <header className={styles["product-list-header"]}>

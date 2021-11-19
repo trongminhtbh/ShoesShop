@@ -66,3 +66,10 @@
     filter: brightness(1.25);
     box-shadow: 0 0 0 4px rgba($color: #bb6b6b, $alpha: 0.25);
 }
+
+.text-area {
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    min-height: 60px;
+}

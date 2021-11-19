@@ -9,7 +9,7 @@ export default function SideBar(props) {
         <aside>
             <ul className={styles["sidebar"]}>
                 {links && links.map((link) =>
-                    <li key={link.key} className>
+                    <li key={link.key}>
                         <NavLink to={link.path}
                             className={styles["sidebar__link"]}
                             activeClassName={styles["active"]}>

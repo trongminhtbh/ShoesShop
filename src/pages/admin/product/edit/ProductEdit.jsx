@@ -7,7 +7,8 @@ import {
     BackButtonWithStyles,
     TextInputWithStyles,
     ShoeApiClient,
-    FormSelectWithStyles
+    FormSelectWithStyles,
+    TextAreaWithStyles
 } from "../../helpers";
 import styles from "./product-edit.module.scss";
 
@@ -33,7 +34,7 @@ export default function ProductEdit(props) {
     const onShoeDataFetched = () => Object.entries(product)
         .forEach(([key, value]) => setValue(key, value));
 
-        
+
     const history = useHistory();
     const directBackToList = (event) => {
         event.preventDefault();
@@ -74,20 +75,22 @@ export default function ProductEdit(props) {
                                 { text: "Nam & Nữ", value: "Nam & Nữ" }]} />
 
                         <TextInputWithStyles htmlFor="discount" label="Discount" id="discount" name="discount"
-                            type="number" value={product.discount} />
+                            type="number" />
                     </FormRowWithStyles>
 
                     <FormRowWithStyles>
                         <TextInputWithStyles htmlFor="color" label="Color" id="color" name="color"
-                            type="text" value={product.color} />
+                            type="text" />
 
                         <TextInputWithStyles htmlFor="size" label="Size" id="size" name="size"
-                            type="text" value={product.size} />
+                            type="text" />
                     </FormRowWithStyles>
 
                     <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
-                        type="text" value={product.brand} />
+                        type="text" />
 
+                    <TextAreaWithStyles htmlFor="description" id="description" label="Description"
+                        name="description" />
 
                     <div className={styles["form__actions"]}>
                         <BackButtonWithStyles onClick={directBackToList}>

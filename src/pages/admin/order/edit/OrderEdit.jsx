@@ -9,6 +9,7 @@ import {
     FormSubmitWithStyles,
     BackButtonWithStyles
 } from "../../helpers/components";
+import TextAreaWithStyles from "../../helpers/components/form/text-area";
 import styles from "./order-edit.module.scss";
 
 export default function OrderEdit() {
@@ -78,6 +79,7 @@ export default function OrderEdit() {
                         name="total" type="number" />
 
                     <ProductList products={items} />
+
 
                     <div className={styles["form-actions"]}>
                         <BackButtonWithStyles

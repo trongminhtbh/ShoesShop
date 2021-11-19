@@ -6,7 +6,8 @@ import {
     FormRowWithStyles,
     FormSubmitWithStyles,
     BackButtonWithStyles,
-    TextInputWithStyles
+    TextInputWithStyles,
+    TextAreaWithStyles
 } from "../../helpers/components";
 import styles from "./user-edit.module.scss";
 
@@ -16,7 +17,7 @@ export default function UserEdit(props) {
 
     const onSubmit = (userData, event) => {
         event.preventDefault();
-        console.log(userData);
+        UserApiClient.update(userData._id, userData);
     }
 
     const { id } = useParams();
@@ -27,6 +28,7 @@ export default function UserEdit(props) {
             const fetchedAndJsonified = await UserApiClient.findOne(id);
             if (fetchedAndJsonified) {
                 setUser(fetchedAndJsonified);
+                console.log(fetchedAndJsonified);
             }
         })();
     }
@@ -55,7 +57,7 @@ export default function UserEdit(props) {
                         id="id" name="_id" type="text" value={user._id} readOnly={true}
                     />
 
- 
+
                     <TextInputWithStyles label="Name" htmlFor="name"
                         id="name" name="name" type="text"
                     />
@@ -77,6 +79,9 @@ export default function UserEdit(props) {
                     <TextInputWithStyles label="Password" htmlFor="password"
                         id="password" name="password" type="password"
                     />
+
+                    <TextAreaWithStyles label="Delivery Info" htmlFor="delivery-info"
+                        name="delivery_info" />
 
                     <div className={styles["form-actions"]}>
                         <BackButtonWithStyles onClick={directBackToList}>

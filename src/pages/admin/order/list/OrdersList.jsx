@@ -54,7 +54,7 @@ const OrderTableBody = () => {
     return (
         <tbody>
             {orders && orders.map((order) =>
-                <OrderTableRow order={order} />
+                <OrderTableRow key={order._id} order={order} />
             )}
         </tbody>
     )

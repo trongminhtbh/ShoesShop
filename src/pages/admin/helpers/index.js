@@ -4,6 +4,7 @@ export {
     FormSelectWithStyles,
     FormSubmitWithStyles,
     TextInputWithStyles,
+    TextAreaWithStyles
 } from "./components/form";
 
 export {

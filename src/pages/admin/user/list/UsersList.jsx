@@ -25,14 +25,16 @@ export default function UsersList(props) {
 
 const UserTableHead = () => {
     return (
-        <tr>
-            <th className={styles["user-id"]}>Id</th>
-            <th className={styles["user-name"]}>Name</th>
-            <th className={styles["user-phone"]}>Phone</th>
-            <th className={styles["user-email"]}>Email</th>
-            <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
-            <th className={styles["user-actions"]}>Actions</th>
-        </tr>
+        <thead>
+            <tr>
+                <th className={styles["user-id"]}>Id</th>
+                <th className={styles["user-name"]}>Name</th>
+                <th className={styles["user-phone"]}>Phone</th>
+                <th className={styles["user-email"]}>Email</th>
+                <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
+                <th className={styles["user-actions"]}>Actions</th>
+            </tr>
+        </thead>
     )
 }
 

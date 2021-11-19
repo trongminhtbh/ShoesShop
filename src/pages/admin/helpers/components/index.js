@@ -2,7 +2,8 @@ export {
     FormRowWithStyles,
     FormSelectWithStyles,
     FormSubmitWithStyles,
-    TextInputWithStyles
+    TextInputWithStyles,
+    TextAreaWithStyles
 } from "./form";
 
 export {
