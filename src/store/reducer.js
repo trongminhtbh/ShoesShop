@@ -4,7 +4,7 @@ import {ADD_ITEM_TO_CART, LOGIN, LOGOUT, REMOVE_ITEM_CART} from "./constants"
 const initState = {
     listShoes: [],
     orders: [],
-    login: JSON.parse(localStorage.getItem("user")),
+    login: JSON.parse(localStorage.getItem("user"))? JSON.parse(localStorage.getItem("user")) : {},
 }
 
 function reducer(state, action) {
