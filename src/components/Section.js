@@ -9,6 +9,7 @@ import RegisterPage from "../pages/Register";
 import PaymentSuccess from "../pages/PaymentSucess";
 import PaymentFail from "../pages/PaymentFail";
 import LoginPage from "../pages/Login";
+import OrderSuccess from "../pages/OrderSuccess";
 import SignUpPage from "../pages/Signup";
 import AboutUs from "../pages/AbousUs";
 import Admin from "../pages/admin";
@@ -76,6 +77,10 @@ export default function Section(props) {
 
             <Route path="/payment-fail" exact >
                 <PaymentFail />
+            </Route>
+
+            <Route path="/order-success" exact >
+                <OrderSuccess />
             </Route>
         </>
     )

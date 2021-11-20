@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
+import momoicon from "../assets/img/MoMo.png"
 import CartItem from "../components/CartItem";
+import { Redirect } from "react-router-dom";
 import { useStore } from "../store";
 
 export default function Cart() {
@@ -10,6 +12,10 @@ export default function Cart() {
   const [shipFee, setShipFee] = useState(0);
   const [address, setAddress] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
+  const [momo, setMomo] = useState(false);
+  function handleMomo(event) {
+    setMomo(Boolean(event.target.value));
+  }
   useEffect(() => {
     fetch(
       "https://pacific-ridge-30189.herokuapp.com/customer?id=" +
@@ -41,7 +47,7 @@ export default function Cart() {
     setTotalPrice(state.orders.reduce((x, y) => x + y.price, shipFee));
   }, [state.orders, shipFee]);
 
-  function Payment() {
+  function OrderSuccess() {
     let requestId = 0;
     const bodyRequest = JSON.stringify({
       state: "waiting",
@@ -66,19 +72,50 @@ export default function Cart() {
         return response.json();
       })
       .then((data) => {
-        requestId = parseInt(data["_id"]);
+        requestId = data["_id"];
       });
-      
-    fetch(
-      "http://localhost:3003/momo?requestId=" +
-        requestId +
-        "&totalPrice=" +
-        String(totalPrice)
-    )
-      .then((response) => response.json())
+
+    window.location = "http://localhost:3000/order-success";
+  }
+
+  function Payment() {
+    let requestId = 0;
+    console.log(momo);
+    const bodyRequest = JSON.stringify({
+      state: "waiting",
+      user_id: state.login._id,
+      detail: "Chi tiet don hang",
+      items: state.orders,
+      total: totalPrice,
+      order_date: new Date().toLocaleDateString(),
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: bodyRequest,
+    };
+
+    fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
-        if (data.includes("http")) window.location = data;
+        console.log(data["_id"]);
+        requestId = data["_id"];
+        fetch(
+          "https://7633-2001-ee0-4b8b-a520-6986-e225-83b0-5dcf.ngrok.io/momo?requestId=" +
+            requestId +
+            "&totalPrice=" +
+            String(totalPrice)
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if (data.includes("http")) window.location = data;
+          });
       });
   }
   return (
@@ -176,15 +213,26 @@ export default function Cart() {
                 </Col>
                 <Col className={`${styles["summary-align-right"]}`}>
                   <h5 className={`${styles["order-summary-bold"]}`}>
-                    {totalPrice} vnd
+                    {isNaN(totalPrice) ? 0 : totalPrice } vnd
                   </h5>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h6>Payment Method</h6>
+                </Col>
+                <Col style={{textAlign:"right"}}>
+                  <select value={momo} onChange={handleMomo}>
+                    <option value="true">Momo</option>
+                    <option value="false">COD</option>
+                  </select>
                 </Col>
               </Row>
               <Row className="flex-grow-1">
                 <Col className="text-center align-self-end">
                   <Button
                     className={`${styles["cart-confirm-button"]} mb-4`}
-                    onClick={Payment}
+                    onClick={momo ? Payment : OrderSuccess}
                   >
                     Confirm
                   </Button>
