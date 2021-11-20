@@ -190,9 +190,11 @@ body {
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
           img {
-            width: 133px;
-            height: 178px;
+            width: 150px;
+            height: 200px;
+            margin-top: -10px;
             border-radius: 15px 0px 0px 15px;
+            transform: rotate(30deg);
           }
           width: 35%;
         }
