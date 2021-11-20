@@ -75,7 +75,7 @@ export default function Service(){
                         <p>Comprehensive clean and fragrant</p>
                         <p>Get it for 6 hours</p>
                         <p>Stain removal, paint stain, shoe dye</p>
-                        <p><span>$20</span>/time</p>       
+                        <p><span>20000VND</span>/time</p>       
                         <hr/>
                     </div>      
                     <div className = "cbtn">
@@ -90,7 +90,7 @@ export default function Service(){
                         <p>Get it for 4 hours</p>
                         <p>Stain removal, paint stain, shoe dye</p>
                         <p>Deliver to home</p>
-                        <p><span>$40</span>/time</p>
+                        <p><span>40000VND</span>/time</p>
                         <hr/>
                     </div>  
                     <div className = "cbtn">
