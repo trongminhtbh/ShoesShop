@@ -70,7 +70,7 @@ export default function Section(props) {
                 <Homepage />
             </Route>
 
-            <Route path="/payment-success" exact >
+            <Route path="/payment-success/:orderId" exact >
                 <PaymentSuccess />
             </Route>
 
