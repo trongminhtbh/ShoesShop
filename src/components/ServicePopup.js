@@ -87,7 +87,6 @@ export default function Popup(props){
         //     body: bodyContent,
         //     })
         if(recv){
-            console.log("cal")
             const sfee = await ShoeApiClient.cal_ship_fee(addr);
             if(sfee&&sfee["total_price"]){
                 setShipfee(sfee["total_price"])
