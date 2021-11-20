@@ -3,6 +3,7 @@ import React from 'react';
 
 import '../styles/ServicePopup.css'
 
+import {OrderApiClient} from "../pages/admin/helpers"
 import { useState, useEffect } from "react";
 
 
@@ -14,7 +15,9 @@ export default function Popup(props){
     const [receive, setReceive] = useState(false)
     const [date, setDate] = useState("")
     const [picked, setpicked] = useState(false)
-
+    const [shipfee, setShipfee] = useState(0)
+    const [legitaddress, setLegitaddress] = useState(false)
+    const [fadd, setFadd] = useState(false)
 
     useEffect(() => {
         setAddress(props.user.address)
@@ -36,33 +39,72 @@ export default function Popup(props){
             alert("Choose date")
         }
         else{
-            event.preventDefault();
-            let bodyContent = JSON.stringify({
-                name: props.user.name,
-                phone: props.user.phone,
-                email: props.user.email,
-                num_of_pair: parseInt(pairs),
-                pack: parseInt(pack)===1 && "standard" || parseInt(pack)===2 && "advanced",
-                received_time: "",
-                send_time: date,
-                total: price,
-                address: address,
-                type_received: !receive&&("At store") || receive&&"home",
-            })
-            // console.log(bodyContent)
-            fetch ("https://pacific-ridge-30189.herokuapp.com/schedule", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: bodyContent,
-            })
-            alert("success")
+            if(receive&&!legitaddress){
+                alert("Can not deliver to this address, please update your address")
+            }
+            else{
+                event.preventDefault();
+                let bodyContent = JSON.stringify({
+                    name: props.user.name,
+                    phone: props.user.phone,
+                    email: props.user.email,
+                    num_of_pair: parseInt(pairs),
+                    pack: parseInt(pack)===1 && "standard" || parseInt(pack)===2 && "advanced",
+                    received_time: "",
+                    send_time: date,
+                    total: price,
+                    address: address,
+                    type_received: !receive&&("At store") || receive&&"home",
+                })
+                // console.log(bodyContent)
+                fetch ("https://pacific-ridge-30189.herokuapp.com/schedule", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: bodyContent,
+                })
+                alert("success")
+            }
+            
         }    
     }
 
-    function checkprice(x,y){
-        setPrice(parseInt(x)*20*parseInt(y))
+    async function checkprice(x,y,recv,addr){
+        
+        // console.log("checkp")
+        // const bodyContent = {
+        // "state": "waiting",
+        // "user_id": 3,
+        // "detail": "chi tiet don hang",
+        // "total": 10000,
+        // "order_date": "26/10/2021"}
+        // fetch ("https://pacific-ridge-30189.herokuapp.com/order/", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: bodyContent,
+        //     })
+        if(recv){
+            const sfee = await OrderApiClient.cal_ship_fee(addr);
+            if(sfee&&sfee["total_price"]){
+                setShipfee(sfee["total_price"])
+                setLegitaddress(true)
+                setPrice(parseInt(x)*20000*parseInt(y)+parseInt(sfee["total_price"]))
+            }
+            else{
+                
+                setShipfee(0)
+                setLegitaddress(false)
+                setPrice(parseInt(x)*20000*parseInt(y))
+            }
+        } 
+        else
+            setPrice(parseInt(x)*20000*parseInt(y))
+        if(!price){
+            setPrice(0)
+        }
     }
 
 
@@ -76,14 +118,14 @@ export default function Popup(props){
                     
                     <label className="lb">Choose service</label>
                     <div>
-                        <input className="radio" type="radio" checked = {props.pack==1&&"checked"&&!picked||pack==1} name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1);setpicked(true)}}></input><label>Standard (20$)</label>
+                        <input className="radio" type="radio" checked = {props.pack==1&&"checked"&&!picked||pack==1} name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1,receive,address);setpicked(true)}}></input><label>Standard (20000VND)</label>
                     </div>
                     <div>
-                        <input className="radio" type="radio" checked = {props.pack==2&&"checked"&&!picked||pack==2} name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2);setpicked(true)}}></input><label>Advanced (40$)</label>
+                        <input className="radio" type="radio" checked = {props.pack==2&&"checked"&&!picked||pack==2} name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2,receive,address);setpicked(true)}}></input><label>Advanced (40000VND)</label>
                     </div>
                     <label className="lb">Pairs of shoes</label>
 
-                    <select className = "sel" value={pairs} onChange={event => {setPairs(event.target.value);checkprice(event.target.value,!picked&&props.pack||picked&&pack)}}>           
+                    <select className = "sel" value={pairs} onChange={event => {setPairs(event.target.value);checkprice(event.target.value,!picked&&props.pack||picked&&pack,receive,address)}}>           
                         <option value={0}>0</option>
                         <option value={1}>1</option>
                         <option value={2}>2</option>
@@ -97,14 +139,16 @@ export default function Popup(props){
                     </select>
                         
                     <div>
-                        <label className="lb">Total price: {price} $</label>  
+                        <label className="lb">Total price: {price} VND</label>  
+                        <br></br>
+                        {receive&&<label className="lb">Ship fee: {shipfee} VND</label>  }
                     </div>
                     <label className="lb">Where to receive</label>
                         <div>
-                            <input className="radio" type="radio" name="rec" value="at home" onChange={() => setReceive(true)}></input><label>Home</label>
+                            <input className="radio" type="radio" name="rec" value="at home" onChange={() => {setReceive(true);checkprice(pairs,!picked&&props.pack||picked&&pack,true,address)}}></input><label>Home</label>
                         </div>
                         <div>
-                            <input className="radio" type="radio" name="rec" value="store" onChange={() => setReceive(false)}></input><label>Store</label>
+                            <input className="radio" type="radio" name="rec" checked={!receive&&"checked"} value="store" onChange={() => {setReceive(false);checkprice(pairs,!picked&&props.pack||picked&&pack,false,address)}}></input><label>Store</label>
                         </div>
                     {receive && 
                         <div>
@@ -112,8 +156,8 @@ export default function Popup(props){
                             <input  type="text"
                             name="name"
                             className = "ip"
-                            value = {address}
-                            onChange={event => setAddress(event.target.value)}/> <br></br>
+                            value = {!fadd && props.user.address||address}
+                            onChange={event => {setFadd(true);setAddress(event.target.value);checkprice(pairs,!picked&&props.pack||picked&&pack,receive,event.target.value)}}/> <br></br>
                         </div>}
                     
                     <label className="lb">Date</label>
@@ -131,6 +175,7 @@ export default function Popup(props){
                                                             setReceive(false)
                                                             setAddress(props.user.address)
                                                             setpicked(false)
+                                                            setShipfee(0)
                                                             props.setPopup(false)}}>Close</button>
                 </form> 
             </div>
