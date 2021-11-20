@@ -30,7 +30,7 @@ export default function Popup(props){
         }
         else 
         if(pack==0){
-            alert("choose pack")
+            alert("choose service")
         }
         else if(parseInt(pairs)==0){
             alert("Choose pairs")
@@ -102,7 +102,7 @@ export default function Popup(props){
         } 
         else
             setPrice(parseInt(x)*20000*parseInt(y))
-        if(!price){
+        if(pack==0){
             setPrice(0)
         }
     }
