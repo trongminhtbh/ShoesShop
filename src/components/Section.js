@@ -6,6 +6,8 @@ import Service from "../pages/Service";
 import Cart from "../pages/Cart";
 import Homepage from "../pages/Homepage";
 import RegisterPage from "../pages/Register";
+import PaymentSuccess from "../pages/PaymentSucess";
+import PaymentFail from "../pages/PaymentFail";
 import LoginPage from "../pages/Login";
 import SignUpPage from "../pages/Signup";
 import AboutUs from "../pages/AbousUs";
@@ -66,6 +68,14 @@ export default function Section(props) {
 
             <Route path="/" exact >
                 <Homepage />
+            </Route>
+
+            <Route path="/payment-success" exact >
+                <PaymentSuccess />
+            </Route>
+
+            <Route path="/payment-fail" exact >
+                <PaymentFail />
             </Route>
         </>
     )

@@ -4,12 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import { Search, ShoppingCart, AccountCircle } from "@material-ui/icons";
 import shoeicon from "../assets/img/logo1.png";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useStore, logout } from "../store";
 
@@ -128,7 +122,7 @@ function Header(props) {
                   <div className="text-center">
                     <NavLink onClick = {handleLogout}
                       to="/home"
-                      className={`${styles["account-box1"]}`}
+                      className={`${styles["account-box12"]}`}
                     >
                       LOGOUT
                     </NavLink>
