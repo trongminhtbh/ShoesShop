@@ -3,7 +3,7 @@ import React from 'react';
 
 import '../styles/ServicePopup.css'
 
-import {ShoeApiClient} from "../pages/admin/helpers"
+import {OrderApiClient} from "../pages/admin/helpers"
 import { useState, useEffect } from "react";
 
 
@@ -87,7 +87,7 @@ export default function Popup(props){
         //     body: bodyContent,
         //     })
         if(recv){
-            const sfee = await ShoeApiClient.cal_ship_fee(addr);
+            const sfee = await OrderApiClient.cal_ship_fee(addr);
             if(sfee&&sfee["total_price"]){
                 setShipfee(sfee["total_price"])
                 setLegitaddress(true)
