@@ -3,6 +3,7 @@ import React from 'react';
 
 import '../styles/ServicePopup.css'
 
+import {ShoeApiClient} from "../pages/admin/helpers"
 import { useState, useEffect } from "react";
 
 
@@ -15,7 +16,8 @@ export default function Popup(props){
     const [date, setDate] = useState("")
     const [picked, setpicked] = useState(false)
     const [shipfee, setShipfee] = useState(0)
- 
+    const [legitaddress, setLegitaddress] = useState(false)
+    const [fadd, setFadd] = useState(false)
 
     useEffect(() => {
         setAddress(props.user.address)
@@ -37,52 +39,73 @@ export default function Popup(props){
             alert("Choose date")
         }
         else{
-            event.preventDefault();
-            let bodyContent = JSON.stringify({
-                name: props.user.name,
-                phone: props.user.phone,
-                email: props.user.email,
-                num_of_pair: parseInt(pairs),
-                pack: parseInt(pack)===1 && "standard" || parseInt(pack)===2 && "advanced",
-                received_time: "",
-                send_time: date,
-                total: price,
-                address: address,
-                type_received: !receive&&("At store") || receive&&"home",
-            })
-            // console.log(bodyContent)
-            fetch ("https://pacific-ridge-30189.herokuapp.com/schedule", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: bodyContent,
-            })
-            alert("success")
+            if(receive&&!legitaddress){
+                alert("Can not deliver to this address, please update your address")
+            }
+            else{
+                event.preventDefault();
+                let bodyContent = JSON.stringify({
+                    name: props.user.name,
+                    phone: props.user.phone,
+                    email: props.user.email,
+                    num_of_pair: parseInt(pairs),
+                    pack: parseInt(pack)===1 && "standard" || parseInt(pack)===2 && "advanced",
+                    received_time: "",
+                    send_time: date,
+                    total: price,
+                    address: address,
+                    type_received: !receive&&("At store") || receive&&"home",
+                })
+                // console.log(bodyContent)
+                fetch ("https://pacific-ridge-30189.herokuapp.com/schedule", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: bodyContent,
+                })
+                alert("success")
+            }
+            
         }    
     }
 
-    function checkprice(x,y,recv,addr){
+    async function checkprice(x,y,recv,addr){
+        
+        // console.log("checkp")
+        // const bodyContent = {
+        // "state": "waiting",
+        // "user_id": 3,
+        // "detail": "chi tiet don hang",
+        // "total": 10000,
+        // "order_date": "26/10/2021"}
+        // fetch ("https://pacific-ridge-30189.herokuapp.com/order/", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: bodyContent,
+        //     })
         if(recv){
-            const url = `
-            https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdt
-YWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQ
-UNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.
-0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&order_time=0&
-path=
-[{"address":"725 Hẻm số 7 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Việt Nam"},
-{"address":"`+String(addr)+`"}]
-&service_id=SGN-BIKE&requests=[]
-`
-            const response = fetch(url)
-            .then((response) => response.json())
-            .catch((error) => console.log(error));
-            console.log(url)
-            console.log(response)
-            
+            console.log("cal")
+            const sfee = await ShoeApiClient.cal_ship_fee(addr);
+            if(sfee&&sfee["total_price"]){
+                setShipfee(sfee["total_price"])
+                setLegitaddress(true)
+                setPrice(parseInt(x)*20000*parseInt(y)+parseInt(sfee["total_price"]))
+            }
+            else{
+                
+                setShipfee(0)
+                setLegitaddress(false)
+                setPrice(parseInt(x)*20000*parseInt(y))
+            }
+        } 
+        else
+            setPrice(parseInt(x)*20000*parseInt(y))
+        if(!price){
             setPrice(0)
         }
-        setPrice(parseInt(x)*20*parseInt(y)+price)
     }
 
 
@@ -96,10 +119,10 @@ path=
                     
                     <label className="lb">Choose service</label>
                     <div>
-                        <input className="radio" type="radio" checked = {props.pack==1&&"checked"&&!picked||pack==1} name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1,receive,address);setpicked(true)}}></input><label>Standard (20$)</label>
+                        <input className="radio" type="radio" checked = {props.pack==1&&"checked"&&!picked||pack==1} name="service_type" value="standard" onChange={() => {setPack(1);checkprice(pairs,1,receive,address);setpicked(true)}}></input><label>Standard (20000VND)</label>
                     </div>
                     <div>
-                        <input className="radio" type="radio" checked = {props.pack==2&&"checked"&&!picked||pack==2} name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2,receive,address);setpicked(true)}}></input><label>Advanced (40$)</label>
+                        <input className="radio" type="radio" checked = {props.pack==2&&"checked"&&!picked||pack==2} name="service_type" value="advanced" onChange={() => {setPack(2);checkprice(pairs,2,receive,address);setpicked(true)}}></input><label>Advanced (40000VND)</label>
                     </div>
                     <label className="lb">Pairs of shoes</label>
 
@@ -117,7 +140,9 @@ path=
                     </select>
                         
                     <div>
-                        <label className="lb">Total price: {price} $</label>  
+                        <label className="lb">Total price: {price} VND</label>  
+                        <br></br>
+                        {receive&&<label className="lb">Ship fee: {shipfee} VND</label>  }
                     </div>
                     <label className="lb">Where to receive</label>
                         <div>
@@ -132,8 +157,8 @@ path=
                             <input  type="text"
                             name="name"
                             className = "ip"
-                            value = {address}
-                            onChange={event => {setAddress(event.target.value);checkprice(pairs,!picked&&props.pack||picked&&pack,receive,event.target.value)}}/> <br></br>
+                            value = {!fadd && props.user.address||address}
+                            onChange={event => {setFadd(true);setAddress(event.target.value);checkprice(pairs,!picked&&props.pack||picked&&pack,receive,event.target.value)}}/> <br></br>
                         </div>}
                     
                     <label className="lb">Date</label>
