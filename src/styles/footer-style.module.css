@@ -182,6 +182,13 @@ h4.overlay-text {
   transform: rotate(-90deg);
 }
 
+.menu-item-homepage a:hover {
+  font-family: "Fredoka One", cursive;
+  color: #fb4b29;
+  font-size: 20px;
+  transform: rotate(-90deg);
+}
+
 .active-item a {
   color: #fb4b29;
   text-decoration: underline;
@@ -398,4 +405,14 @@ div.list-item-cart {
   font-family: "Fredoka One", cursive;
   font-weight: bold;
   width: 80%;
+}
+
+.footer-link-page a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-link-page a:hover {
+  text-decoration: underline;
+  color: #fb4b29;
 }

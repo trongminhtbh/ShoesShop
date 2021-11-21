@@ -10,6 +10,7 @@ import {
   Phone,
   Copyright,
 } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import shoeicon from "../assets/img/logo1.png";
 
 function Footer() {
@@ -75,11 +76,21 @@ function Footer() {
           <Col md={1}></Col>
           <Col md={3}>
             <h4>SERVICE INFO</h4>
-            <div>Introduce</div>
-            <div>Policy</div>
-            <div>Contact</div>
-            <div>FAQ</div>
-            <div>Information Security</div>
+            <div className={styles["footer-link-page"]}>
+              <Link to="/introduction">Introduce</Link>
+            </div>
+            <div className={styles["footer-link-page"]}>
+              <Link to="/policy">Policy</Link>
+            </div>
+            <div className={styles["footer-link-page"]}>
+              <Link to="/">Contact</Link>
+            </div>
+            <div className={styles["footer-link-page"]}>
+              <Link to="/faq">FAQ</Link>
+            </div>
+            <div className={styles["footer-link-page"]}>
+              <Link to="/info-security">Information Security</Link>
+            </div>
           </Col>
         </Row>
         <Row>

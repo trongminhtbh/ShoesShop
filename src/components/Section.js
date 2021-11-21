@@ -10,10 +10,14 @@ import PaymentSuccess from "../pages/PaymentSucess";
 import PaymentFail from "../pages/PaymentFail";
 import LoginPage from "../pages/Login";
 import OrderSuccess from "../pages/OrderSuccess";
+import Introduction from "../pages/Introduction";
 import SignUpPage from "../pages/Signup";
 import AboutUs from "../pages/AbousUs";
 import Admin from "../pages/admin";
 import { useStore } from "../store";
+import InfoSecurity from "../pages/InfoSecurity";
+import Policy from "../pages/Policy";
+import FAQ from "../pages/FAQ";
 
 export default function Section(props) {
     const {listShoes} = props
@@ -81,6 +85,22 @@ export default function Section(props) {
 
             <Route path="/order-success" exact >
                 <OrderSuccess />
+            </Route>
+
+            <Route path="/introduction" exact >
+                <Introduction />
+            </Route>
+
+            <Route path="/info-security" exact >
+                <InfoSecurity />
+            </Route>
+
+            <Route path="/policy" exact >
+                <Policy />
+            </Route>
+
+            <Route path="/faq" exact >
+                <FAQ />
             </Route>
         </>
     )

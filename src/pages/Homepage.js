@@ -107,7 +107,7 @@ function Homepage(props) {
                                 fontSize: "20px",
                               }}
                             >
-                              &nbsp;| $ 180
+                              &nbsp;| đ 800.000
                             </div>
                           </div>
                         </Carousel.Item>
@@ -129,7 +129,7 @@ function Homepage(props) {
                                 fontSize: "20px",
                               }}
                             >
-                              &nbsp;| $ 180
+                              &nbsp;| đ 750.000
                             </div>
                           </div>
                         </Carousel.Item>
@@ -151,7 +151,7 @@ function Homepage(props) {
                                 fontSize: "20px",
                               }}
                             >
-                              &nbsp;| $ 180
+                              &nbsp;| đ 800.000
                             </div>
                           </div>
                         </Carousel.Item>

@@ -14,7 +14,7 @@ export default function PaymentSuccess() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      state: "paid",
+      state: "Waiting",
     }),
   };
   useEffect(() => {

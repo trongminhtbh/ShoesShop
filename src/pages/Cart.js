@@ -29,7 +29,7 @@ export default function Cart() {
         });
     }
   });
-  let path = address
+  let path = address.length !== 0
     ? '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' +
       address +
       '"}]'
@@ -58,8 +58,9 @@ export default function Cart() {
 
   function OrderSuccess() {
     const bodyRequest = JSON.stringify({
-      state: "waiting",
+      state: "Waiting",
       user_id: state.login._id,
+      payment_method: "Cash",
       detail: "Chi tiet don hang",
       items: state.orders,
       total: totalPrice,
@@ -84,8 +85,9 @@ export default function Cart() {
   function Payment() {
     let requestId = 0;
     const bodyRequest = JSON.stringify({
-      state: "waiting",
+      state: "Pending",
       user_id: state.login._id,
+      payment_method: "Momo",
       detail: "Chi tiet don hang",
       items: state.orders,
       total: totalPrice,
