@@ -17,36 +17,44 @@ export default function Cart() {
   function handleMomo(event) {
     setMomo(event.target.value);
   }
-
   useEffect(() => {
-    fetch(
-      "https://pacific-ridge-30189.herokuapp.com/customer?id=" +
-        String(state.login._id)
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setAddress(data.delivery_info);
-      });
+    if (state.login._id) {
+      fetch(
+        "https://pacific-ridge-30189.herokuapp.com/customer?id=" +
+          String(state.login._id)
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setAddress(data.delivery_info);
+        });
+    }
   });
-  let path =
-    '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' +
-    address +
-    '"}]';
+  let path = address
+    ? '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' +
+      address +
+      '"}]'
+    : "";
   path = encodeURI(path);
   useEffect(() => {
-    fetch(
-      "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" +
-        path
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setShipFee(data.total_price);
-      });
+    if (state.login._id) {
+      fetch(
+        "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" +
+          path
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setShipFee(data.total_price);
+        });
+    }
   });
 
   useEffect(() => {
     setTotalPrice(state.orders.reduce((x, y) => x + y.price, shipFee));
   }, [state.orders, shipFee]);
+
+  function Notice () {
+    alert("Please login to order shoe");
+  }
 
   function OrderSuccess() {
     const bodyRequest = JSON.stringify({
@@ -110,17 +118,6 @@ export default function Cart() {
             if (data.includes("http")) window.location = data;
           });
       });
-
-    // fetch(
-    //   "http://localhost:3003/momo?requestId=" +
-    //     requestId +
-    //     "&totalPrice=" +
-    //     String(totalPrice)
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.includes("http")) window.location = data;
-    //   });
   }
   return (
     <div className={styles["page-content"]}>
@@ -213,17 +210,6 @@ export default function Cart() {
               </Row>
               <Row>
                 <Col>
-                  <h6>Total</h6>
-                </Col>
-                <Col className={`${styles["summary-align-right"]}`}>
-                  <h5 className={`${styles["order-summary-bold"]}`}>
-                    {isNaN(totalPrice) ? 0 : totalPrice} vnd
-                  </h5>
-                </Col>
-              </Row>
-              <hr></hr>
-              <Row>
-                <Col>
                   <h6>Payment Method</h6>
                 </Col>
                 <Col style={{ textAlign: "right" }}>
@@ -237,16 +223,27 @@ export default function Cart() {
                       Momo
                     </option>
                     <option value="false" className={styles["payment-method"]}>
-                      COD
+                      Cash
                     </option>
                   </select>
+                </Col>
+              </Row>
+              <hr></hr>
+              <Row>
+                <Col>
+                  <h6>Total price</h6>
+                </Col>
+                <Col className={`${styles["summary-align-right"]}`}>
+                  <h5 className={`${styles["order-summary-bold"]}`}>
+                    {isNaN(totalPrice) ? 0 : totalPrice} vnd
+                  </h5>
                 </Col>
               </Row>
               <Row className="flex-grow-1">
                 <Col className="text-center align-self-end">
                   <Button
                     className={`${styles["cart-confirm-button"]} mb-4`}
-                    onClick={momo === "true" ? Payment : OrderSuccess}
+                    onClick={state.login._id ? (momo === "true" ? Payment : OrderSuccess) : Notice}
                   >
                     Confirm
                   </Button>
