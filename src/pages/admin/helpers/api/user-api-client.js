@@ -20,8 +20,14 @@ export default class UserApiClient {
         return response;
     }
 
-    static remove(id) {
+    static async remove(id) {
+        const path = "customer";
+        const query = `?id=${id}`;
 
+        const response = await fetch(`${this.BASE_URL}/${path}/${query}`)
+            .catch(error => console.log(error));
+
+        return response;
     }
 
     static async update(id, user) {

@@ -21,10 +21,6 @@ export default class OrderApiClient {
         return fetched;
     }
 
-    static async remove(id) {
-        alert("removed");
-    }
-
     static async update(id, order) {
         const path = "order";
         const query = `?id=${id}`;
@@ -40,5 +36,16 @@ export default class OrderApiClient {
             .catch(error => console.log(error));
 
         return response
+    }
+
+    static async remove(id) {
+        const path = "order";
+        const query = `?id=${id}`;
+        
+        const response = await fetch(`${this.BASE_URL}/${path}/${query}`, {
+            method: "DELETE"
+        })
+
+        return response;
     }
 }
