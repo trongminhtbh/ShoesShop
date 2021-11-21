@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { algo, enc } from "crypto-js";
+import momoicon from "../assets/img/MoMo.png";
 import CartItem from "../components/CartItem";
+import { Redirect } from "react-router-dom";
 import { useStore } from "../store";
 
 export default function Cart() {
@@ -11,6 +12,12 @@ export default function Cart() {
   const [shipFee, setShipFee] = useState(0);
   const [address, setAddress] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
+  const [momo, setMomo] = useState("false");
+
+  function handleMomo(event) {
+    setMomo(event.target.value);
+  }
+
   useEffect(() => {
     fetch(
       "https://pacific-ridge-30189.herokuapp.com/customer?id=" +
@@ -21,12 +28,15 @@ export default function Cart() {
         setAddress(data.delivery_info);
       });
   });
-  let path = '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' + address + '"}]';
+  let path =
+    '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' +
+    address +
+    '"}]';
   path = encodeURI(path);
-  console.log("https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" + path);
   useEffect(() => {
     fetch(
-      "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" + path
+      "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" +
+        path
     )
       .then((response) => response.json())
       .then((data) => {
@@ -38,19 +48,80 @@ export default function Cart() {
     setTotalPrice(state.orders.reduce((x, y) => x + y.price, shipFee));
   }, [state.orders, shipFee]);
 
-  function Payment() {
-    let requestId = "MOMO" + new Date().getTime();
+  function OrderSuccess() {
+    const bodyRequest = JSON.stringify({
+      state: "waiting",
+      user_id: state.login._id,
+      detail: "Chi tiet don hang",
+      items: state.orders,
+      total: totalPrice,
+      order_date: new Date().toLocaleDateString(),
+    });
     const requestOptions = {
-      method: "GET",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: bodyRequest,
     };
-    fetch("http://localhost:3003/momo?requestId=" + requestId + "&totalPrice=" + String(totalPrice), requestOptions)
+    console.log(bodyRequest);
+    fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location = data;
+        window.location = "http://localhost:3000/order-success";
       });
   }
-  console.log(state.orders);
+
+  function Payment() {
+    let requestId = 0;
+    const bodyRequest = JSON.stringify({
+      state: "waiting",
+      user_id: state.login._id,
+      detail: "Chi tiet don hang",
+      items: state.orders,
+      total: totalPrice,
+      order_date: new Date().toLocaleDateString(),
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: bodyRequest,
+    };
+
+    fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data["_id"]);
+        requestId = data["_id"];
+        fetch(
+          "https://quiet-retreat-13947.herokuapp.com/momo?requestId=" +
+            requestId +
+            "&totalPrice=" +
+            String(totalPrice)
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.includes("http")) window.location = data;
+          });
+      });
+
+    // fetch(
+    //   "http://localhost:3003/momo?requestId=" +
+    //     requestId +
+    //     "&totalPrice=" +
+    //     String(totalPrice)
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.includes("http")) window.location = data;
+    //   });
+  }
   return (
     <div className={styles["page-content"]}>
       <div className={styles["cart-content-div"]}>
@@ -135,7 +206,9 @@ export default function Cart() {
                   <h6>Shipping Fee</h6>
                 </Col>
                 <Col className={`${styles["summary-align-right"]}`}>
-                  <h5 className={`${styles["order-summary-bold"]}`}>{shipFee} vnd</h5>
+                  <h5 className={`${styles["order-summary-bold"]}`}>
+                    {shipFee} vnd
+                  </h5>
                 </Col>
               </Row>
               <Row>
@@ -144,15 +217,36 @@ export default function Cart() {
                 </Col>
                 <Col className={`${styles["summary-align-right"]}`}>
                   <h5 className={`${styles["order-summary-bold"]}`}>
-                    {totalPrice} vnd
+                    {isNaN(totalPrice) ? 0 : totalPrice} vnd
                   </h5>
+                </Col>
+              </Row>
+              <hr></hr>
+              <Row>
+                <Col>
+                  <h6>Payment Method</h6>
+                </Col>
+                <Col style={{ textAlign: "right" }}>
+                  <select
+                    value={momo}
+                    onChange={handleMomo}
+                    style={{ backgroundColor: "#C4C4C4" }}
+                    className={styles["payment-method"]}
+                  >
+                    <option value="true" className={styles["payment-method"]}>
+                      Momo
+                    </option>
+                    <option value="false" className={styles["payment-method"]}>
+                      COD
+                    </option>
+                  </select>
                 </Col>
               </Row>
               <Row className="flex-grow-1">
                 <Col className="text-center align-self-end">
                   <Button
                     className={`${styles["cart-confirm-button"]} mb-4`}
-                    onClick={Payment}
+                    onClick={momo === "true" ? Payment : OrderSuccess}
                   >
                     Confirm
                   </Button>

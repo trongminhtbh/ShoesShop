@@ -393,3 +393,9 @@ div.list-item-cart {
   font-family: "Fredoka One", cursive;
   font-size: large;
 }
+
+.payment-method {
+  font-family: "Fredoka One", cursive;
+  font-weight: bold;
+  width: 80%;
+}
