@@ -104,9 +104,9 @@ const UserTableRow = (props) => {
                     className={styles["user-action"]}>
                     <Edit />
                 </button>
-                <button className={styles["user-action"]}>
-                    <Delete className={styles["user-action"]}
-                        onClick={() => deleteUser(_id)} />
+                <button className={styles["user-action"]}
+                    onClick={() => deleteUser(_id)}>
+                    <Delete />
                 </button>
             </td>
         </tr>

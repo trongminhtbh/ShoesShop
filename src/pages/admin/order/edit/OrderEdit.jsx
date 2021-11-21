@@ -120,11 +120,12 @@ const ProductTableHeader = (props) => {
     return (
         <thead>
             <tr>
+                <th className={styles["product-image"]}>Product</th>
                 <th className={styles["product-id"]}>Id</th>
                 <th className={styles["product-name"]}>Name</th>
-                <th className={styles["product-price"]}>Price</th>
+                <th className={styles["product-price"]}>Price Each</th>
                 <th className={styles["product-quantity"]}>Quantity</th>
-                <th className={styles["product-subtotal"]}>Sub Total</th>
+                <th className={styles["product-sub-total"]}>Sub Total</th>
             </tr>
         </thead>
     )
@@ -135,6 +136,9 @@ const ProductTableRow = (props) => {
 
     return (
         <tr>
+            <td className={styles["product-image"]}>
+                <img width="60px" height="60px" />
+            </td>
             <td className={styles["product-id"]}>
                 {_id}
             </td>
@@ -142,13 +146,13 @@ const ProductTableRow = (props) => {
                 {name}
             </td>
             <td className={styles["product-price"]}>
-                {price}
+                {price} vnd
             </td>
             <td className={styles["product-quantity"]}>
-                {num}
+                {num || "0"}
             </td>
-            <td className={styles["product-subtotal"]}>
-                {num * price}
+            <td className={styles["product-sub-total"]}>
+                {num * price} vnd
             </td>
         </tr>
     )
