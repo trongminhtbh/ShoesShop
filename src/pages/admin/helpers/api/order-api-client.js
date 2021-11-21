@@ -21,12 +21,8 @@ export default class OrderApiClient {
         return fetched;
     }
 
-    static async remove(id) {
-        alert("removed");
-    }
 
-    
-    static async cal_ship_fee(addr){
+    static async cal_ship_fee(addr) {
         const url = `
             https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdt
 YWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQ
@@ -34,10 +30,10 @@ UNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpI
 0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&order_time=0&
 path=
 [{"address":"725 Hẻm số 7 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Việt Nam"},
-{"address":"`+String(addr)+`"}]
+{"address":"`+ String(addr) + `"}]
 &service_id=SGN-BIKE&requests=[]
 `
-            const response = await fetch(url)
+        const response = await fetch(url)
             .then((response) => response.json())
             .catch((error) => console.log(error));
 
@@ -61,4 +57,17 @@ path=
 
         return response
     }
+
+    static async remove(id) {
+        const path = "order";
+        const query = `?id=${id}`;
+
+        const response = await fetch(`${this.BASE_URL}/${path}/${query}`, {
+            method: "DELETE"
+        })
+
+        return response;
+    }
 }
+
+

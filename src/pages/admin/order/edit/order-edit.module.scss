@@ -12,7 +12,6 @@
     border-radius: 20px;
 }
 
-
 .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -20,24 +19,36 @@
 }
 
 .product-table {
-    table-layout: auto;
     width: 100%;
-    display: table;
+    vertical-align: center;
 }
 
 .product-table :is(td, th) {
-    width: 20%;
     padding: 10px;
+    width: 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-quantity {
+    min-width: 100px;
     text-align: right;
 }
 
-.product-subtotal {
+.product-price {
+    min-width: 150px;
     text-align: right;
+}
+
+.product-sub-total {
+    text-align: right;
+    min-width: 150px;
 }
 
 .product-list-title {
     padding: 20px;
+}
+
+.product-image {
+    object-fit: cover;
 }

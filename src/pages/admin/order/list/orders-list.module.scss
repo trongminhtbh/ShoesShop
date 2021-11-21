@@ -4,15 +4,12 @@
     justify-content: space-between;
 }
 
-
 .order-table {
-    width: 1100px;
+    display: auto;
     overflow-x: auto;
-    border-collapse: separate;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     background: white;
+    overflow-x: auto;
     max-height: 100%;
     margin: 10px 0;
 }
@@ -20,28 +17,28 @@
 .order-table tr {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .order-table :is(td, th) {
-    padding: 10px 20px;
+    padding: 15px 20px;
     vertical-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.195);
 }
 
 .order-customer {
-    min-width: 300px;
+    width: 300px;
 }
 
 .order-price {
-    min-width: 250px;
+    width: 250px;
 }
 
 .order-status {
-    min-width: 150px;
+    width: 250px;
 }
 
 .order-date {
-    min-width: 150px;
+    width: 250px;
 }
 
 .order-action {

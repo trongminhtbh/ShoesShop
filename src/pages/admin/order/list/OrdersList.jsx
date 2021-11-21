@@ -51,15 +51,20 @@ const OrderTableBody = () => {
         })();
     }
 
+    const onOrderDeleted = (id) => {
+        const deleted = orders.filter(order => order._id !== id);
+        setOrders(deleted);
+    }
+
     return (
         <tbody>
             {orders && orders.map((order) =>
-                <OrderTableRow key={order._id} order={order} />
+                <OrderTableRow key={order._id} order={order}
+                    onOrderDeleted={onOrderDeleted} />
             )}
         </tbody>
     )
 }
-
 
 const OrderTableRow = (props) => {
     const history = useHistory();
@@ -70,7 +75,9 @@ const OrderTableRow = (props) => {
     }
 
     const deleteOrder = async (id) => {
-        OrderApiClient.remove(id);
+        await OrderApiClient.remove(id);
+        props.onOrderDeleted(id);
+        alert("Order Deleted");
     }
 
     const { _id, user_id, total, order_date, state } = props.order;

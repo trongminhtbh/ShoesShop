@@ -45,9 +45,9 @@ const ProductTableHead = (props) => {
                 <th className={styles["product-brand"]}>Brand</th>
                 <th className={styles["product-price"]}>Price</th>
                 <th className={styles["product-gender"]}>Gender</th>
-                <th className={styles["product-link"]}>Image Link</th>
                 <th className={styles["product-discount"]}>Discount</th>
-                <th className={styles["product-actions"]}>Actions</th>
+                <th className={styles["product-link"]}>Image</th>
+                <th className={styles["product-actions"]}>#</th>
             </tr>
         </thead >
     )
@@ -99,7 +99,7 @@ const ProductTableRow = (props) => {
     }
 
     return (
-        <tr>
+        <tr className="product-table-row">
             <td className={styles["product-id"]}>
                 {_id}
             </td>
@@ -115,11 +115,11 @@ const ProductTableRow = (props) => {
             <td className={styles["product-gender"]}>
                 {gender}
             </td>
-            <td className={styles["product-link"]}>
-                {link}
-            </td>
             <td className={styles["product-discount"]}>
                 {discount || "0"}%
+            </td>
+            <td className={styles["product-link"]}>
+                <img src={"https://graph.facebook.com/4/picture?width=100&height=100 "} width="60px" height="60px" />
             </td>
             <td className={styles["product-actions"]}>
                 <button className={styles["product-action"]}

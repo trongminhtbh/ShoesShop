@@ -51,10 +51,15 @@ const UserTableBody = () => {
         })();
     }
 
+    const onUserDeleted = (id) => {
+        const deleted = users.filter(user => user._id !== id);
+        setUsers(deleted);
+    }
+
     return (
         <tbody>
             {users.map((user) =>
-                <UserTableRow key={user._id} user={user} />
+                <UserTableRow key={user._id} user={user} onUserDeleted={onUserDeleted} />
             )}
         </tbody>
     )
@@ -69,6 +74,12 @@ const UserTableRow = (props) => {
     const directToUserEdit = (id) => {
         const pathToUserEdit = `${match.path}/edit/${id}`;
         history.push(pathToUserEdit);
+    }
+
+    const deleteUser = async (id) => {
+        await UserApiClient.remove(id);
+        props.onUserDeleted(id);
+        alert("User deleted");
     }
 
     return (
@@ -93,8 +104,9 @@ const UserTableRow = (props) => {
                     className={styles["user-action"]}>
                     <Edit />
                 </button>
-                <button className={styles["user-action"]}>
-                    <Delete className={styles["user-action"]} />
+                <button className={styles["user-action"]}
+                    onClick={() => deleteUser(_id)}>
+                    <Delete />
                 </button>
             </td>
         </tr>
