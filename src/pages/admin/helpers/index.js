@@ -8,5 +8,7 @@ export {
 } from "./components/form";
 
 export {
-    BackButtonWithStyles
+    BackButtonWithStyles,
+    EditButtonWithStyles,
+    DeleteButtonWithStyles
 } from "./components/button";

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { Pagination } from "../../../../components/pagination";
-import { Edit, Delete } from "@material-ui/icons";
 import styles from "./orders-list.module.scss";
 import { OrderApiClient } from "../../helpers/api";
+import { DeleteButtonWithStyles, EditButtonWithStyles } from "../../helpers";
 
-export default function OrdersList(props) {
+export default function OrdersList() {
     return (
         <section>
-            <h3 className={styles["order-table-header"]}>
-                Orders List
-            </h3>
+            <div>
+                <h3 className={styles["order-table-header"]}>
+                    Orders List
+                </h3>
+
+            </div>
 
             <table className={styles["order-table"]}>
                 <OrderTableHead />
                 <OrderTableBody />
             </table>
-
-            <Pagination pagesCount={5} />
         </section>
     )
 }
@@ -27,12 +27,27 @@ const OrderTableHead = () => {
     return (
         <thead className={styles["order-table-head"]}>
             <tr>
-                <th className={styles["order-id"]}>Id</th>
-                <th className={styles["order-customer"]}>Customer</th>
-                <th className={styles["order-total-price"]}>Total Price</th>
-                <th className={styles["order-date"]}>Date</th>
-                <th className={styles["order-status"]}>Status</th>
-                <th className={styles["order-action"]}>Actions</th>
+                <th className={styles["order-id"]}>
+                    Id
+                </th>
+                <th className={styles["order-customer"]}>
+                    Customer
+                </th>
+                <th className={styles["order-total-price"]}>
+                    Total Price
+                </th>
+                <th className={styles["order-date"]}>
+                    Date
+                </th>
+                <th className={styles["order-status"]}>
+                    Status
+                </th>
+                <th className={styles["order-payment-method"]}>
+                    Payment Method
+                </th>
+                <th className={styles["order-action"]}>
+                    Actions
+                </th>
             </tr>
         </thead>
     )
@@ -80,7 +95,7 @@ const OrderTableRow = (props) => {
         alert("Order Deleted");
     }
 
-    const { _id, user_id, total, order_date, state } = props.order;
+    const { _id, user_id, total, order_date, state, payment_method } = props.order;
 
     return (
         <tr key={_id}>
@@ -99,14 +114,12 @@ const OrderTableRow = (props) => {
             <td className={styles["order-link"]}>
                 {state}
             </td>
+            <td className={styles["order-payment-method"]}>
+                {payment_method}
+            </td>
             <td className={styles["order-actions"]}>
-                <button className={styles["order-action"]}
-                    onClick={() => directToOrderEdit(_id)}>
-                    <Edit />
-                </button>
-                <button className={styles["order-action"]}>
-                    <Delete onClick={() => deleteOrder(_id)} />
-                </button>
+                <EditButtonWithStyles onClick={() => directToOrderEdit(_id)} />
+                <DeleteButtonWithStyles onClick={() => deleteOrder(_id)} />
             </td>
         </tr>)
 }

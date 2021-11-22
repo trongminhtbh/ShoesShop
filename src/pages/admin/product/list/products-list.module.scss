@@ -19,6 +19,18 @@
     border: none;
 }
 
+.product-list-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.product-list-action:hover {
+    background-color: rgba(0, 0, 0, 0.095);
+}
+
 .product-table {
     width: 1100px;
     overflow-x: auto;

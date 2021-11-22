@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { Pagination } from "../../../../components/pagination";
 import { Edit, Delete } from "@material-ui/icons";
 import { UserApiClient } from "../../helpers/api";
 import styles from "./users-list.module.scss";
+import { DeleteButtonWithStyles, EditButtonWithStyles } from "../../helpers";
 
 export default function UsersList(props) {
     return (
@@ -18,7 +18,6 @@ export default function UsersList(props) {
                 <UserTableHead />
                 <UserTableBody />
             </table>
-            <Pagination pagesCount={5} />
         </div>
     )
 }
@@ -27,10 +26,18 @@ const UserTableHead = () => {
     return (
         <thead>
             <tr>
-                <th className={styles["user-id"]}>Id</th>
-                <th className={styles["user-name"]}>Name</th>
-                <th className={styles["user-phone"]}>Phone</th>
-                <th className={styles["user-email"]}>Email</th>
+                <th className={styles["user-id"]}>
+                    Id
+                </th>
+                <th className={styles["user-name"]}>
+                    Name
+                </th>
+                <th className={styles["user-phone"]}>
+                    Phone
+                </th>
+                <th className={styles["user-email"]}>
+                    Email
+                </th>
                 <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
                 <th className={styles["user-actions"]}>Actions</th>
             </tr>
@@ -100,14 +107,8 @@ const UserTableRow = (props) => {
                 {dob}
             </td>
             <td className={styles["user-actions"]}>
-                <button onClick={() => directToUserEdit(_id)}
-                    className={styles["user-action"]}>
-                    <Edit />
-                </button>
-                <button className={styles["user-action"]}
-                    onClick={() => deleteUser(_id)}>
-                    <Delete />
-                </button>
+                <EditButtonWithStyles onClick={() => directToUserEdit(_id)} />
+                <DeleteButtonWithStyles onClick={() => deleteUser(_id)} />
             </td>
         </tr>
     )

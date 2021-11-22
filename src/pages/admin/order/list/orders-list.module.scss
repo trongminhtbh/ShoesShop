@@ -22,23 +22,23 @@
 .order-table :is(td, th) {
     padding: 15px 20px;
     vertical-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.195);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.095);
 }
 
 .order-customer {
-    width: 300px;
+    width: 200px;
 }
 
 .order-price {
-    width: 250px;
+    width: 200px;
 }
 
 .order-status {
-    width: 250px;
+    width: 200px;
 }
 
 .order-date {
-    width: 250px;
+    width: 160px;
 }
 
 .order-action {
@@ -50,4 +50,8 @@
 
 .orders-list__paginatinon {
     align-self: flex-end;
+}
+
+.order-payment-method {
+    width: 200px;
 }

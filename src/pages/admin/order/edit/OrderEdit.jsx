@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import { OrderApiClient } from "../../helpers";
 import {
     TextInputWithStyles,
     FormRowWithStyles,
     FormSelectWithStyles,
     FormSubmitWithStyles,
-    BackButtonWithStyles
+    BackButtonWithStyles,
+    TextAreaWithStyles
 } from "../../helpers/components";
 import styles from "./order-edit.module.scss";
+import { useOrderInfoFetch } from "./useOrderInfoFetch";
 
 export default function OrderEdit() {
     const { register, handleSubmit, setValue,
         formState: { errors } } = useForm();
+
+    const [order, customer] = useOrderInfoFetch();
 
     const onSubmit = async (orderData, event) => {
         event.preventDefault();
@@ -21,18 +25,12 @@ export default function OrderEdit() {
         alert("Order Updated");
     }
 
-    const [order, setOrder] = useState({})
-    const { id } = useParams();
-    useEffect(() => onMounted(), [])
-    const onMounted = () => {
-        (async () => {
-            const fetched = await OrderApiClient.findOne(id);
-            setOrder(fetched);
-        })();
-    }
+    useEffect(() => onOrderFetched(), [order])
+    const onOrderFetched = () => Object.entries(order)
+        .forEach(([key, value]) => setValue(key, value));
 
-    useEffect(() => onFetched(), [order])
-    const onFetched = () => Object.entries(order)
+    useEffect(() => onCustomerFetched(), [customer]);
+    const onCustomerFetched = () => Object.entries(customer)
         .forEach(([key, value]) => setValue(key, value));
 
 
@@ -42,7 +40,17 @@ export default function OrderEdit() {
         history.goBack();
     }
 
-    const { items } = order;
+    const deliverOrder = (event) => {
+        /**TODO: udpate order status */
+    }
+
+    const prepareOrderDelivery = (event) => {
+        /**TODO: update order status */
+    }
+
+    const cancelOrder = (event) => {
+        /**TODO: update order status */
+    }
 
     return (
         <section className={styles["order-edit"]}>
@@ -51,7 +59,7 @@ export default function OrderEdit() {
                     className={styles["form"]}>
 
                     <h3 className={styles["form-title"]}>
-                        Order Detail
+                        General Detail
                     </h3>
 
                     <TextInputWithStyles htmlFor="id" label="Id" id="id"
@@ -61,29 +69,31 @@ export default function OrderEdit() {
                         <TextInputWithStyles htmlFor="date" label="Date" id="date"
                             name="order_date" type="date" readOnly={true} />
 
-                        <FormSelectWithStyles
-                            htmlFor="status" id="status" name="state"
-                            label="Status" options={[
-                                { value: "Waiting", text: "Waiting" },
-                                { value: "Confirmed", text: "Confirmed" },
-                                { value: "Delivered", text: "Delivered" },
-                                { value: "Canceled", text: "Canceled" }]}
+                        <TextInputWithStyles
+                            htmlFor="status" id="status" name="state" label="Status"
+                            readOnly={true}
                         />
                     </FormRowWithStyles>
 
-                    <TextInputWithStyles htmlFor="customer" label="Customer Id"
-                        name="user_id" type="text" readOnly={true} />
+                    <TextInputWithStyles htmlFor="email" label="Customer Email"
+                        name="email" type="text" readOnly={true} />
 
                     <TextInputWithStyles htmlFor="total-price" label="Total Price"
                         name="total" type="number" readOnly={true} />
 
+                    <TextInputWithStyles id="payment-method" htmlFor="payment-method" label="Payment Method"
+                        name="payment_method" type="text" readOnly={true} />
+
+
+                    <TextAreaWithStyles id="address" htmlFor="address" label="Delivery Info"
+                        name="delivery_info" readOnly={true} />
 
 
                     <h3 className="product-list-title">
-                        Products
+                        Products Detail
                     </h3>
-                    <ProductList products={items} />
 
+                    <ProductList products={order.items} />
 
                     <div className={styles["form-actions"]}>
                         <BackButtonWithStyles
@@ -91,7 +101,22 @@ export default function OrderEdit() {
                             Back To List
                         </BackButtonWithStyles>
 
-                        <FormSubmitWithStyles value="Update Order" />
+
+                        {order?.state?.toLowerCase() === "canceled" &&
+                            <FormSubmitWithStyles value="Order Canceled" disabled={true} />}
+                        {order?.state?.toLowerCase() !== "canceled" &&
+                            order?.state?.toLowerCase() !== "delivered" &&
+                            <FormSubmitWithStyles value="Cancel Order" />
+                        }
+                        {order?.state?.toLowerCase() === "waiting" &&
+                            <FormSubmitWithStyles value="Prepare Delivery" />}
+                        {order?.state?.toLowerCase() === "prepared" &&
+                            <FormSubmitWithStyles value="Deliver Order" />}
+                        {order?.state?.toLowerCase() === "shipping" &&
+                            <FormSubmitWithStyles value="Shipping" disabled={true} />}
+                        {order?.state?.toLowerCase() === "delivered" &&
+                            <FormSubmitWithStyles value="Order Delivered" disabled={true} />}
+
                     </div>
                 </form>
             </FormProvider>
@@ -124,20 +149,18 @@ const ProductTableHeader = (props) => {
                 <th className={styles["product-id"]}>Id</th>
                 <th className={styles["product-name"]}>Name</th>
                 <th className={styles["product-price"]}>Price Each</th>
-                <th className={styles["product-quantity"]}>Quantity</th>
-                <th className={styles["product-sub-total"]}>Sub Total</th>
             </tr>
         </thead>
     )
 }
 
 const ProductTableRow = (props) => {
-    const { _id, name, price, num } = props.product;
+    const { _id, name, price, num, link } = props.product;
 
     return (
         <tr>
             <td className={styles["product-image"]}>
-                <img width="60px" height="60px" />
+                <img width="60px" height="60px" src={link} />
             </td>
             <td className={styles["product-id"]}>
                 {_id}
@@ -147,12 +170,6 @@ const ProductTableRow = (props) => {
             </td>
             <td className={styles["product-price"]}>
                 {price} vnd
-            </td>
-            <td className={styles["product-quantity"]}>
-                {num || "0"}
-            </td>
-            <td className={styles["product-sub-total"]}>
-                {num * price} vnd
             </td>
         </tr>
     )

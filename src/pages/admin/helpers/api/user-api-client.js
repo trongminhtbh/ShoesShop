@@ -1,7 +1,7 @@
 export default class UserApiClient {
     static BASE_URL = "https://pacific-ridge-30189.herokuapp.com";
 
-    static async findOne(id, callback) {
+    static async findOne(id) {
         const path = "customer";
         const queryString = `?id=${id}`;
         const response = await fetch(`${this.BASE_URL}/${path}/${queryString}`)

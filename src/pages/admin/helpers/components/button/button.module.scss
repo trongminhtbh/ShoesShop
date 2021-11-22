@@ -3,7 +3,7 @@
     background: transparent;
     font-size: 18px;
     font-weight: 500;
-    padding: 5px 10px;
+    padding: 5px 15px;
     color: #1b212c;
     background: transparent;
     border: none;
@@ -11,5 +11,17 @@
 }
 
 .link-button:hover {
-    filter: contrast(2.5) brightness(.5);
+    filter: brightness(0.5);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.edit-button {
+    padding: 3px;
+    background: white;
+    outline: none;
+    border: none;
+}
+
+.edit-button:hover {
+    background: rgba(0, 0, 0, 0.05);
 }

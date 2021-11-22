@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router";
 import { Pagination } from "../../../../components/pagination";
-import { AddCircle, Edit, Delete } from "@material-ui/icons";
+import { AddCircle } from "@material-ui/icons";
 import styles from "./products-list.module.scss";
 import { ShoeApiClient } from "../../helpers/api";
+import { DeleteButtonWithStyles, EditButtonWithStyles } from "../../helpers";
 
 export default function ProductsList(props) {
     const match = useRouteMatch();
@@ -40,14 +41,30 @@ const ProductTableHead = (props) => {
     return (
         <thead>
             <tr>
-                <th className={styles["product-id"]}>Id</th>
-                <th className={styles["product-name"]}>Name</th>
-                <th className={styles["product-brand"]}>Brand</th>
-                <th className={styles["product-price"]}>Price</th>
-                <th className={styles["product-gender"]}>Gender</th>
-                <th className={styles["product-discount"]}>Discount</th>
-                <th className={styles["product-link"]}>Image</th>
-                <th className={styles["product-actions"]}>#</th>
+                <th className={styles["product-id"]}>
+                    Id
+                </th>
+                <th className={styles["product-name"]}>
+                    Name
+                </th>
+                <th className={styles["product-brand"]}>
+                    Brand
+                </th>
+                <th className={styles["product-price"]}>
+                    Price
+                </th>
+                <th className={styles["product-gender"]}>
+                    Gender
+                </th>
+                <th className={styles["product-discount"]}>
+                    Discount
+                </th>
+                <th className={styles["product-link"]}>
+                    Image
+                </th>
+                <th className={styles["product-actions"]}>
+                    #
+                </th>
             </tr>
         </thead >
     )
@@ -122,20 +139,14 @@ const ProductTableRow = (props) => {
                 <img src={"https://graph.facebook.com/4/picture?width=100&height=100 "} width="60px" height="60px" />
             </td>
             <td className={styles["product-actions"]}>
-                <button className={styles["product-action"]}
-                    onClick={(event) => {
-                        props.onProductDeleted();
-                        directToProductEdit(event, _id)
-                    }}>
-                    <Edit />
-                </button>
-                <button className={styles["product-action"]}
-                    onClick={async (event) => {
-                        await deleteProduct(event, _id)
-                        rowDeleteCallBack(_id);
-                    }}>
-                    <Delete />
-                </button>
+                <EditButtonWithStyles onClick={(event) => {
+                    props.onProductDeleted();
+                    directToProductEdit(event, _id)
+                }} />
+                <DeleteButtonWithStyles onClick={async (event) => {
+                    await deleteProduct(event, _id)
+                    rowDeleteCallBack(_id);
+                }} />
             </td>
         </tr>
     )

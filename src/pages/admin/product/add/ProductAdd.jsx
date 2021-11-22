@@ -7,7 +7,8 @@ import {
     FormSubmitWithStyles,
     TextInputWithStyles,
     ShoeApiClient,
-    FormSelectWithStyles
+    FormSelectWithStyles,
+    TextAreaWithStyles
 } from "../../helpers";
 import styles from "./product-add.module.scss";
 
@@ -61,6 +62,9 @@ export default function ProductAdd() {
 
                     <TextInputWithStyles label="Brand" htmlFor="brand"
                         type="text" id="brand" name="brand" />
+
+                    <TextAreaWithStyles htmlFor="description" id="description" label="Description"
+                        name="description" />
 
                     <div className={styles["form__actions"]}>
                         <BackButtonWithStyles
