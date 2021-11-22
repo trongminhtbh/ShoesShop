@@ -25,7 +25,7 @@ export default function Cart() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setAddress(data.delivery_info);
+			if(data.delivery_info !== undefined) setAddress(data.delivery_info);
         });
     }
   });
@@ -33,10 +33,10 @@ export default function Cart() {
     ? '[{"address":"66 Trần Não, Quận 2, TP. Hồ Chí Minh"}, {"address":"' +
       address +
       '"}]'
-    : "";
+    : '';
   path = encodeURI(path);
   useEffect(() => {
-    if (state.login._id) {
+    if (state.login._id && path.length !== 0) {
       fetch(
         "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdtYWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" +
           path
@@ -57,69 +57,75 @@ export default function Cart() {
   }
 
   function OrderSuccess() {
-    const bodyRequest = JSON.stringify({
-      state: "Waiting",
-      user_id: state.login._id,
-      payment_method: "Cash",
-      detail: "Chi tiet don hang",
-      items: state.orders,
-      total: totalPrice,
-      order_date: new Date().toLocaleDateString(),
-    });
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: bodyRequest,
-    };
-    console.log(bodyRequest);
-    fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        window.location = "http://localhost:3000/order-success";
-      });
+	if (shipFee === 0) alert("Please update delivery infomation in account");
+    else {
+		const bodyRequest = JSON.stringify({
+			state: "Waiting",
+			user_id: state.login._id,
+			payment_method: "Cash",
+			detail: "Chi tiet don hang",
+			items: state.orders,
+			total: totalPrice,
+			order_date: new Date().toLocaleDateString(),
+		});
+		const requestOptions = {
+			  method: "POST",
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: bodyRequest,
+		};
+		console.log(bodyRequest);
+		fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				window.location = "http://localhost:3000/order-success";
+		  });
+	}
   }
 
   function Payment() {
-    let requestId = 0;
-    const bodyRequest = JSON.stringify({
-      state: "Pending",
-      user_id: state.login._id,
-      payment_method: "Momo",
-      detail: "Chi tiet don hang",
-      items: state.orders,
-      total: totalPrice,
-      order_date: new Date().toLocaleDateString(),
-    });
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: bodyRequest,
-    };
+	if (shipFee === 0) alert("Please update delivery infomation in account");
+	else {
+		let requestId = 0;
+		const bodyRequest = JSON.stringify({
+		  state: "Pending",
+		  user_id: state.login._id,
+		  payment_method: "Momo",
+		  detail: "Chi tiet don hang",
+		  items: state.orders,
+		  total: totalPrice,
+		  order_date: new Date().toLocaleDateString(),
+		});
+		const requestOptions = {
+		  method: "POST",
+		  headers: {
+			"Content-Type": "application/json",
+		  },
+		  body: bodyRequest,
+		};
 
-    fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data["_id"]);
-        requestId = data["_id"];
-        fetch(
-          "https://quiet-retreat-13947.herokuapp.com/momo?requestId=" +
-            requestId +
-            "&totalPrice=" +
-            String(totalPrice)
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.includes("http")) window.location = data;
-          });
-      });
+		fetch("https://pacific-ridge-30189.herokuapp.com/order", requestOptions)
+		  .then((response) => {
+			console.log(response);
+			return response.json();
+		  })
+		  .then((data) => {
+			console.log(data["_id"]);
+			requestId = data["_id"];
+			fetch(
+			  "https://quiet-retreat-13947.herokuapp.com/momo?requestId=" +
+				requestId +
+				"&totalPrice=" +
+				String(totalPrice)
+			)
+			  .then((response) => response.json())
+			  .then((data) => {
+				if (data.includes("http")) window.location = data;
+			  });
+		  });
+	}
   }
   return (
     <div className={styles["page-content"]}>
