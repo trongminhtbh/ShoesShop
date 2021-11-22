@@ -13,7 +13,7 @@ function LoginPage(props) {
     e.preventDefault();
     let bodyContent = JSON.stringify({
       email: email,
-      password: password
+      password: password,
     })
     fetch ("https://pacific-ridge-30189.herokuapp.com/user/login", {
        method: "POST",
