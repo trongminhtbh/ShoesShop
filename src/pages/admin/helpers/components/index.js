@@ -10,3 +10,7 @@ export {
     BackButtonWithStyles,
     EditButtonWithStyles,
 } from "./button";
+
+export {
+    Modal
+} from "./Modal";

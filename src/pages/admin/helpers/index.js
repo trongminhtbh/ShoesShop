@@ -12,3 +12,7 @@ export {
     EditButtonWithStyles,
     DeleteButtonWithStyles
 } from "./components/button";
+
+export {
+    Modal
+} from "./components";
