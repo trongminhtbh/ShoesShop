@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import avatar from "../assets/img/avt.jpg";
+import avatar1 from "../assets/img/147144.png";
 
 export default function AboutUs() {
   return (
@@ -15,13 +16,18 @@ export default function AboutUs() {
             <Row className="h-100">
               <Col md={6}>
                 <div className={`${styles["story-1"]}`}>
-                  <img src={avatar} alt="avatar" className={`${styles["avt-about"]}`} />
-                  <h6>Power user</h6>
+                  <img
+                    src={avatar}
+                    alt="avatar"
+                    className={`${styles["avt-about"]}`}
+                  />
+                  <h6>Nguyen Manh Linh</h6>
                   <p>
-                    "El usuario que no necesita medicina habitualmente (sólo
-                    para pequeñas enfermedades) pero conoce gente que sí, aunque
-                    principalmente soporta el proyecto por la idea y la misión.
-                    Tiene un estilo de vida saludable, alimentación".
+                    "A fantastic organisation! Great cutomer support from
+                    beginning to end of the process. The team are really
+                    informed and go the extra mile at every stage. I would
+                    recommend them unreservedly. Information was accurate,
+                    responses to queries were turned around very fast."
                   </p>
                 </div>
               </Col>
@@ -32,14 +38,18 @@ export default function AboutUs() {
                 <Row className="flex-grow-1">
                   <Col className="align-self-end">
                     <div className={`${styles["story-2"]} ms-auto`}>
-                      <img src={avatar} alt="avatar" className={styles["avt-about"]} />
-                      <h6>Power user</h6>
+                      <img
+                        src={avatar1}
+                        alt="avatar"
+                        className={styles["avt-about"]}
+                      />
+                      <h6>Le Hoai Nam</h6>
                       <p>
-                        "El usuario que no necesita medicina habitualmente (sólo
-                        para pequeñas enfermedades) pero conoce gente que sí,
-                        aunque principalmente soporta el proyecto por la idea y
-                        la misión. Tiene un estilo de vida saludable,
-                        alimentación".
+                        "Great service, efficient communication and a really
+                        easy way to get a mortgage with lots of help and support
+                        to get the right deal. My supporter was helpful. Answers
+                        were clear and where necessary detailed enough for us to
+                        make informed decisions quickly."
                       </p>
                     </div>
                   </Col>
