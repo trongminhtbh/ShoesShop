@@ -7,5 +7,10 @@ export {
 } from "./form";
 
 export {
-    BackButtonWithStyles
+    BackButtonWithStyles,
+    EditButtonWithStyles,
 } from "./button";
+
+export {
+    Modal
+} from "./Modal";

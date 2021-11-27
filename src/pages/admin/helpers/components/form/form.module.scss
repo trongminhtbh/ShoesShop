@@ -62,7 +62,13 @@
     background: #ff5521;
 }
 
-.form-submit:hover {
+.form-submit-disabled {
+    cursor: none;
+    filter: brightness(0.75);
+}
+
+
+.form-submit:not(.form-submit-disabled):hover {
     filter: brightness(1.25);
     box-shadow: 0 0 0 4px rgba($color: #bb6b6b, $alpha: 0.25);
 }
@@ -73,3 +79,4 @@
     border-radius: 5px;
     min-height: 60px;
 }
+
