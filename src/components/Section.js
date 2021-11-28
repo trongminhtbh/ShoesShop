@@ -12,6 +12,7 @@ import LoginPage from "../pages/Login";
 import OrderSuccess from "../pages/OrderSuccess";
 import Introduction from "../pages/Introduction";
 import SignUpPage from "../pages/Signup";
+import ResetPasswordPage from "../pages/Resetpassword";
 import AboutUs from "../pages/AbousUs";
 import Admin from "../pages/admin";
 import { useStore } from "../store";
@@ -68,7 +69,7 @@ export default function Section(props) {
 
             <Route path="/forgot" exact >
                 {state.login._id && <Redirect to="/home"></Redirect>}
-                <SignUpPage />
+                <ResetPasswordPage />
             </Route>
 
             <Route path="/" exact >
