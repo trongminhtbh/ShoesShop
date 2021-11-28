@@ -136,7 +136,7 @@ const ProductTableRow = (props) => {
                 {discount || "0"}%
             </td>
             <td className={styles["product-link"]}>
-                <img src={"https://graph.facebook.com/4/picture?width=100&height=100 "} width="60px" height="60px" />
+                <img src={link} width="60px" height="60px" alt="product" />
             </td>
             <td className={styles["product-actions"]}>
                 <EditButtonWithStyles onClick={(event) => {
