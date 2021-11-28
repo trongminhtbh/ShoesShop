@@ -93,7 +93,6 @@ export default function OrderEdit() {
         history.goBack();
     }
 
-    const [dummy, updateState] = useState(true);
     const handleDeliverOrder = async (event) => {
         event.preventDefault();
         const fromAddress = "66 Trần Não, Quận 2, TP. Hồ Chí Minh";
@@ -117,6 +116,8 @@ export default function OrderEdit() {
             fromAddress: "",
             toAddress: "",
         })
+
+        setIsModalOpen(true);
     }
 
     const openModal = (event) => {
@@ -137,7 +138,7 @@ export default function OrderEdit() {
                 {deliveryOrder && <ul>
                     <li>Order id: {deliveryOrder.order_id}</li>
                     <li>Status: {deliveryOrder.status}</li>
-                    <li>Link: {deliveryOrder.shared_Link}</li>
+                    <li>Link: <a href={deliveryOrder.shared_Link} target="_blank">link</a></li>
                     <li>From Address: {deliveryOrder.fromAddress}</li>
                     <li>To Address: {deliveryOrder.toAddress}</li>
                     <li>Distance: {deliveryOrder.distance}</li>
@@ -184,10 +185,13 @@ export default function OrderEdit() {
                     <TextAreaWithStyles id="address" htmlFor="address" label="Delivery Info"
                         name="delivery_info" readOnly={true} />
                     <div style={{ marginLeft: "150px" }}>
-                        <BackButtonWithStyles
-                            onClick={(event) => openModal(event)}>
-                            View Delivery Detail
-                        </BackButtonWithStyles>
+                        {
+                            deliveryOrder &&
+                            <BackButtonWithStyles
+                                onClick={(event) => openModal(event)}>
+                                View Delivery Detail
+                            </BackButtonWithStyles>
+                        }
                     </div>
 
                     <h3 className="product-list-title">
