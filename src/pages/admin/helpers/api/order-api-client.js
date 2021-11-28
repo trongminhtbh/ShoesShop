@@ -23,20 +23,23 @@ export default class OrderApiClient {
 
 
     static async cal_ship_fee(addr) {
-        const url = `
-            https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdt
-YWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQ
-UNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.
-0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&order_time=0&
-path=
-[{"address":"725 Hẻm số 7 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Việt Nam"},
-{"address":"`+ String(addr) + `"}]
-&service_id=SGN-BIKE&requests=[]
-`
+//         curl --location -g --request GET 'https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ5MDg4NDIyODAiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOiJ0ZXN0QGdt
+// YWlsLmNvbSIsIm5vYyI6IkRyaW5raWVzIFRlc3QgQWNjb3VudCIsImN0eSI6IlNHTiIsImFjY291bnRfc3RhdHVzIjoiQ
+// UNUSVZBVEVEIiwiZXhwIjoxNjM3MDYwNjIwLCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.
+// 0JcO9Pjag39247XB2hAjxivKyOjt2HeVQZgvwyh5tQ4&order_time=0&
+// path=
+// [{"address":"725 Hẻm số 7 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Việt Nam"},
+// {"address":"346 Bình Lợi"}]
+// &service_id=SGN-BIKE&requests=[]'
+            let path = '[{"address":"725 Hẻm số 7 Thành Thái, Phường 14, Quận 10, Hồ Chí Minh, Việt Nam"}, {"address":"' +
+            addr +
+            '"}]'
+        const url = "https://apistg.ahamove.com/v1/order/estimated_fee?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhaGEiLCJ0eXAiOiJ1c2VyIiwiY2lkIjoiODQ4Mzk5MDgyMDYiLCJzdGF0dXMiOiJPTkxJTkUiLCJlb2MiOm51bGwsIm5vYyI6IkFoYW1vdmUgVGVzdCBDcmVhdGUgVXNlciIsImFjY291bnRfc3RhdHVzIjoiQUNUSVZBVEVEIiwiZXhwIjoxNjM4MDg5MDg1LCJwYXJ0bmVyIjoidGVzdF9rZXkiLCJ0eXBlIjoiYXBpIn0.t5rTtTpvGlPlje6gaveSr3STnaamjtTWbFEqf7KN4_4&service_id=SGN-BIKE&requests=[]&order_time=0&path=" + path;
+
         const response = await fetch(url)
             .then((response) => response.json())
             .catch((error) => console.log(error));
-
+        console.log(response);
         return response;
     }
 
