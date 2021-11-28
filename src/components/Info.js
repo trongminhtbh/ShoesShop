@@ -96,29 +96,32 @@ export default function Info(){
             <div className='infoBoxName'>
                 Oder information
             </div>
-            <div className='infoboxdetail'>
-                <label>State</label>
-                <select onChange={change} value={state.value} name = "status_"> 
-                   <option>All</option>
-                   <option>Waiting</option>
-                   <option>Pending</option>
-                   <option>Shiping</option>
-                </select>
-                <label>From</label>
-                <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_from"></input>
-                <label>To</label>
-                <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_to"></input>
-            </div>
-            <table>
-                <tr>
-                    <th>No</th>
-                    <th>Order Date</th>
-                    <th>Detail</th>
-                    <th>Total</th>
-                    <th>State</th>
-                </tr>
-                {getFilteredItems(status.status_,status.date_from,status.date_to)}
-            </table>
+            {islogin&&<div>
+                <div className='infoboxdetail'>
+                    <label>State</label>
+                    <select onChange={change} value={state.value} name = "status_"> 
+                    <option>All</option>
+                    <option>Waiting</option>
+                    <option>Pending</option>
+                    <option>Shiping</option>
+                    </select>
+                    <label>From</label>
+                    <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_from"></input>
+                    <label>To</label>
+                    <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_to"></input>
+                </div>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Order Date</th>
+                        <th>Detail</th>
+                        <th>Total</th>
+                        <th>State</th>
+                    </tr>
+                    {getFilteredItems(status.status_,status.date_from,status.date_to)}
+                </table>
+            </div>||!islogin && <h2 className = "loginReq">Please Login</h2>}
+            
         </div>
     );
 }
