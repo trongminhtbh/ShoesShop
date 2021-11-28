@@ -29,7 +29,7 @@ function SideBar(props){
                     // icon is optional
                   },
                   {
-                    title: 'Branch',
+                    title: 'Brands',
                     itemId: '/branch',
                     subNav: brands,
                   },
