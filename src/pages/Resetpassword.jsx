@@ -9,7 +9,7 @@ function ResetPasswordPage(props) {
     let bodyContent = JSON.stringify({
       email: email
     })
-    fetch ("https://pacific-ridge-30189.herokuapp.com/forgot", {
+    fetch ("https://pacific-ridge-30189.herokuapp.com/user/forget", {
        method: "POST",
        headers: {
         "Content-Type": "application/json",
