@@ -432,3 +432,8 @@ div.list-item-cart {
   text-decoration: underline;
   color: #fb4b29;
 }
+
+button.cart-address-button {
+  background-color: #fb4b29;
+  border-color: #fb4b29;
+}
