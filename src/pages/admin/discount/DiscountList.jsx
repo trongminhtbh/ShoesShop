@@ -5,7 +5,7 @@ import { DeleteButtonWithStyles, EditButtonWithStyles } from "../helpers";
 import styles from "./discount.module.scss";
 
 const baseUrl = "https://pacific-ridge-30189.herokuapp.com/",
-    path = "discount/",
+    path = "discount",
     url = baseUrl + path;
 
 function useFetchDiscounts(callback = (discount) => { }) {
@@ -13,7 +13,7 @@ function useFetchDiscounts(callback = (discount) => { }) {
     useEffect(() => {
         (async function () {
             const action = "list";
-            const response = await fetch(url + action, {
+            const response = await fetch(url + "/" + action, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -25,8 +25,9 @@ function useFetchDiscounts(callback = (discount) => { }) {
 
 }
 
-async function deleteDiscount() {
-    const response = await fetch(url, {
+async function deleteDiscount(discount) {
+    const query = `?id=${discount._id}`;
+    await fetch(url + query, {
         method: "DELETE",
     })
 }
@@ -45,17 +46,18 @@ export default function DiscountList(props) {
         history.push(path);
     }
 
-    const onDeleteDiscount = async (event, discountCode) => {
+    const onDeleteDiscount = async (event, discount) => {
         event.preventDefault();
-        await deleteDiscount(discountCode);
+        await deleteDiscount(discount);
         const remainingDiscounts = discounts.filter(
-            (discount) => discount.code !== discountCode);
+            (each) => each._id !== discount._id);
         setDiscounts(remainingDiscounts);
+        alert("Discount Deleted!");
     }
 
-    const onEditDiscount = (event, discountCode) => {
+    const onEditDiscount = (event, discount) => {
         event.preventDefault();
-        const path = `${match.path}edit/${discountCode}`;
+        const path = `${match.path}edit/${discount.code}`;
         history.push(path);
     }
 
@@ -100,7 +102,7 @@ export default function DiscountList(props) {
                 </thead>
                 <tbody>
                     {discounts.map((discount) =>
-                        <tr>
+                        <tr key={discount._id}>
                             <td className={styles["discount-code"]}>
                                 {discount.code}
                             </td>
@@ -121,9 +123,9 @@ export default function DiscountList(props) {
                             </td>
                             <td className="discount-actions">
                                 <EditButtonWithStyles
-                                    onClick={(event) => onEditDiscount(event, discount.code)} />
+                                    onClick={(event) => onEditDiscount(event, discount)} />
                                 <DeleteButtonWithStyles
-                                    onClick={(event) => onDeleteDiscount(event, discount.code)} />
+                                    onClick={(event) => onDeleteDiscount(event, discount)} />
                             </td>
                         </tr>)}
                 </tbody>
