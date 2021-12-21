@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { useForm, FormProvider } from "react-hook-form";
 import {
@@ -36,39 +36,61 @@ export default function ProductAdd() {
                         type="text" id="name" name="name" />
 
                     <FormRowWithStyles>
-                        <TextInputWithStyles label="Price" htmlFor="price"
-                            type="number" id="price" name="price" />
+                        <TextInputWithStyles label="Price"
+                            htmlFor="price"
+                            type="number"
+                            id="price"
+                            name="price" />
 
-                        <TextInputWithStyles label="Discount" htmlFor="discount"
-                            type="number" id="discount" name="discount" />
+                        <TextInputWithStyles label="Discount"
+                            htmlFor="discount"
+                            type="number"
+                            id="discount"
+                            name="discount" />
                     </FormRowWithStyles>
 
-                    <TextInputWithStyles label="Image Link" htmlFor="link"
-                        type="text" id="link" name="link" />
+                    <TextInputWithStyles label="Image Link"
+                        htmlFor="link"
+                        type="text"
+                        id="link"
+                        name="link" />
 
-                    <FormSelectWithStyles label="Gender" htmlFor="gender" id="gender" name="gender"
+                    <FormSelectWithStyles label="Gender"
+                        htmlFor="gender"
+                        id="gender"
+                        name="gender"
                         options={[
                             { text: "Nam", value: "Nam" },
                             { text: "Nữ", value: "Nữ" },
                             { text: "Nam & Nữ", value: "Nam & Nữ" }]} />
 
                     <FormRowWithStyles>
-                        <TextInputWithStyles label="Color" htmlFor="color"
-                            type="text" id="color" name="color" />
+                        <TextInputWithStyles label="Color"
+                            htmlFor="color"
+                            type="text"
+                            id="color"
+                            name="color" />
 
-                        <TextInputWithStyles label="Size" htmlFor="size"
-                            type="number" id="size" name="size" />
+                        <TextInputWithStyles label="Size"
+                            htmlFor="size"
+                            type="number"
+                            id="size"
+                            name="size" />
                     </FormRowWithStyles>
 
-                    <TextInputWithStyles label="Brand" htmlFor="brand"
-                        type="text" id="brand" name="brand" />
+                    <TextInputWithStyles label="Brand"
+                        htmlFor="brand"
+                        type="text"
+                        id="brand"
+                        name="brand" />
 
-                    <TextAreaWithStyles htmlFor="description" id="description" label="Description"
+                    <TextAreaWithStyles label="Description"
+                        htmlFor="description"
+                        id="description"
                         name="description" />
 
                     <div className={styles["form__actions"]}>
-                        <BackButtonWithStyles
-                            onClick={directBackToList}>
+                        <BackButtonWithStyles onClick={directBackToList}>
                             Back To List
                         </BackButtonWithStyles>
 

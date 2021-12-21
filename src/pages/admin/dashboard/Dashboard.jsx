@@ -5,6 +5,7 @@ import { UsersList, UserEdit } from "../user";
 import { OrdersList, OrderEdit } from "../order";
 import { ProductsList, ProductEdit, ProductAdd } from "../product";
 import styles from "./dashboard.module.scss";
+import { DiscountAdd, DiscountEdit, DiscountList } from "../discount";
 
 const routeConfig = [
     {
@@ -22,7 +23,13 @@ const routeConfig = [
     {
         key: 2,
         path: "/admin/products/",
-        linkText: "Products Summary",
+        linkText: "Products Management",
+    },
+
+    {
+        key: 3,
+        path: "/admin/discounts/",
+        linkText: "Discounts Management"
     }
 ]
 
@@ -63,9 +70,19 @@ export default function Dashboard() {
                             <ProductEdit />
                         </Route>
 
-                        <Route path="/admin" >
-                            <UsersList />
+                        <Route path="/admin/discounts/" exact>
+                            <DiscountList />
                         </Route>
+
+                        <Route path="/admin/discounts/edit/:id" exact>
+                            <DiscountEdit />
+                        </Route>
+
+                        <Route path="/admin/discounts/add" exact>
+                            <DiscountAdd />
+                        </Route>
+                        
+                        <Redirect to="/admin/users" />
                     </Switch>
                 </Router>
             </div>
