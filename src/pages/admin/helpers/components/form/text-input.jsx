@@ -20,7 +20,6 @@ export default function TextInputWithStyles(props) {
 
             <input type={type} id={id}  {...register(name, {
                 valueAsNumber: type === "number",
-                valueAsDate: type === "date"
             })}
                 className={styles["form-control"]} readOnly={readOnly} />
         </div>
