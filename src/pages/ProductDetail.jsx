@@ -1,15 +1,93 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Gradients from "../components/Gradients";
 import ProductImages from "../components/ProductImages";
 import Info from "../components/Info/Info";
-
+import { Rating } from "react-simple-star-rating";
 import logo from "../assets/img/logo.png";
+import { useStore } from "../store";
 
-const ProductDetail = ({shoesItem}) => {
+
+const ProductDetail = ({ shoesItem }) => {
   var sizes, colors, shoes, gradients, shoeBackground, shoeHeight;
   var prevColor = "blue";
   var animateOrNot = true;
+  const [state, dispatch] = useStore();
+  const [rating, setRating] = useState(100); // initial rating value
+  const [rated, setRated] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [resetComment, setResetComment] = useState(false);
+  const [userComment, setUserComment] = useState("");
 
+  useEffect(() => {
+    if(resetComment) {
+      setTimeout(() => {
+        setResetComment(false);
+      }, 2000)
+    }
+  }, [resetComment])
+
+  useEffect(() => {
+    (async function () {
+      let mounted = true;
+      if(comments.length) return;
+      async function GetComments() {
+        const path =
+          "https://pacific-ridge-30189.herokuapp.com/comment/?id=" + shoesItem._id;
+        const response = await fetch(path)
+          .then((response) => response.json())
+          .catch((error) => console.log(error));
+        return response;
+      }
+      const items = await GetComments();
+      if (items && mounted) {
+        setComments(items);
+      }
+      return () => mounted = false;
+    })();
+  }, [comments,shoesItem._id, resetComment]);
+
+
+
+  const sendComment = (e) => {
+    var bodyContent = JSON.stringify({
+      owner: state.login.name,
+      product_id: shoesItem._id,
+      content: userComment
+    });
+    var url =
+      "https://pacific-ridge-30189.herokuapp.com/comment/" 
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: bodyContent,
+    });
+    setTimeout(() => {
+    setResetComment(true);
+    setUserComment("");
+    setComments([])
+    }, 2000)
+  }
+  // Catch Rating value
+  const handleRating = (rate) => {
+    setRating(rate);
+    setRated(true);
+    // other logic
+    var bodyContent = JSON.stringify({
+      value: rate / 20,
+    });
+    var url =
+      "https://pacific-ridge-30189.herokuapp.com/shoes/rating?id=" +
+      shoesItem._id;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: bodyContent,
+    });
+  };
   function changeColor() {
     if (!animateOrNot) {
       console.log("waittttt");
@@ -54,6 +132,10 @@ const ProductDetail = ({shoesItem}) => {
     this.classList.add("active");
   }
 
+  const handleCheck = (e) => {
+    console.log("hello");
+  };
+
   // for responsive behaviour
   const changeHeight = () => {
     var x = window.matchMedia("(max-width:1000px)");
@@ -74,6 +156,45 @@ const ProductDetail = ({shoesItem}) => {
       shoeBackground.style.height = "475px";
     }
   };
+
+  const ReviewSection = (
+    <div className="Review">
+      <div className="ReviewTitle">Đánh giá</div>
+      {!rated ? (
+        <Rating
+          onClick={handleRating}
+          ratingValue={rating} /* Available Props */
+        />
+      ) : (
+        <Rating onClick={handleRating} ratingValue={rating} readonly={true} />
+      )}
+      <div className="CommentSection">
+        <div className="CommentTitle">Reviews {resetComment}</div>
+        <div className="CommentContent">
+          {comments.map((comment) => {
+            return (
+              <div className="userComment">
+                <div className="userName"> {comment.owner}</div>
+                <div className="userCommentContent">{comment.content}</div>
+                <div className="commentTime">{comment.creat_at.split(' ')[0]}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="commentInput">
+          <input
+            placeholder="Nhập comment"
+            type="text"
+            className="inputContent"
+            onChange = {e => setUserComment(e.target.value)}
+            value={userComment}
+          />
+          <button onClick={sendComment} type="submit">Gửi nhận xét</button>
+        </div>
+        <div className="alert">{resetComment && <span>Đã gửi nhận xét</span>}</div>
+      </div>
+    </div>
+  );
 
   useEffect(() => {
     sizes = document.querySelectorAll(".size");
@@ -101,11 +222,12 @@ const ProductDetail = ({shoesItem}) => {
               <i className="fas fa-share-alt"></i>
             </a>
 
-            <ProductImages shoesItem = {shoesItem} />
+            <ProductImages shoesItem={shoesItem} />
           </div>
-          <Info shoesItem = {shoesItem} />
+          <Info shoesItem={shoesItem} />
         </div>
       </div>
+      {ReviewSection}
     </div>
   );
 };

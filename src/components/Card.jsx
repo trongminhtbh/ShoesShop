@@ -22,7 +22,10 @@ function Cards({shoesItem}) {
             </div>
 
             <div className="card-content-price">
-                Price: <span>{shoesItem.price}</span>
+                Price: <del><span>{shoesItem.origin_price}</span></del> <i class="fas fa-arrow-right"></i> <span>{shoesItem.discount_price} vnđ</span>
+            </div>
+            <div className="card-content-price">
+                Rating: <span>{shoesItem.rating.value}/5 ({shoesItem.rating.total_rating} lượt)</span>
             </div>
             <div className="card-content-desc">
                 Description: 

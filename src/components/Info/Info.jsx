@@ -66,10 +66,11 @@ const Info = ({shoesItem}) => {
         <i className="fas fa-shopping-cart"></i>Add to card
       </NavLink>
       <div className="price">
-        <h1>{shoesItem.price}</h1>
+        <h1>{shoesItem.origin_price}</h1>
       </div>
     </div>
   );
+
 
   return (
     <div className="info">

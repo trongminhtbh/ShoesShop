@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { OrderApiClient } from "../../helpers";
@@ -12,7 +12,6 @@ import {
 import { makeStyles } from "@material-ui/core";
 import styles from "./order-edit.module.scss";
 import { useOrderInfoFetch } from "./useOrderInfoFetch";
-import { Close } from "@material-ui/icons";
 
 const useStyles = makeStyles({
     modal: {
@@ -48,11 +47,13 @@ function Modal({ children }) {
 
 export default function OrderEdit() {
     const { register, handleSubmit, setValue,
-        formState: { errors } } = useForm();
+        formState: { errors }, getValues } = useForm();
     const [order, customer] = useOrderInfoFetch();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [deliveryOrder, setDeliveryOrder] = useState(null);
+    const [forceUpdate, setForceUpdate] = useState(false);
+    const ref = useRef(null);
 
     const onSubmit = async (orderData, event) => {
         event.preventDefault();
@@ -93,7 +94,6 @@ export default function OrderEdit() {
         history.goBack();
     }
 
-    const [dummy, updateState] = useState(true);
     const handleDeliverOrder = async (event) => {
         event.preventDefault();
         const fromAddress = "66 Trần Não, Quận 2, TP. Hồ Chí Minh";
@@ -105,6 +105,9 @@ export default function OrderEdit() {
             }
         }).then((response => response.json()));
 
+        await OrderApiClient.update(getValues("_id"), { state: "shipping" })
+        setValue("state", "shippng");
+
         setDeliveryOrder({
             order_id: response.order_id,
             status: response.status,
@@ -114,9 +117,11 @@ export default function OrderEdit() {
             currency: response.order.currency,
             discount: response.order.discount,
             total_price: response.order.distance_price,
-            fromAddress: "",
-            toAddress: "",
+            toAddress: getValues("delivery_info"),
+            fromAddress: fromAddress
         })
+
+        setIsModalOpen(true);
     }
 
     const openModal = (event) => {
@@ -129,6 +134,12 @@ export default function OrderEdit() {
         setIsModalOpen(false);
     }
 
+    const handleCloseOrder = async (event) => {
+        event.preventDefault();
+        await OrderApiClient.update(getValues("_id"), { state: "canceled" });
+        setValue("state", "canceled");
+        setForceUpdate({});
+    }
     return (
         <section className={styles["order-edit"]}>
             {isModalOpen && <Modal>
@@ -137,13 +148,13 @@ export default function OrderEdit() {
                 {deliveryOrder && <ul>
                     <li>Order id: {deliveryOrder.order_id}</li>
                     <li>Status: {deliveryOrder.status}</li>
-                    <li>Link: {deliveryOrder.shared_Link}</li>
+                    <li>Link: <a href={deliveryOrder.shared_Link} target="_blank">link</a></li>
                     <li>From Address: {deliveryOrder.fromAddress}</li>
                     <li>To Address: {deliveryOrder.toAddress}</li>
-                    <li>Distance: {deliveryOrder.distance}</li>
-                    <li>Distance Fee: {deliveryOrder.distance_fee}</li>
-                    <li>Discount: {deliveryOrder.discount}</li>
-                    <li>Total Price: {deliveryOrder.total_price}</li>
+                    <li>Distance: {deliveryOrder.distance} km</li>
+                    <li>Distance Fee: {deliveryOrder.distance_fee} vnd</li>
+                    <li>Discount: {deliveryOrder.discount} vnd</li>
+                    <li>Total Price: {deliveryOrder.total_price} vnd</li>
                 </ul>}
 
                 <BackButtonWithStyles onClick={(event) => closeModal(event)}>
@@ -182,16 +193,20 @@ export default function OrderEdit() {
 
 
                     <TextAreaWithStyles id="address" htmlFor="address" label="Delivery Info"
-                        name="delivery_info" readOnly={true} />
+                        ref={ref} name="delivery_info" readOnly={true} />
+
                     <div style={{ marginLeft: "150px" }}>
-                        <BackButtonWithStyles
-                            onClick={(event) => openModal(event)}>
-                            View Delivery Detail
-                        </BackButtonWithStyles>
+                        {
+                            deliveryOrder &&
+                            <BackButtonWithStyles
+                                onClick={(event) => openModal(event)}>
+                                View Delivery Detail
+                            </BackButtonWithStyles>
+                        }
                     </div>
 
                     <h3 className="product-list-title">
-                        Products Detail
+                        Product Detail
                     </h3>
 
                     <ProductList products={order.items} />
@@ -202,17 +217,16 @@ export default function OrderEdit() {
                             Back To List
                         </BackButtonWithStyles>
 
-
-                        {order?.state?.toLowerCase() === "canceled" &&
-                            <FormSubmitWithStyles value="Order Canceled" disabled={true} />}
-                        {order?.state?.toLowerCase() !== "canceled" &&
-                            order?.state?.toLowerCase() !== "delivered" &&
-                            <FormSubmitWithStyles value="Cancel" />}
-                        {order?.state?.toLowerCase() === "waiting" &&
+                        {getValues("state") !== "canceled" &&
+                            getValues("state") !== "delivered" &&
+                            <FormSubmitWithStyles value="Cancel Order" onClick={(event) => handleCloseOrder(event)} />}
+                        {getValues("state") === "canceled" &&
+                            <FormSubmitWithStyles value="Canceled" disabled={true} />}
+                        {getValues("state") === "waiting" &&
                             <FormSubmitWithStyles value="Deliver Order" onClick={(event) => handleDeliverOrder(event)} />}
-                        {order?.state?.toLowerCase() === "shipping" &&
+                        {getValues("state") === "shipping" &&
                             <FormSubmitWithStyles value="Shipping" disabled={true} />}
-                        {order?.state?.toLowerCase() === "delivered" &&
+                        {getValues("state") === "delivered" &&
                             <FormSubmitWithStyles value="Order Delivered" disabled={true} />}
 
                     </div>

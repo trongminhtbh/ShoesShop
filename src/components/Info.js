@@ -9,8 +9,8 @@ export default function Info(){
     const [user_id, setUser_id] = useState(-1)
     const [status, setStatus] = useState({
         status_: "All", 
-        date_from: "2000-01-01", 
-        date_to: "2099-01-01", 
+        date_from: "01/01/2000", 
+        date_to: "01/01/2099", 
     })
     
     const islogin = state.login._id
@@ -29,19 +29,24 @@ export default function Info(){
         }
     },[])
     
-
+    function cal_date(date_from){
+        var date1 = (date_from).split("/")
+        var date1r= parseInt(date1[2])*10000+parseInt(date1[1])*100+parseInt(date1[0]);
+        return date1r;
+    }
     function getFilteredItems(status_,date_from,date_to){
         var number = 0;
         var result = [];
-        var date1 = date_from.replace(new RegExp('-', 'g'),"")
-        var date2 = date_to.replace(new RegExp('-', 'g'),"")
-        console.log("length",orders.length)
+        var date1 = cal_date(date_from)
+        var date2 = cal_date(date_to)
+        console.log("length",orders.length,date1,date2)
         if(orders.length === 0){
             return
         }
-        console.log(orders)
+        console.log("orders",orders)
         for (var index = 0; index < orders.length; index++){
-            var date = orders[index].order_date.replace(new RegExp('-', 'g'),"")
+            
+            var date = cal_date(orders[index].order_date)
             if (status_ === "All" && date1<date && date<date2){
                 number += 1;
                 result.push(
@@ -54,7 +59,7 @@ export default function Info(){
                     </tr>
                 );
             }
-            else if (orders[index].state===status_ && date1<date && date<date2){
+            else if (orders[index].state.toLowerCase()===status_.toLowerCase() && date1<date && date<date2){
                 number += 1;
                 result.push(
                     <tr>
@@ -77,34 +82,46 @@ export default function Info(){
             [event.target.name] : value
         })
     }
-    
+    function change1(event){
+        var value1 = event.target.value.split("-")
+        
+        var value =  value1[2]+"/"+value1[1]+"/"+value1[0]
+        setStatus({
+            ...status,
+            [event.target.name] : value
+        })
+    }
     return(
         <div className= 'renBox'> 
             <div className='infoBoxName'>
                 Oder information
             </div>
-            <div className='infoboxdetail'>
-                <label>State</label>
-                <select onChange={change} value={state.value} name = "status_"> 
-                   <option>All</option>
-                   <option>Complete</option>
-                   <option>Cancel</option>
-                </select>
-                <label>From</label>
-                <input className = "date" type = "date" onChange={change} value={state.value} name = "date_from"></input>
-                <label>To</label>
-                <input className = "date" type = "date" onChange={change} value={state.value} name = "date_to"></input>
-            </div>
-            <table>
-                <tr>
-                    <th>No</th>
-                    <th>Order Date</th>
-                    <th>Detail</th>
-                    <th>Total</th>
-                    <th>State</th>
-                </tr>
-                {getFilteredItems(status.status_,status.date_from,status.date_to)}
-            </table>
+            {islogin&&<div>
+                <div className='infoboxdetail'>
+                    <label>State</label>
+                    <select onChange={change} value={state.value} name = "status_"> 
+                    <option>All</option>
+                    <option>Waiting</option>
+                    <option>Pending</option>
+                    <option>Shiping</option>
+                    </select>
+                    <label>From</label>
+                    <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_from"></input>
+                    <label>To</label>
+                    <input className = "date" type = "date" onChange={change1} value={state.value} name = "date_to"></input>
+                </div>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Order Date</th>
+                        <th>Detail</th>
+                        <th>Total</th>
+                        <th>State</th>
+                    </tr>
+                    {getFilteredItems(status.status_,status.date_from,status.date_to)}
+                </table>
+            </div>||!islogin && <h2 className = "loginReq">Please Login</h2>}
+            
         </div>
     );
 }

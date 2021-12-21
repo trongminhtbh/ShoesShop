@@ -48,8 +48,8 @@ function SignUpPage(props) {
             <input type="password" placeholder="Password" id="passwordInput" onChange = {e => setPassword(e.target.value)}/>
           </div>
   
-          <button onClick = {sendRequest} type="submit">Confirm</button>
-          <span ><NavLink to="/login">Already have account?</NavLink></span>
+          <button onClick = {sendRequest} type="submit"><NavLink to="/login">Sign up</NavLink></button>
+          <span ><NavLink style={{color: "white", textDecoration: "none",}} to="/login">Already have account?</NavLink></span>
         </form>
       </div>
     </div>
