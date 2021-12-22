@@ -9,10 +9,12 @@ import styled from "styled-components";
 import '../styles/user.css'
 import { Link } from 'react-router-dom';
 import Update from '../components/Update';
+import Discount from '../components/Discount';
 import Info from '../components/Info';
 import usericon from '../assets/img/user.svg'
 import updateaccount from '../assets/img/updateaccount.svg'
 import infoicon from '../assets/img/infoicon.svg'
+import ordericon from '../assets/img/order.svg'
 import {useStore} from "../store"
 
 import { useState, useEffect } from "react";
@@ -60,6 +62,11 @@ export default function User(){
                                         <img src={infoicon} id="infoicon" alt="infoicon"></img>
                                         <StyledLink to="/user">Order information</StyledLink>
                                     </li>
+                                    
+                                    <li>
+                                        <img src={ordericon} id="ordericon" alt="ordericon"></img>
+                                        <StyledLink to="/user/discount">Discount code</StyledLink>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -79,11 +86,37 @@ export default function User(){
                                         <img src={infoicon} id="infoiconf" alt="infoiconf"></img>
                                         <StyledLink1 to="/user">Order information</StyledLink1>
                                     </li>
+                                    <li>
+                                        <img src={ordericon} id="ordericon" alt="ordericon"></img>
+                                        <StyledLink to="/user/discount">Discount code</StyledLink>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </Route>
-                    
+                    <Route path="/user/discount" exact>
+                        <div className= 'Info'> 
+                            <div>
+                                <h3>
+                                    <img id="ava" src={usericon} id="usericon" alt="usericon"></img>
+                                    { user_name == "" && guest || user_name!="" && user_name}
+                                </h3>
+                                <ul>
+                                    <li><img src={updateaccount} id="updateaccount" alt="updateaccount"></img>
+                                        <StyledLink to="/user/update">Update account</StyledLink>
+                                    </li>
+                                    <li>
+                                        <img src={infoicon} id="infoicon" alt="infoicon"></img>
+                                        <StyledLink to="/user">Order information</StyledLink>
+                                    </li>
+                                    <li>
+                                        <img src={ordericon} id="ordericonf" alt="ordericonf"></img>
+                                        <StyledLink1 to="/user/discount">Discount code</StyledLink1>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </Route>
                 </Switch>
                 
                 <Switch> 
@@ -92,6 +125,9 @@ export default function User(){
                     </Route>
                     <Route path="/user" exact>
                         <Info></Info>
+                    </Route>
+                    <Route path="/user/discount" exact>
+                        <Discount></Discount>
                     </Route>
                 </Switch>
             </Router>

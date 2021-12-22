@@ -10,7 +10,7 @@
 .Info{
     margin-left: 15%;
     width: 35%;
-    height: 200px;
+    height: 250px;
     background-color: #fff;
     border-radius: 20px;
     align-items: center;
@@ -130,17 +130,20 @@ table{
     margin-right: 5px;
     margin-bottom: 5px;
 }
-#updateaccountf,#infoiconf,#paymenticonf{
+#updateaccountf,#infoiconf,#paymenticonf,#ordericonf{
     margin-top: 5px;
     filter: invert(44%) sepia(94%) saturate(4170%) hue-rotate(346deg) brightness(104%) contrast(97%);
     width: 28px;
     margin-right: 5px;
     margin-bottom: -5px;
 }
-#updateaccount  ,#infoicon,#paymenticon{
+#updateaccount  ,#infoicon,#paymenticon,#ordericon{
     margin-top: 5px;
     filter: invert(0%) sepia(100%) saturate(7465%) hue-rotate(25deg) brightness(90%) contrast(107%);
     width: 28px;
     margin-right: 5px;
     margin-bottom: -5px;
+}
+#codetable{
+    width: 200px;
 }
