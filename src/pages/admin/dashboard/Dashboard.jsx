@@ -4,32 +4,40 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { UsersList, UserEdit } from "../user";
 import { OrdersList, OrderEdit } from "../order";
 import { ProductsList, ProductEdit, ProductAdd } from "../product";
-import styles from "./dashboard.module.scss";
 import { DiscountAdd, DiscountEdit, DiscountList } from "../discount";
+import { ServiceList, ServiceDetail } from "../service-schedule";
+import styles from "./dashboard.module.scss";
+
 
 const routeConfig = [
     {
         key: 0,
         path: "/admin/users/",
-        linkText: "Users Management"
+        linkText: "User Management"
     },
 
     {
         key: 1,
         path: "/admin/orders/",
-        linkText: "Orders Management",
+        linkText: "Order Management",
     },
 
     {
         key: 2,
         path: "/admin/products/",
-        linkText: "Products Management",
+        linkText: "Product Management",
     },
 
     {
         key: 3,
         path: "/admin/discounts/",
-        linkText: "Discounts Management"
+        linkText: "Discount Management"
+    },
+
+    {
+        key: 4,
+        path: "/admin/schedules",
+        linkText: "Schedule Management"
     }
 ]
 
@@ -81,8 +89,16 @@ export default function Dashboard() {
                         <Route path="/admin/discounts/add" exact>
                             <DiscountAdd />
                         </Route>
-                        
-                        <Redirect to="/admin/users" />
+
+                        <Route path="/admin/schedules" exact>
+                            <ServiceList />
+                        </Route>
+
+                        <Route path="/admin/schedules/:id" >
+                            <ServiceDetail />
+                        </Route>
+
+                        {/* <Redirect to="/admin/users" /> */}
                     </Switch>
                 </Router>
             </div>

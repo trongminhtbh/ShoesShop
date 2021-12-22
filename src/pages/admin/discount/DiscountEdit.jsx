@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { useHistory, useParams } from "react-router-dom";
-import { TextAreaWithStyles, TextInputWithStyles, FormSubmitWithStyles, BackButtonWithStyles } from "../helpers";
+import { TextAreaWithStyles, TextInputWithStyles, FormSubmitWithStyles, BackButtonWithStyles, FormRowWithStyles } from "../helpers";
 import styles from "./discount.module.scss";
 
 const baseUrl = "https://pacific-ridge-30189.herokuapp.com/",
@@ -9,7 +9,6 @@ const baseUrl = "https://pacific-ridge-30189.herokuapp.com/",
     url = baseUrl + path;
 
 function useFetchDiscount(callback = (discount) => { }) {
-
     const { id } = useParams();
 
     useEffect(() => {

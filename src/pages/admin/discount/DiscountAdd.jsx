@@ -62,8 +62,12 @@ export default function DiscountAdd() {
 
     return (<section className={styles["discount-add"]}>
         <FormProvider {...{ register, errors }}>
-            <form onSubmit={handleSubmit(onSubmit)} className={styles["form"]}>
-                <h3 className={styles["form-title"]}>Discount Form</h3>
+            <form onSubmit={handleSubmit(onSubmit)}
+                className={styles["form"]}>
+                
+                <h3 className={styles["form-title"]}>
+                    Discount Form
+                </h3>
 
                 <TextInputWithStyles label="Code"
                     htmlFor="code"
