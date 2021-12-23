@@ -33,7 +33,7 @@ function ProductCard(props) {
               alignItems: "center",
             }}
           >
-            <Card.Img src={shoesItem.link} />
+            <Card.Img src={"http://localhost:3000/product-img/" + shoesItem.link} />
           </div>
         </Col>
         <Col md={7} className="p-0">

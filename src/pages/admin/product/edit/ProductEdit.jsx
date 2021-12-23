@@ -64,7 +64,7 @@ export default function ProductEdit(props) {
                     </FormRowWithStyles>
 
                     <TextInputWithStyles htmlFor="link" label="Image Link" id="link" name="link"
-                        type="text" value={product.link} />
+                        type="text" value={"http://localhost:3000/product-img/" +product.link} />
 
                     <FormRowWithStyles>
                         <FormSelectWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"

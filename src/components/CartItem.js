@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import { AddCircle, RemoveCircle } from "@material-ui/icons";
-import shoeicon from "../assets/img/black.png";
 import { useStore } from "../store";
 import { addItemToCart, removeItemCart } from "../store";
 
@@ -25,7 +24,8 @@ export default function CartItem({ cartItem }) {
   }, []).length;
 
   const incQuantity = () => {
-    handleAdd();
+    if (num + 1 > cartItem.quantity) alert("Exceeded the number of products available. Can't order more");
+    else handleAdd();
   };
 
   const decQuantity = () => {
@@ -36,7 +36,7 @@ export default function CartItem({ cartItem }) {
     <div>
       <Row>
         <Col md={3}>
-          <img src={cartItem.link} alt="icon" style={{ width: "150px" }} />
+          <img src={"http://localhost:3000/product-img/" + cartItem.link} alt="icon" style={{ width: "150px" }} />
         </Col>
         <Col md={3} className="align-self-center">
           <Row>
