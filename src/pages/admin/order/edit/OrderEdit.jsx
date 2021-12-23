@@ -112,7 +112,7 @@ export default function OrderEdit() {
             order_id: response.order_id,
             status: response.status,
             shared_Link: response.shared_link,
-            distance_fee: response.order.distance_fee,
+            distance_fee: response?.order?.distance_fee,
             distance: response.order.distance,
             currency: response.order.currency,
             discount: response.order.discount,
@@ -138,6 +138,7 @@ export default function OrderEdit() {
         event.preventDefault();
         await OrderApiClient.update(getValues("_id"), { state: "canceled" });
         setValue("state", "canceled");
+        await fetch(`http://apistg.ahamove.com/v1/order/cancel?token=${token}&order_id=${deliveryOrder?.order_id}&comment=Supplier+does+not+show+up`)
         setForceUpdate({});
     }
     return (
@@ -222,7 +223,7 @@ export default function OrderEdit() {
                             <FormSubmitWithStyles value="Cancel Order" onClick={(event) => handleCloseOrder(event)} />}
                         {getValues("state") === "canceled" &&
                             <FormSubmitWithStyles value="Canceled" disabled={true} />}
-                        {getValues("state") === "waiting" &&
+                        {getValues("state")?.toLowerCase() === "waiting" &&
                             <FormSubmitWithStyles value="Deliver Order" onClick={(event) => handleDeliverOrder(event)} />}
                         {getValues("state") === "shipping" &&
                             <FormSubmitWithStyles value="Shipping" disabled={true} />}

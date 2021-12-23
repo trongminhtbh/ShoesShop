@@ -1,0 +1,103 @@
+.service-list-header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.service-action {
+  display: inline-block;
+}
+
+.service-action,
+.service-list-action {
+  padding: 2px;
+  margin: 0;
+  background: transparent;
+  color: black;
+  display: flex;
+  gap: 10px;
+  border: none;
+}
+
+.service-list-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.service-list-action:hover {
+  background-color: rgba(0, 0, 0, 0.095);
+}
+
+.service-table {
+  width: 1100px;
+  overflow-x: auto;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-radius: 5px;
+  background: white;
+  max-height: 100%;
+  margin: 0;
+}
+
+.service-table-row {
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+}
+
+.service-table :is(td, th) {
+  text-overflow: ellipsis;
+  padding: 10px 10px;
+  vertical-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.195);
+}
+
+.service-name {
+  width: 150px;
+}
+
+.service-email {
+  width: 200px;
+}
+
+.service-num-of-pair {
+  width: max-content;
+}
+
+.service-received-time,
+.service-send-time {
+  width: max-content;
+}
+
+.service-total {
+  width: 150px;
+}
+
+.service-edit {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+.form__title {
+  margin-left: 20px;
+}
+
+.form {
+  padding: 20px;
+  width: 900px;
+  overflow: hidden;
+  background: white;
+  border-radius: 20px;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}

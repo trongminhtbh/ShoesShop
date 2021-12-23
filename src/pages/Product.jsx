@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Card from "../components/Card"
 import SideBar from "./Sidebar";
+import Search from "./Search";
 import Branch from "../components/ShoesBranch";
 import { useContext } from "react";
 import { StoreContext } from "../store";
@@ -30,15 +31,20 @@ function Product(props) {
             let list = shoesList.filter((shoes) => shoes.gender === title)
             setListShoes(list)
         }
-
         if(title === "All") {
             setTitle("All")
             setListShoes(shoesList)
         }
-
+    }
+    const search = (key) => {
+        
+        setTitle("Search")
+        let list = shoesList.filter((shoes) => shoes.name.toLowerCase().includes(key.toLowerCase()))
+        setListShoes(list)
     }
     return (
         <div className="product-page-container">
+            <Search listBrands = {listBrands} search = {search}  />
             <div className="product-container">
                 <SideBar listBrands = {listBrands} showPanel = {showPanel}  />
                 <div className="product-display">

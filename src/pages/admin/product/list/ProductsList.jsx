@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { Pagination } from "../../../../components/pagination";
 import { AddCircle } from "@material-ui/icons";
 import styles from "./products-list.module.scss";
 import { ShoeApiClient } from "../../helpers/api";
@@ -32,7 +31,6 @@ export default function ProductsList(props) {
                 <ProductTableHead />
                 <ProductTableBody />
             </table>
-            <Pagination pagesCount={5} />
         </section>)
 }
 

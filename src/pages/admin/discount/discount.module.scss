@@ -1,0 +1,111 @@
+.discount-list-header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount-action {
+  display: inline-block;
+}
+
+.discount-action,
+.discount-list-action {
+  padding: 2px;
+  margin: 0;
+  background: transparent;
+  color: black;
+  display: flex;
+  gap: 10px;
+  border: none;
+}
+
+.discount-list-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.discount-list-action:hover {
+  background-color: rgba(0, 0, 0, 0.095);
+}
+
+.discount-table {
+  table-layout: fixed;
+  width: 1100px;
+  overflow-x: auto;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-radius: 5px;
+  background: white;
+  max-height: 100%;
+  margin: 0;
+}
+
+.discount-table-row {
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+}
+
+.discount-table :is(td, th) {
+  text-overflow: ellipsis;
+  padding: 10px 10px;
+  vertical-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.195);
+}
+
+.discount-code,
+.discount-value {
+  width: 120px;
+}
+
+.discount-description {
+  width: 300px;
+}
+
+.discount-quantity {
+  width: 120px;
+}
+
+.discount-start-time,
+.discount-end-time {
+  width: 160px;
+}
+
+.discount-add,
+.discount-edit {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+
+.form__title {
+  margin-left: 20px;
+}
+
+.form {
+  padding: 20px;
+  width: 950px;
+  overflow: hidden;
+  background: white;
+  border-radius: 20px;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+@media screen and (max-width: 527px) {
+  .form__title {
+    text-align: center;
+  }
+  .form__group aside {
+    text-align: left;
+  }
+}

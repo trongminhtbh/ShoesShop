@@ -1,0 +1,17 @@
+.search_bar{
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    align-items: center;
+}
+.search_ip{
+    width: 60%;
+    height: 50px;
+    margin-left: 26%;
+    border-radius: 20px;
+    align-items: center;
+    padding-left: 15px;
+}
+.search_btn{
+    margin-left: 33px;
+}
