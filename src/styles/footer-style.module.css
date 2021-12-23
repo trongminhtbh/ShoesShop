@@ -432,3 +432,26 @@ div.list-item-cart {
   text-decoration: underline;
   color: #fb4b29;
 }
+
+button.cart-address-button {
+  background-color: #fb4b29;
+  border-color: #fb4b29;
+  padding: 6px
+}
+
+button.home-add-button {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+button.home-add-button:hover {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+button.home-add-button:focus {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
