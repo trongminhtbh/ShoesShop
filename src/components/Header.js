@@ -50,7 +50,7 @@ function Header(props) {
                   textDecoration: "underline",
                 }}
               >
-                PRODUCT
+                PRODUCTS
               </NavLink>
             </div>
             <div className={`${styles["menu-item"]} align-self-center`}>
@@ -80,9 +80,6 @@ function Header(props) {
             <div
               className={`${styles["other-icon"]} ${styles["dropdownNghia"]} align-self-end dropdown`}
             >
-              <Button variant={"link"} style={{ margin: "0px 5px" }}>
-                <Search style={{ fill: "#FB4B29" }}></Search>
-              </Button>
               <NavLink to="cart">
                 <Button variant={"link"} style={{ margin: "0px 5px" }}>
                   <ShoppingCart style={{ fill: "#FB4B29" }}></ShoppingCart>

@@ -45,7 +45,7 @@ export default function Cart() {
           //   endDateParts[1] - 1,
           //   +endDateParts[0]
           // );
-          if (startDateObject < Date.now()) {
+          if (startDateObject < Date.now() && item.quantity > 0) {
             setDiscountList([
               ...discountList,
               { code: item.code, discountValue: item.discount_value },
@@ -81,7 +81,7 @@ export default function Cart() {
       )
         .then((response) => response.json())
         .then((data) => {
-          setShipFee(data.total_price);
+          data.http_code !== undefined ? alert("Invalid address. Please re-enter your shipping address") : setShipFee(data.total_price);
         });
     }
   }, [address, state.login._id]);
@@ -100,7 +100,7 @@ export default function Cart() {
     let discountObject = discountList.filter((item) => item.code === discount);
     let discountPriceTotal =
       discountObject.length !== 0
-        ? discountObject[0].discountValue * (totalItemNoDiscounrPrice + totalItemHaveDiscounrPrice) 
+        ? discountObject[0].discountValue / 100 * (totalItemNoDiscounrPrice + totalItemHaveDiscounrPrice) 
         : 0;
     setDiscountPrice(discountPriceTotal);
     setTotalPrice(totalItemNoDiscounrPrice + totalItemHaveDiscounrPrice + shipFee - discountPriceTotal);
@@ -131,6 +131,7 @@ export default function Cart() {
       });
       const bodyRequest = JSON.stringify({
         state: "Waiting",
+        discount_code: discount !== "Select" && discount !== "Empty" ? discount : "", 
         user_id: state.login._id,
         payment_method: "Cash",
         detail: "Chi tiet don hang",
@@ -177,6 +178,7 @@ export default function Cart() {
       });
       const bodyRequest = JSON.stringify({
         state: "Pending",
+        discount_code: discount !== "Select" && discount !== "Empty" ? discount : "", 
         user_id: state.login._id,
         payment_method: "Momo",
         detail: "Chi tiet don hang",

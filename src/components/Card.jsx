@@ -14,7 +14,7 @@ function Cards({shoesItem}) {
         
     <div className="card-item d-flex flex-row">
         <div className={"card-img " + "br" + shoesItem._id%3}>
-            <img src={shoesItem.link} alt=""></img>
+            <img src={"http://localhost:3000/product-img/" + shoesItem.link} alt=""></img>
         </div>
         <div className="card-content d-flex flex-column">
             <div className="card-content-header">
