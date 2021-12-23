@@ -159,7 +159,7 @@ const ProductDetail = ({ shoesItem }) => {
 
   const ReviewSection = (
     <div className="Review">
-      <div className="ReviewTitle">Đánh giá</div>
+      <div className="ReviewTitle">Rating</div>
       {!rated ? (
         <Rating
           onClick={handleRating}
@@ -183,15 +183,15 @@ const ProductDetail = ({ shoesItem }) => {
         </div>
         <div className="commentInput">
           <input
-            placeholder="Nhập comment"
+            placeholder="Typing comment"
             type="text"
             className="inputContent"
             onChange = {e => setUserComment(e.target.value)}
             value={userComment}
           />
-          <button onClick={sendComment} type="submit">Gửi nhận xét</button>
+          <button onClick={sendComment} type="submit">Send review </button>
         </div>
-        <div className="alert">{resetComment && <span>Đã gửi nhận xét</span>}</div>
+        <div className="alert">{resetComment && <span>Sent</span>}</div>
       </div>
     </div>
   );

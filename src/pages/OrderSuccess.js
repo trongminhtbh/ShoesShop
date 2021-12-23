@@ -6,22 +6,22 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 
 export default function OrderSuccess() {
-  let orderId = useParams();
-  const requestOptions = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      state: "paid",
-    }),
-  };
-  useEffect(() => {
-    fetch(
-      "https://pacific-ridge-30189.herokuapp.com/order?id=" + orderId,
-      requestOptions
-    );
-  });
+  // let orderId = useParams();
+  // const requestOptions = {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     state: "paid",
+  //   }),
+  // };
+  // useEffect(() => {
+  //   fetch(
+  //     "https://pacific-ridge-30189.herokuapp.com/order?id=" + orderId,
+  //     requestOptions
+  //   );
+  // });
   return (
     <div className={`${styles["page-content"]}`}>
       <Container fluid style={{ height: "100%" }}>

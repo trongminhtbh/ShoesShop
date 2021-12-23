@@ -51,8 +51,7 @@ export default function Cart() {
               { code: item.code, discountValue: item.discount_value },
             ]);
             return true;
-          }
-          else return false
+          } else return false;
         });
       });
   }, [state.login._id]);
@@ -88,11 +87,23 @@ export default function Cart() {
   }, [address, state.login._id]);
 
   useEffect(() => {
-    let priceBeforeDiscount = state.orders.reduce((x, y) => x + y.price, shipFee);    
+    let listItemNoDiscountPrice = state.orders.filter((item) => item.discount_price === undefined);
+    let listItemHaveDiscountPrice = state.orders.filter((item) => item.discount_price > 0);
+    let totalItemNoDiscounrPrice = listItemNoDiscountPrice.reduce((x, y) => x + y.origin_price,
+    0);
+    let totalItemHaveDiscounrPrice = listItemHaveDiscountPrice.reduce((x, y) => x + y.discount_price,
+    0);
+    // let priceBeforeDiscount = state.orders.reduce(
+    //   (x, y) => x + y.price,
+    //   shipFee
+    // );
     let discountObject = discountList.filter((item) => item.code === discount);
-    let discountPriceTotal = discountObject.length !== 0 ? discountObject[0].discountValue * priceBeforeDiscount : 0;
+    let discountPriceTotal =
+      discountObject.length !== 0
+        ? discountObject[0].discountValue * (totalItemNoDiscounrPrice + totalItemHaveDiscounrPrice) 
+        : 0;
     setDiscountPrice(discountPriceTotal);
-    setTotalPrice(priceBeforeDiscount - discountPriceTotal);
+    setTotalPrice(totalItemNoDiscounrPrice + totalItemHaveDiscounrPrice + shipFee - discountPriceTotal);
   }, [state.orders, shipFee, discount]);
 
   function Notice() {
@@ -102,12 +113,28 @@ export default function Cart() {
   function OrderSuccess() {
     if (shipFee === 0) alert("Please update delivery infomation in account");
     else {
+      let itemList = state.orders.map((item) => {
+        if (item.discount_price > 0)
+          return {
+            _id: item._id,
+            name: item.name,
+            price: item.discount_price,
+            link: item.link,
+          };
+        else
+          return {
+            _id: item._id,
+            name: item.name,
+            price: item.origin_price,
+            link: item.link,
+          };
+      });
       const bodyRequest = JSON.stringify({
         state: "Waiting",
         user_id: state.login._id,
         payment_method: "Cash",
         detail: "Chi tiet don hang",
-        items: state.orders,
+        items: itemList,
         total: totalPrice,
         order_date: new Date().toLocaleDateString(),
       });
@@ -132,12 +159,28 @@ export default function Cart() {
     if (shipFee === 0) alert("Please update delivery infomation in account");
     else {
       let requestId = 0;
+      let itemList = state.orders.map((item) => {
+        if (item.discount_price > 0)
+          return {
+            _id: item._id,
+            name: item.name,
+            price: item.discount_price,
+            link: item.link,
+          };
+        else
+          return {
+            _id: item._id,
+            name: item.name,
+            price: item.origin_price,
+            link: item.link,
+          };
+      });
       const bodyRequest = JSON.stringify({
         state: "Pending",
         user_id: state.login._id,
         payment_method: "Momo",
         detail: "Chi tiet don hang",
-        items: state.orders,
+        items: itemList,
         total: totalPrice,
         order_date: new Date().toLocaleDateString(),
       });
@@ -217,7 +260,7 @@ export default function Cart() {
                       name="receiveAddr"
                       id="receiveAddr"
                       defaultValue={address}
-                      size="60"
+                      size="50"
                     />
                   </Col>
                   <Col md={2}>
@@ -250,7 +293,7 @@ export default function Cart() {
                 <Col className={`${styles["summary-align-right"]}`}>
                   <h5 className={`${styles["order-summary-bold"]}`}>
                     {" "}
-                    {state.orders.reduce((x, y) => x + y.price, 0)}
+                    {totalPrice - shipFee + discountPrice}
                   </h5>
                 </Col>
               </Row>
@@ -267,10 +310,7 @@ export default function Cart() {
                     style={{ backgroundColor: "#C4C4C4" }}
                     className={styles["payment-method"]}
                   >
-                    <option
-                      value="Select"
-                      className={styles["payment-method"]}
-                    >
+                    <option value="Select" className={styles["payment-method"]}>
                       Select code
                     </option>
                     {discountList.length === 0 ? (
@@ -300,7 +340,9 @@ export default function Cart() {
                   <h6>Discount</h6>
                 </Col>
                 <Col className={`${styles["summary-align-right"]}`}>
-                  <h5 className={`${styles["order-summary-bold"]}`}>{discountPrice}</h5>
+                  <h5 className={`${styles["order-summary-bold"]}`}>
+                    {discountPrice}
+                  </h5>
                 </Col>
               </Row>
               <Row>
