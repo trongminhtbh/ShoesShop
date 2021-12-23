@@ -25,7 +25,7 @@ function Cards({shoesItem}) {
                 Price: <del><span>{shoesItem.origin_price}</span></del> <i class="fas fa-arrow-right"></i> <span>{shoesItem.discount_price} vnđ</span>
             </div> :
             <div className="card-content-price">
-                Price: <span>{shoesItem.origin_price}</span>
+                Price: <span>{shoesItem.origin_price} vnđ</span>
             </div>
             }
             <div className="card-content-price">
