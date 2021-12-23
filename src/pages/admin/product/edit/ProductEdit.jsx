@@ -49,47 +49,89 @@ export default function ProductEdit(props) {
                         Product Form
                     </h3>
 
-                    <TextInputWithStyles htmlFor="id" label="Id"
-                        id="id" name="_id" type="text" readOnly={true} />
+                    <TextInputWithStyles htmlFor="id"
+                        label="Id"
+                        id="id"
+                        name="_id"
+                        type="text"
+                        readOnly={true} />
 
-                    <TextInputWithStyles htmlFor="name" label="Name"
-                        id="name" name="name" type="text" />
+                    <TextInputWithStyles htmlFor="name"
+                        label="Name"
+                        id="name"
+                        name="name"
+                        type="text" />
+
+                    <TextInputWithStyles htmlFor="quantity"
+                        label="Quantity"
+                        id="quantity"
+                        name="quantity"
+                        type="number" />
 
                     <FormRowWithStyles>
-                        <TextInputWithStyles htmlFor="price" label="Price"
-                            id="price" name="price" type="number" />
+                        <TextInputWithStyles htmlFor="original-price"
+                            label="Original Price"
+                            id="original-price"
+                            name="origin_price"
+                            type="number" />
 
-                        <TextInputWithStyles htmlFor="quantity" label="Quantity"
-                            id="quantity" name="quantity" type="number" />
+                        <TextInputWithStyles htmlFor="discount-price"
+                            label="Discount Price"
+                            id="discount-price"
+                            name="discount_price"
+                            type="number" />
                     </FormRowWithStyles>
 
-                    <TextInputWithStyles htmlFor="link" label="Image Link" id="link" name="link"
+
+
+                    <TextInputWithStyles htmlFor="link"
+                        label="Image Link"
+                        id="link"
+                        name="link"
                         type="text" value={product.link} />
 
                     <FormRowWithStyles>
-                        <FormSelectWithStyles htmlFor="gender" label="Gender" id="gender" name="gender"
+                        <FormSelectWithStyles htmlFor="gender"
+                            label="Gender"
+                            id="gender"
+                            name="gender"
                             value={product.gender}
                             options={[
                                 { text: "Nam", value: "Nam" },
                                 { text: "Nữ", value: "Nữ" },
                                 { text: "Nam & Nữ", value: "Nam & Nữ" }]} />
 
-                        <TextInputWithStyles htmlFor="discount" label="Discount" id="discount" name="discount"
+                        <TextInputWithStyles htmlFor="discount"
+                            label="Discount"
+                            id="discount"
+                            name="discount"
                             type="number" />
+
                     </FormRowWithStyles>
 
                     <FormRowWithStyles>
-                        <TextInputWithStyles htmlFor="color" label="Color" id="color" name="color"
+                        <TextInputWithStyles htmlFor="color"
+                            label="Color"
+                            id="color"
+                            name="color"
                             type="text" />
 
-                        <TextInputWithStyles htmlFor="size" label="Size" id="size" name="size"
+                        <TextInputWithStyles htmlFor="size"
+                            label="Size"
+                            id="size"
+                            name="size"
                             type="text" />
                     </FormRowWithStyles>
 
-                    <TextInputWithStyles htmlFor="brand" label="Brand" id="brand" name="brand"
+                    <TextInputWithStyles htmlFor="brand"
+                        label="Brand"
+                        id="brand"
+                        name="brand"
                         type="text" />
 
-                    <TextAreaWithStyles htmlFor="description" id="description" label="Description"
+                    <TextAreaWithStyles htmlFor="description"
+                        id="description"
+                        label="Description"
                         name="description" />
 
                     <div className={styles["form__actions"]}>

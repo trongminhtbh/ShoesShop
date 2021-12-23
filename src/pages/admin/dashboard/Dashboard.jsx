@@ -98,7 +98,7 @@ export default function Dashboard() {
                             <ServiceDetail />
                         </Route>
 
-                        {/* <Redirect to="/admin/users" /> */}
+                        <Redirect to="/admin/users" />
                     </Switch>
                 </Router>
             </div>
