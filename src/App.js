@@ -13,7 +13,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => {
   const [state, dispatch] = useStore()
   const [listShoes, setListShoes] = useState([])
+  const [currentUrl, setCurrentUrl] = useState("");
 
+  console.log(window.location.pathname.substring(1,6));
   useEffect(() => {
     (async function () {
       const shoes = await ShoeApiClient.findAll();
@@ -27,7 +29,9 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Header />
+        { window.location.pathname.substring(1,6) !== "admin"?
+        <Header />: <div></div>
+}
         <Section listShoes={listShoes} />
         <Footer />
       </Router>
