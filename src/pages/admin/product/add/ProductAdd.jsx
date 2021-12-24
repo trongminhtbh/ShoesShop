@@ -36,18 +36,19 @@ export default function ProductAdd() {
                         type="text" id="name" name="name" />
 
                     <FormRowWithStyles>
-                        <TextInputWithStyles label="Price"
-                            htmlFor="price"
-                            type="number"
-                            id="price"
-                            name="price" />
+                        <TextInputWithStyles htmlFor="original-price"
+                            label="Original Price"
+                            id="original-price"
+                            name="origin_price"
+                            type="number" />
 
-                        <TextInputWithStyles label="Discount"
-                            htmlFor="discount"
-                            type="number"
-                            id="discount"
-                            name="discount" />
+                        <TextInputWithStyles htmlFor="discount-price"
+                            label="Discount Price"
+                            id="discount-price"
+                            name="discount_price"
+                            type="number" />
                     </FormRowWithStyles>
+
 
                     <TextInputWithStyles label="Image Link"
                         htmlFor="link"

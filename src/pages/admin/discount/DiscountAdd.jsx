@@ -53,6 +53,8 @@ export default function DiscountAdd() {
     const onSubmit = async (data, event) => {
         event.preventDefault();
         await createDiscount(data);
+        alert("Discount Added!");
+        history.goBack();
     }
 
     const onBack = (event) => {

@@ -16,6 +16,7 @@ export default function ProductEdit(props) {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const onSubmit = async (data, event) => {
         event.preventDefault();
+        console.log(data);
         await ShoeApiClient.update(data._id, data);
         alert("Product Updated");
     }
@@ -82,8 +83,6 @@ export default function ProductEdit(props) {
                             type="number" />
                     </FormRowWithStyles>
 
-
-
                     <TextInputWithStyles htmlFor="link"
                         label="Image Link"
                         id="link"
@@ -100,12 +99,6 @@ export default function ProductEdit(props) {
                                 { text: "Nam", value: "Nam" },
                                 { text: "Nữ", value: "Nữ" },
                                 { text: "Nam & Nữ", value: "Nam & Nữ" }]} />
-
-                        <TextInputWithStyles htmlFor="discount"
-                            label="Discount"
-                            id="discount"
-                            name="discount"
-                            type="number" />
 
                     </FormRowWithStyles>
 
