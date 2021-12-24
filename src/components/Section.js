@@ -84,7 +84,7 @@ export default function Section(props) {
                 <PaymentFail />
             </Route>
 
-            <Route path="/order-success" exact >
+            <Route path="/order-success/:orderId" exact >
                 <OrderSuccess />
             </Route>
 

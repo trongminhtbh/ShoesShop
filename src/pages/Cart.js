@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Col, Row, Button, Form } from "react-bootstrap";
+import { Container, Col, Row, Button, Modal, ProgressBar } from "react-bootstrap";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import CartItem from "../components/CartItem";
@@ -14,6 +14,10 @@ export default function Cart() {
   const [address, setAddress] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [momo, setMomo] = useState("false");
+  const [modal, setModal] = useState(false);
+
+  const handleCloseModal = () => setModal(false);
+  const handleShowModal = () => setModal(true);
 
   function handleMomo(event) {
     setMomo(event.target.value);
@@ -113,6 +117,7 @@ export default function Cart() {
   function OrderSuccess() {
     if (shipFee === 0) alert("Please update delivery infomation in account");
     else {
+      handleShowModal();
       let itemList = state.orders.map((item) => {
         if (item.discount_price > 0)
           return {
@@ -151,7 +156,7 @@ export default function Cart() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          window.location = "http://localhost:3000/order-success";
+          window.location = "http://localhost:3000/order-success/" + data._id;
         });
     }
   }
@@ -159,6 +164,7 @@ export default function Cart() {
   function Payment() {
     if (shipFee === 0) alert("Please update delivery infomation in account");
     else {
+      handleShowModal();
       let requestId = 0;
       let itemList = state.orders.map((item) => {
         if (item.discount_price > 0)
@@ -217,6 +223,12 @@ export default function Cart() {
   }
   return (
     <div className={styles["page-content"]}>
+      <Modal show={modal} onHide={handleCloseModal}>
+        <Modal.Header>
+          <Modal.Title>Waiting for order...</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><ProgressBar animated now={100} /></Modal.Body>
+      </Modal>
       <div className={styles["cart-content-div"]}>
         <Container className={`${styles["cart-container"]} h-100 pt-3 pb-3`}>
           <Row className="h-100">
