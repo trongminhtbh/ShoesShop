@@ -49,7 +49,10 @@ const ProductTableHead = (props) => {
                     Brand
                 </th>
                 <th className={styles["product-price"]}>
-                    Price
+                    Origin Price
+                </th>
+                <th className={styles["product-price"]}>
+                    Discount Price
                 </th>
                 <th className={styles["product-gender"]}>
                     Gender
@@ -97,7 +100,7 @@ const ProductTableBody = () => {
 }
 
 const ProductTableRow = (props) => {
-    const { _id, name, brand, price, gender, link, discount } = props.product
+    const { _id, name, brand, origin_price, discount_price, gender, link, discount } = props.product
     const rowDeleteCallBack = props.onProductDeleted;
 
     const match = useRouteMatch();
@@ -125,16 +128,16 @@ const ProductTableRow = (props) => {
                 {brand}
             </td>
             <td className={styles["product-price"]}>
-                {price}
+                {origin_price}
+            </td>
+            <td className={styles["product-price"]}>
+                {discount_price}
             </td>
             <td className={styles["product-gender"]}>
                 {gender}
             </td>
-            <td className={styles["product-discount"]}>
-                {discount || "0"}%
-            </td>
             <td className={styles["product-link"]}>
-                <img src={link} width="60px" height="60px" alt="product" />
+                <img src={"http://localhost:3000/product-img/" +link} width="60px" height="60px" alt="product" />
             </td>
             <td className={styles["product-actions"]}>
                 <EditButtonWithStyles onClick={(event) => {
