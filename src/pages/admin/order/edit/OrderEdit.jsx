@@ -167,7 +167,7 @@ export default function OrderEdit() {
                     className={styles["form"]}>
 
                     <h3 className={styles["form-title"]}>
-                        General Detail
+                        Order Detail
                     </h3>
 
                     <TextInputWithStyles htmlFor="id" label="Id" id="id"
@@ -207,7 +207,7 @@ export default function OrderEdit() {
                     </div>
 
                     <h3 className="product-list-title">
-                        Product Detail
+                        Order Products
                     </h3>
 
                     <ProductList products={order.items} />
@@ -238,15 +238,16 @@ export default function OrderEdit() {
 }
 
 const ProductList = (props) => {
-    const products = props.products;
+    const products = props.products
 
     return (
         <table className={styles["product-table"]}>
             <ProductTableHeader />
             <tbody>
                 {
-                    products && products.map(product =>
-                        <ProductTableRow key={product._id} product={product} />)
+                    products && products
+                        .map(product => <ProductTableRow key={product._id} product={product} />)
+
                 }
             </tbody>
         </table>
@@ -273,7 +274,7 @@ const ProductTableRow = (props) => {
     return (
         <tr>
             <td className={styles["product-image"]}>
-                <img width="60px" height="60px" src={link} alt="product" />
+                <img width="60px" height="60px" src={"http://localhost:3000/product-img/" + link} alt="product" />
             </td>
             <td className={styles["product-id"]}>
                 {_id}

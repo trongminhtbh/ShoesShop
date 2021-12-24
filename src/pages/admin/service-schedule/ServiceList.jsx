@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { AddCircle, Cake } from "@material-ui/icons";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import { DeleteButtonWithStyles, EditButtonWithStyles } from "../helpers";
+import { EditButtonWithStyles } from "../helpers";
 import styles from "./service.module.scss";
 
 const baseUrl = "https://pacific-ridge-30189.herokuapp.com/",
@@ -30,6 +29,8 @@ export default function ServiceList() {
 
     const [services, setServices] = useState([]);
 
+    const [searchTerm, setSearchTerm] = useState("");
+
     useFetchService((services) => setServices(services));
 
     const onEditService = (event, serviceId) => {
@@ -38,12 +39,31 @@ export default function ServiceList() {
         history.push(path);
     }
 
+    const onScheduleSearch = (event) => {
+        event.preventDefault();
+        const text = event.target.value;
+        setSearchTerm(text);
+    }
+
     return (<section>
         <header className={styles["service-list-header"]}>
             <h3 className={styles["service-list-title"]}>
-                Discounts List
+                Schedules List
             </h3>
         </header>
+
+        <input type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={onScheduleSearch}
+            style={{
+                padding: "7px 15px",
+                minWidth: "440px",
+                borderRadius: "5px",
+                outline: "none",
+                border: "1px solid rgba(0, 0, 0, 0.25)",
+                marginBottom: "10px"
+            }} />
 
         <table className={styles["service-table"]}>
             <thead>
@@ -72,8 +92,12 @@ export default function ServiceList() {
                 </tr>
             </thead>
             <tbody>
-                {services.map(service =>
-                    <tr>
+                {services.filter(services => Object.values(services).some(property => property
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()))
+                ).map((service) =>
+                    <tr key={service._id}>
                         <td className={styles["service-name"]}>
                             {service.name}
                         </td>

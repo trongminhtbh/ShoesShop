@@ -38,6 +38,8 @@ export default function DiscountList(props) {
 
     const [discounts, setDiscounts] = useState([]);
 
+    const [searchTerm, setSearchTerm] = useState("");
+
     useFetchDiscounts((discounts) => setDiscounts(discounts));
 
     const onAddDiscount = (event) => {
@@ -48,10 +50,16 @@ export default function DiscountList(props) {
 
     const onDeleteDiscount = async (event, discount) => {
         event.preventDefault();
+        const answer = window.confirm("Are you sure want to delete the record!");
+        if (!answer) {
+            return
+        }
+        
         await deleteDiscount(discount);
         const remainingDiscounts = discounts.filter(
             (each) => each._id !== discount._id);
         setDiscounts(remainingDiscounts);
+
         alert("Discount Deleted!");
     }
 
@@ -59,6 +67,12 @@ export default function DiscountList(props) {
         event.preventDefault();
         const path = `${match.path}edit/${discount.code}`;
         history.push(path);
+    }
+
+    const onDiscountSearch = (event) => {
+        event.preventDefault();
+        const text = event.target.value;
+        setSearchTerm(text);
     }
 
     return (
@@ -73,6 +87,19 @@ export default function DiscountList(props) {
                     <AddCircle />
                 </button>
             </header>
+
+            <input type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={onDiscountSearch}
+                style={{
+                    padding: "7px 15px",
+                    minWidth: "440px",
+                    borderRadius: "5px",
+                    outline: "none",
+                    border: "1px solid rgba(0, 0, 0, 0.25)",
+                    marginBottom: "10px"
+                }} />
 
             <table className={styles["discount-table"]}>
                 <thead>
@@ -101,13 +128,17 @@ export default function DiscountList(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {discounts.map((discount) =>
+                    {discounts.filter(discount => Object.values(discount).some(property => property
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()))
+                    ).map((discount) =>
                         <tr key={discount._id}>
                             <td className={styles["discount-code"]}>
                                 {discount.code}
                             </td>
                             <td className="discount-value">
-                                {discount.value}
+                                {discount.discount_value}%
                             </td>
                             <td className="discount-start-time">
                                 {discount.start_time}
