@@ -34,8 +34,8 @@ function Footer() {
               </div>
               <div className={styles["shop-inline"]}>
                 {" "}
-                <Facebook />
-                <Instagram />
+                <a href="https://www.facebook.com" target="_blank"><Facebook /></a>
+                <a href="https://www.instagram.com" target="_blank"><Instagram /></a>                
               </div>
             </div>
           </Col>

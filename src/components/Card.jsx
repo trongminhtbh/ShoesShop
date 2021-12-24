@@ -14,16 +14,20 @@ function Cards({shoesItem}) {
         
     <div className="card-item d-flex flex-row">
         <div className={"card-img " + "br" + shoesItem._id%3}>
-            <img src={shoesItem.link} alt=""></img>
+            <img src={"http://localhost:3000/product-img/" + shoesItem.link} alt=""></img>
         </div>
         <div className="card-content d-flex flex-column">
             <div className="card-content-header">
                 {shoesItem.name}
             </div>
-
+            { shoesItem.discount_price > 0 ?
             <div className="card-content-price">
                 Price: <del><span>{shoesItem.origin_price}</span></del> <i class="fas fa-arrow-right"></i> <span>{shoesItem.discount_price} vnđ</span>
+            </div> :
+            <div className="card-content-price">
+                Price: <span>{shoesItem.origin_price} vnđ</span>
             </div>
+            }
             <div className="card-content-price">
                 Rating: <span>{shoesItem.rating.value}/5 ({shoesItem.rating.total_rating} lượt)</span>
             </div>

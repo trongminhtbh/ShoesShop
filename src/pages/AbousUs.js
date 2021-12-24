@@ -16,40 +16,37 @@ export default function AboutUs() {
             <Row className="h-100">
               <Col md={6}>
                 <div className={`${styles["story-1"]}`}>
-                  <img
-                    src={avatar}
-                    alt="avatar"
-                    className={`${styles["avt-about"]}`}
-                  />
-                  <h6>Nguyen Manh Linh</h6>
                   <p>
-                    "A fantastic organisation! Great cutomer support from
-                    beginning to end of the process. The team are really
-                    informed and go the extra mile at every stage. I would
-                    recommend them unreservedly. Information was accurate,
-                    responses to queries were turned around very fast."
+                    Established in 2010, starting from a small shop. After more
+                    than ten years of operation, Shoes Shop has had a large
+                    number of trusted customers and has become one of the famous
+                    fashion shoe brands in the Ho Chi Minh City area and the
+                    southern provinces. Over the years, with the trust of
+                    customers, Shoes Shop has continuously won different titles
+                    voted by consumers.
                   </p>
                 </div>
               </Col>
               <Col md={6} className="flex-column d-flex h-100">
                 <Row className={`${styles["about-us-title"]}`}>
-                  <h3>Our Customer</h3>
+                  <h3>Our Story</h3>
                 </Row>
                 <Row className="flex-grow-1">
                   <Col className="align-self-end">
                     <div className={`${styles["story-2"]} ms-auto`}>
-                      <img
-                        src={avatar1}
-                        alt="avatar"
-                        className={styles["avt-about"]}
-                      />
-                      <h6>Le Hoai Nam</h6>
                       <p>
-                        "Great service, efficient communication and a really
-                        easy way to get a mortgage with lots of help and support
-                        to get the right deal. My supporter was helpful. Answers
-                        were clear and where necessary detailed enough for us to
-                        make informed decisions quickly."
+                        Our customers are people who love to own the latest,
+                        modern fashion shoes combined with sophistication and
+                        elegance. With many years of experience in the
+                        development process, we are constantly creating and
+                        innovating models, always bringing to the market the
+                        most diverse and fashionable shoe models combined with
+                        sustainable materials suitable for many classes users,
+                        suitable for many purposes. Fashion shoes Shoes Shop
+                        proudly beautifies Vietnamese women, helping customers
+                        affirm their personal style. In addition, when customers
+                        come to Shoes Shop fashion leather shoes, they also get
+                        the best after-sales service with a long-term warranty.
                       </p>
                     </div>
                   </Col>

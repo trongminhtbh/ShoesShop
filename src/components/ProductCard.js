@@ -1,19 +1,23 @@
-import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
-import { AddCircle, StarHalf, Star } from "@material-ui/icons";
+import React, { useState } from "react";
+import { Card, Row, Col, Modal, Button } from "react-bootstrap";
+import { AddCircle, StarBorder, Star } from "@material-ui/icons";
 import styles from "../styles/footer-style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import shoe from "../assets/img/shoe.png";
+import ProductDetail from "../pages/ProductDetail";
 import { useStore, addItemToCart } from "../store";
 import { NavLink } from "react-router-dom";
 
-function ProductCard( props) {
-  const {shoesItem} = props
+function ProductCard(props) {
+  const { shoesItem } = props;
 
-  const [state, dispatch] = useStore()
+  const [state, dispatch] = useStore();
+  const [show, setShow] = useState(false);
+  const [showDetail, setShowDetail] = useState(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const handleAdd = () => {
-    dispatch(addItemToCart(shoesItem))
-  }
+    dispatch(addItemToCart(shoesItem));
+  };
   return (
     <Card className={`${styles["round-border"]}`}>
       <Row className="h-100">
@@ -29,7 +33,7 @@ function ProductCard( props) {
               alignItems: "center",
             }}
           >
-            <Card.Img src={shoesItem.link} />
+            <Card.Img src={"http://localhost:3000/product-img/" + shoesItem.link} />
           </div>
         </Col>
         <Col md={7} className="p-0">
@@ -37,27 +41,80 @@ function ProductCard( props) {
             <Card.Title className={styles["shoe-title"]}>
               {shoesItem.name}
             </Card.Title>
-            <Card.Title className={styles["shoe-title"]}>
-              <Star style={{ fill: "#FDC733" }}></Star>
-              <Star style={{ fill: "#FDC733" }}></Star>
-              <Star style={{ fill: "#FDC733" }}></Star>
-              <Star style={{ fill: "#FDC733" }}></Star>
-              <StarHalf style={{ fill: "#FDC733" }}></StarHalf>
-            </Card.Title>
-            <Card.Title className={styles["shoe-price"]}>
-              {shoesItem.price}
-            </Card.Title>
+
+            {(Math.round(shoesItem.rating.value) === 1 && (
+              <Card.Title className={styles["shoe-title"]}>
+                <Star style={{ fill: "#FDC733" }}></Star>
+                <StarBorder></StarBorder>
+                <StarBorder></StarBorder>
+                <StarBorder></StarBorder>
+                <StarBorder></StarBorder>
+              </Card.Title>
+            )) ||
+              (Math.round(shoesItem.rating.value) === 2 && (
+                <Card.Title className={styles["shoe-title"]}>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <StarBorder></StarBorder>
+                  <StarBorder></StarBorder>
+                  <StarBorder></StarBorder>
+                </Card.Title>
+              )) ||
+              (Math.round(shoesItem.rating.value) === 3 && (
+                <Card.Title className={styles["shoe-title"]}>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <StarBorder></StarBorder>
+                  <StarBorder></StarBorder>
+                </Card.Title>
+              )) ||
+              (Math.round(shoesItem.rating.value) === 4 && (
+                <Card.Title className={styles["shoe-title"]}>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <StarBorder></StarBorder>
+                </Card.Title>
+              )) ||
+              (Math.round(shoesItem.rating.value) === 5 && (
+                <Card.Title className={styles["shoe-title"]}>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                  <Star style={{ fill: "#FDC733" }}></Star>
+                </Card.Title>
+              ))}
+            {shoesItem.discount_price > 0 ? (
+              <Card.Title className={styles["shoe-price"]}>
+                <s>{shoesItem.origin_price}</s> &ensp;
+                {shoesItem.discount_price}
+              </Card.Title>
+            ) : (
+              <Card.Title className={styles["shoe-price"]}>
+                {shoesItem.origin_price}
+              </Card.Title>
+            )}
             <Card.Text style={{ textAlign: "left", marginBottom: "10px" }}>
               {shoesItem.desc}
             </Card.Text>
-            <div
-              className={styles["add-btn"]}
-            >
-              <NavLink to="/cart" onClick={handleAdd}>
+            <div className={styles["add-btn"]}>
+              <Button
+                onClick={handleShow}
+                className={styles["home-add-button"]}
+              >
                 Add to card <AddCircle style={{ fill: "#FB4B29" }}></AddCircle>
-              </NavLink>
+              </Button>
             </div>
           </Card.Body>
+          <Modal dialogClassName="modal-90w" show={show} onHide={handleClose}>
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              {showDetail && <ProductDetail shoesItem={shoesItem} />}
+            </Modal.Body>
+          </Modal>
         </Col>
       </Row>
     </Card>

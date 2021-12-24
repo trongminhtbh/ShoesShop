@@ -1,8 +1,12 @@
 import { Container, Row, Col, Carousel, Nav } from "react-bootstrap";
-import { StarHalf, Star } from "@material-ui/icons";
+import { StarOutline, Star } from "@material-ui/icons";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 import "../styles/carousel-custom.css";
+import shoeicon1 from "../assets/img/Untitled1.png";
+import shoeicon2 from "../assets/img/jason-markk-sneaker-cleaner-cleaning-white-leather-sneakers-common-projects-2.jpg";
+import shoeicon3 from "../assets/img/00-500x500.jpg";
+import shoeicon4 from "../assets/img/Sneaker_Care_Blog_2.jpg";
 import React, { useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import LargeNikeIcon from "../assets/img/large-nike.png";
@@ -118,29 +122,7 @@ function Homepage(props) {
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
-                              <StarHalf style={{ fill: "#FDC733" }}></StarHalf>
-                            </div>
-                            <div
-                              style={{
-                                display: "inline-block",
-                                color: "#FDC733",
-                                fontFamily: "'Fredoka One', cursive",
-                                fontSize: "20px",
-                              }}
-                            >
-                              &nbsp;| đ 800.000
-                            </div>
-                          </div>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                          <h4 style={{ color: "white" }}>NIKE AIR MAX III</h4>
-                          <div className={styles["rate-price"]}>
-                            <div style={{ display: "inline-block" }}>
-                              <Star style={{ fill: "#FDC733" }}></Star>
-                              <Star style={{ fill: "#FDC733" }}></Star>
-                              <Star style={{ fill: "#FDC733" }}></Star>
-                              <Star style={{ fill: "#FDC733" }}></Star>
-                              <StarHalf style={{ fill: "#FDC733" }}></StarHalf>
+                              <StarOutline style={{ fill: "#FDC733" }}></StarOutline>
                             </div>
                             <div
                               style={{
@@ -155,14 +137,36 @@ function Homepage(props) {
                           </div>
                         </Carousel.Item>
                         <Carousel.Item>
-                          <h4 style={{ color: "white" }}>NIKE AIR MAX III</h4>
+                          <h4 style={{ color: "white" }}>NIKE FLY BY MID 2</h4>
+                          <div className={styles["rate-price"]}>
+                            <div style={{ display: "inline-block" }}>
+                              <Star style={{ fill: "#FDC733" }}></Star>
+                              <Star style={{ fill: "#FDC733" }}></Star>
+                              <Star style={{ fill: "#FDC733" }}></Star>
+                              <StarOutline style={{ fill: "#FDC733" }}></StarOutline>
+                              <StarOutline style={{ fill: "#FDC733" }}></StarOutline>
+                            </div>
+                            <div
+                              style={{
+                                display: "inline-block",
+                                color: "#FDC733",
+                                fontFamily: "'Fredoka One', cursive",
+                                fontSize: "20px",
+                              }}
+                            >
+                              &nbsp;| đ 700.000
+                            </div>
+                          </div>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                          <h4 style={{ color: "white" }}>NIKE FLY BY MID 3</h4>
                           <div className={styles["rate-price"]}>
                             <div style={{ display: "inline-block" }}>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
                               <Star style={{ fill: "#FDC733" }}></Star>
-                              <StarHalf style={{ fill: "#FDC733" }}></StarHalf>
+                              <StarOutline style={{ fill: "#FDC733" }}></StarOutline>
                             </div>
                             <div
                               style={{
@@ -241,7 +245,7 @@ function Homepage(props) {
         <Container className={styles["inner-container"]}>
           <OwlCarousel items={3} className="owl-theme" loop nav margin={8}>
             <div>
-              <PostCard title="How to clean white shoes">
+              <PostCard title="How to clean white shoes" img={shoeicon1}>
                 No one buys white sneakers thinking they&apos;ll stay bright and
                 grime-free forever, but when the inevitable spills, stains, and
                 scuffs happen, it&apos;s only natural to hope you can restore
@@ -249,21 +253,21 @@ function Homepage(props) {
               </PostCard>
             </div>
             <div>
-              <PostCard title="How to keep in shape for white sneakers">
+              <PostCard title="How to keep in shape for white sneakers" img={shoeicon2}>
                 Do you know how to properly clean white sneakers to keep the
                 stylish purity of the shoes while not affecting their
                 durability?
               </PostCard>
             </div>
             <div>
-              <PostCard title="7 best ways to preserve sports shoes">
+              <PostCard title="7 best ways to preserve sports shoes" img={shoeicon4}>
                 To help your sports shoes be used for a long time. ShoesShop
                 offers the best way to store sports shoes to keep your shoes
                 always at their best.
               </PostCard>
             </div>
             <div>
-              <PostCard title="Sneaker care: Tips and products to use">
+              <PostCard title="Sneaker care: Tips and products to use" img={shoeicon3}>
                 Taking care of your sneakers, whether it be protecting or
                 cleaning, is a must if you want them to last longer. Although it
                 may seem like a lot of work, it actually only requires a couple

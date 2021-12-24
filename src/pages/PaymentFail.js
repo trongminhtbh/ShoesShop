@@ -13,7 +13,7 @@ export default function PaymentFail() {
           <Col xs={4}></Col>
           <Col xs={4} className={`align-self-center text-center`}>
             <img src={failed} alt="Success icon" width="100px" />
-            <h5>Failed payment for the order</h5>
+            <h5 style={{marginTop: "30px", marginBottom: "30px"}}>Failed payment for the order</h5>
             <NavLink to="/home" className="btn btn-primary">
               Go to Homepage
             </NavLink>

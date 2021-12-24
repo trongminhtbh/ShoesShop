@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import shoeicon from "../assets/img/Untitled1.png";
 import styles from "../styles/footer-style.module.css";
 
 function PostCard(props) {
@@ -10,9 +9,9 @@ function PostCard(props) {
       <Card className={styles["round-border-post"]}>
         <Card.Img
           variant="top"
-          src={shoeicon}
+          src={props.img}
           className="justify-content-md-center"
-          style={{ borderTopLeftRadius: "30px", borderTopRightRadius: "30px" }}
+          style={{ borderTopLeftRadius: "30px", borderTopRightRadius: "30px", height: "230px" }}
         />
         <Card.Body>
           <div className={styles["post-content"]}>

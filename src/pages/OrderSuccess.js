@@ -6,22 +6,22 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "../styles/footer-style.module.css";
 
 export default function OrderSuccess() {
-  let orderId = useParams();
-  const requestOptions = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      state: "paid",
-    }),
-  };
-  useEffect(() => {
-    fetch(
-      "https://pacific-ridge-30189.herokuapp.com/order?id=" + orderId,
-      requestOptions
-    );
-  });
+  const {orderId} = useParams();
+  // const requestOptions = {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     state: "paid",
+  //   }),
+  // };
+  // useEffect(() => {
+  //   fetch(
+  //     "https://pacific-ridge-30189.herokuapp.com/order?id=" + orderId,
+  //     requestOptions
+  //   );
+  // });
   return (
     <div className={`${styles["page-content"]}`}>
       <Container fluid style={{ height: "100%" }}>
@@ -29,7 +29,7 @@ export default function OrderSuccess() {
           <Col xs={4}></Col>
           <Col xs={4} className={`align-self-center text-center`}>
             <img src={success} alt="Success icon" width="100px" />
-            <h5>Order is successful, please pay when receiving shoes</h5>
+            <h5 style={{marginTop: "30px", marginBottom: "30px"}}>Order is successful, your order ID is {orderId}, please pay when receiving shoes.</h5>
             <NavLink to="/home" className="btn btn-primary">
               Go to Homepage
             </NavLink>
