@@ -47,12 +47,12 @@ export default function Discount(){
                 result.push(
                     <tr>
                         <th>{num}</th>
-                        {/* <th id = "codetable">{ordersservice[index].code}</th> */}
-                        {/* <th>{ordersservice[index].discount_value}</th>
-                        <th>{ordersservice[index].quantity}</th> */}
-                        <th>{date}</th>
+                        <th id = "codetable">{ordersservice[index].code}</th>
+                        <th>{ordersservice[index].discount_value}</th>
+                        <th>{ordersservice[index].quantity}</th>
+                        {/* <th>{date}</th>
                         <th>{start_time}</th>
-                        <th>{end_time}</th>
+                        <th>{end_time}</th> */}
                     </tr>
                 );
                 num += 1;
