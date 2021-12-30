@@ -53,7 +53,8 @@ export default function Cart() {
             setDiscountList(discountList => [
               ...discountList,
               { code: item.code, discountValue: item.discount_value },
-            ]);            
+            ]); 
+            console.log(discountList);           
             return true;
           } else return false;
         });
