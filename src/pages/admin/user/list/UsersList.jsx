@@ -1,52 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { Edit, Delete } from "@material-ui/icons";
 import { UserApiClient } from "../../helpers/api";
 import styles from "./users-list.module.scss";
 import { DeleteButtonWithStyles, EditButtonWithStyles } from "../../helpers";
 
 export default function UsersList(props) {
-    return (
-        <div>
-            <header className={styles["user-list-header"]}>
-                <h3 className={styles["user-list-title"]}>
-                    Users List
-                </h3>
-            </header>
-
-            <table className={styles["user-table"]}>
-                <UserTableHead />
-                <UserTableBody />
-            </table>
-        </div>
-    )
-}
-
-const UserTableHead = () => {
-    return (
-        <thead>
-            <tr>
-                <th className={styles["user-id"]}>
-                    Id
-                </th>
-                <th className={styles["user-name"]}>
-                    Name
-                </th>
-                <th className={styles["user-phone"]}>
-                    Phone
-                </th>
-                <th className={styles["user-email"]}>
-                    Email
-                </th>
-                <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
-                <th className={styles["user-actions"]}>Actions</th>
-            </tr>
-        </thead>
-    )
-}
-
-const UserTableBody = () => {
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => onMounted(), [])
     const onMounted = () => {
@@ -63,14 +23,66 @@ const UserTableBody = () => {
         setUsers(deleted);
     }
 
+    const onUserSearch = (event) => {
+        event.preventDefault();
+        const text = event.target.value;
+        setSearchTerm(text);
+    }
+
     return (
-        <tbody>
-            {users.map((user) =>
-                <UserTableRow key={user._id} user={user} onUserDeleted={onUserDeleted} />
-            )}
-        </tbody>
+        <div>
+            <header className={styles["user-list-header"]}>
+                <h3 className={styles["user-list-title"]}>
+                    Users List
+                </h3>
+            </header>
+            <input type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={onUserSearch}
+                style={{
+                    padding: "7px 15px",
+                    minWidth: "440px",
+                    borderRadius: "5px",
+                    outline: "none",
+                    border: "1px solid rgba(0, 0, 0, 0.25)",
+                    marginBottom: "10px"
+                }} />
+
+            <table className={styles["user-table"]}>
+                <thead>
+                    <tr>
+                        <th className={styles["user-id"]}>
+                            Id
+                        </th>
+                        <th className={styles["user-name"]}>
+                            Name
+                        </th>
+                        <th className={styles["user-phone"]}>
+                            Phone
+                        </th>
+                        <th className={styles["user-email"]}>
+                            Email
+                        </th>
+                        <th className={styles["user-date-of-birth"]}>Date Of Birth</th>
+                        <th className={styles["user-actions"]}>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users
+                        .filter(user => Object.values(user)
+                            .some(property => property
+                                .toString()
+                                .includes(searchTerm)))
+                        .map((user) =>
+                            <UserTableRow key={user._id} user={user} onUserDeleted={onUserDeleted} />)
+                    }
+                </tbody>
+            </table>
+        </div>
     )
 }
+
 
 const UserTableRow = (props) => {
     const { _id, name, phone, email, dob } = props.user;

@@ -15,64 +15,9 @@ export default function ProductsList(props) {
         history.push(pathToProductAdd);
     }
 
-    return (
-        <section>
-            <header className={styles["product-list-header"]}>
-                <h3 className={styles["product-list-title"]}>
-                    Products List
-                </h3>
-                <button className={styles["product-list-action"]}
-                    onClick={(event) => directToProductAdd(event)}>
-                    Add New Item
-                    <AddCircle />
-                </button>
-            </header>
-            <table className={styles["product-table"]}>
-                <ProductTableHead />
-                <ProductTableBody />
-            </table>
-        </section>)
-}
-
-
-const ProductTableHead = (props) => {
-    return (
-        <thead>
-            <tr>
-                <th className={styles["product-id"]}>
-                    Id
-                </th>
-                <th className={styles["product-name"]}>
-                    Name
-                </th>
-                <th className={styles["product-brand"]}>
-                    Brand
-                </th>
-                <th className={styles["product-price"]}>
-                    Origin Price
-                </th>
-                <th className={styles["product-price"]}>
-                    Discount Price
-                </th>
-                <th className={styles["product-gender"]}>
-                    Gender
-                </th>
-                <th className={styles["product-discount"]}>
-                    Discount
-                </th>
-                <th className={styles["product-link"]}>
-                    Image
-                </th>
-                <th className={styles["product-actions"]}>
-                    #
-                </th>
-            </tr>
-        </thead >
-    )
-}
-
-const ProductTableBody = () => {
     const [products, setProducts] = useState([]);
+
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => onMounted(), [])
     const onMounted = () => {
@@ -90,17 +35,82 @@ const ProductTableBody = () => {
         setProducts(deleted);
     }
 
+    const onProductSearch = (event) => {
+        event.preventDefault();
+        const text = event.target.value;
+        setSearchTerm(text);
+    }
+
     return (
-        <tbody>
-            {products.map((product) =>
-                <ProductTableRow key={product._id} product={product}
-                    onProductDeleted={onProductDeleted} />)}
-        </tbody>
-    )
+        <section>
+            <header className={styles["product-list-header"]}>
+                <h3 className={styles["product-list-title"]}>
+                    Products List
+                </h3>
+                <button className={styles["product-list-action"]}
+                    onClick={(event) => directToProductAdd(event)}>
+                    Add New Item
+                    <AddCircle />
+                </button>
+            </header>
+            <input type="text"
+                placeholder="Search"
+                value={searchTerm}
+                onChange={onProductSearch}
+                style={{
+                    padding: "7px 15px",
+                    minWidth: "440px",
+                    borderRadius: "5px",
+                    outline: "none",
+                    border: "1px solid rgba(0, 0, 0, 0.25)",
+                    marginBottom: "10px"
+                }} />
+            <table className={styles["product-table"]}>
+                <thead>
+                    <tr>
+                        <th className={styles["product-id"]}>
+                            Id
+                        </th>
+                        <th className={styles["product-name"]}>
+                            Name
+                        </th>
+                        <th className={styles["product-brand"]}>
+                            Brand
+                        </th>
+                        <th className={styles["product-price"]}>
+                            Origin Price
+                        </th>
+                        <th className={styles["product-price"]}>
+                            Discount Price
+                        </th>
+                        <th className={styles["product-gender"]}>
+                            Gender
+                        </th>
+
+                        <th className={styles["product-link"]}>
+                            Image
+                        </th>
+                        <th className={styles["product-actions"]}>
+                            #
+                        </th>
+                    </tr>
+                </thead >
+                <tbody>
+                    {products.filter(product => Object.values(product).some(property => property
+                        .toString()
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase()))
+                    ).map((product) =>
+                        <ProductTableRow key={product._id} product={product} onUserDeleted={onProductDeleted} />)
+                    }
+                </tbody>
+            </table>
+        </section>)
 }
 
+
 const ProductTableRow = (props) => {
-    const { _id, name, brand, origin_price, discount_price, gender, link, discount } = props.product
+    const { _id, name, brand, origin_price, discount_price, gender, link } = props.product
     const rowDeleteCallBack = props.onProductDeleted;
 
     const match = useRouteMatch();
@@ -113,7 +123,13 @@ const ProductTableRow = (props) => {
 
     const deleteProduct = async (event, id) => {
         event.preventDefault();
+        const answer = window.confirm("Are you sure want to delete the record!");
+        if (!answer) {
+            return;
+        }
+
         await ShoeApiClient.remove(id);
+        rowDeleteCallBack(_id);
     }
 
     return (
@@ -137,16 +153,14 @@ const ProductTableRow = (props) => {
                 {gender}
             </td>
             <td className={styles["product-link"]}>
-                <img src={"http://localhost:3000/product-img/" +link} width="60px" height="60px" alt="product" />
+                <img src={"http://localhost:3000/product-img/" + link} width="60px" height="60px" alt="product" />
             </td>
             <td className={styles["product-actions"]}>
                 <EditButtonWithStyles onClick={(event) => {
-                    props.onProductDeleted();
                     directToProductEdit(event, _id)
                 }} />
                 <DeleteButtonWithStyles onClick={async (event) => {
                     await deleteProduct(event, _id)
-                    rowDeleteCallBack(_id);
                 }} />
             </td>
         </tr>
