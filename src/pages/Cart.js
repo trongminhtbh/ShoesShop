@@ -43,17 +43,18 @@ export default function Cart() {
             startDateParts[1] - 1,
             +startDateParts[0]
           );
-          // let endDateParts = item.end_time.split("/");
-          // let endDateObject = new Date(
-          //   +endDateParts[2],
-          //   endDateParts[1] - 1,
-          //   +endDateParts[0]
-          // );
-          if (startDateObject < Date.now() && item.quantity > 0) {
-            setDiscountList([
+          let endDateParts = item.end_time.split("/");
+          let endDateObject = new Date(
+            +endDateParts[2],
+            endDateParts[1] - 1,
+            +endDateParts[0]
+          );          
+          if (startDateObject <= Date.now() && endDateObject >= Date.now() && item.quantity > 0) {         
+            setDiscountList(discountList => [
               ...discountList,
               { code: item.code, discountValue: item.discount_value },
-            ]);
+            ]); 
+            console.log(discountList);           
             return true;
           } else return false;
         });
