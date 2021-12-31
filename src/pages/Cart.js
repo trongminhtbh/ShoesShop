@@ -86,7 +86,10 @@ export default function Cart() {
       )
         .then((response) => response.json())
         .then((data) => {
-          data.http_code !== undefined ? alert("Invalid address. Please re-enter your shipping address") : setShipFee(data.total_price);
+          if (data.http_code !== undefined) {
+            setShipFee(0);
+            alert("Invalid address. Please re-enter your shipping address")
+          } else setShipFee(data.total_price);
         });
     }
   }, [address, state.login._id]);
@@ -116,7 +119,7 @@ export default function Cart() {
   }
 
   function OrderSuccess() {
-    if (shipFee === 0) alert("Please update delivery infomation in account");
+    if (shipFee === 0) alert("Please update delivery infomation");
     else {
       handleShowModal();
       let itemList = state.orders.map((item) => {
@@ -163,7 +166,7 @@ export default function Cart() {
   }
 
   function Payment() {
-    if (shipFee === 0) alert("Please update delivery infomation in account");
+    if (shipFee === 0) alert("Please update delivery infomation");
     else {
       handleShowModal();
       let requestId = 0;
